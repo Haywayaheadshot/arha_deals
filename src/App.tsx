@@ -1,8 +1,11 @@
 import React from "react";
+import HomePage from "./components/LandingPage/HomePage";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => (
-  <div className="bg-black">
-    <h1 className="underline text-white">Hello World!</h1>
+  <div className="p-0">
+    <NavBar />
+    <HomePage />
   </div>
 );
 
