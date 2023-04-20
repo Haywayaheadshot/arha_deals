@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   // content: ["./index.html", "./src/components/**/*.{js,ts,jsx,tsx}"],
-  purge: ['index.html', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: ["index.html", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -13,7 +13,7 @@ export default {
         "blue-200": "#0074E4",
         "blue-300": "#288AE8",
         "yellow-100": "#CFAA1E",
-        "yellow-200": "#F5CA23",
+        "yellow-200": "#F5CA23", 
         "yellow-300": "#96790E",
         "purple-100": "#6C5BB7",
         "purple-200": "#5847A3",
