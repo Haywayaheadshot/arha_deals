@@ -56,6 +56,12 @@ function HomePage() {
           </span>
         </p>
       </section>
+      <section className="py-10 bg-tertiary mb-10">
+        <h2 className="text-center text-2xl text-primary">Exclusive Items</h2>
+        <p className="text-center p-5 text-primary">
+          This is a category of items that are not necessarily tech but rare.
+        </p>
+      </section>
     </div>
   );
 }
