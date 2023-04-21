@@ -17,8 +17,12 @@ function HomePage() {
           Use devices that works for you! Not devices that you work for.
         </p>
       </section>
-      <section className="mb-6">
-        <img src={applePhones} alt="Stack of Apple phones" />
+      <section className="mb-6 flex flex-col justify-center items-center">
+        <img
+          src={applePhones}
+          alt="Stack of Apple phones"
+          className="max-w-home-image"
+        />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
             Check out iProducts
@@ -44,8 +48,8 @@ function HomePage() {
           Check Out the latest news in the tech industry.
         </p>
       </section>
-      <section className="py-10">
-        <img src={droid} alt="A Droid Robot" />
+      <section className="py-10 mb-6 flex flex-col justify-center items-center">
+        <img src={droid} alt="A Droid Robot" className="max-w-home-image" />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
             Check out Android gadjets.

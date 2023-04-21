@@ -38,6 +38,7 @@ export default {
       },
       maxWidth: {
         rousel: "80vw",
+        "home-image": "90vw",
       },
     },
   },
