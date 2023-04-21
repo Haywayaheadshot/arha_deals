@@ -36,6 +36,9 @@ export default {
         "extra-bold": "800",
         black: "900",
       },
+      maxWidth: {
+        rousel: "80vw",
+      },
     },
   },
   plugins: [],
