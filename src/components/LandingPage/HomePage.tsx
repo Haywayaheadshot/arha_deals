@@ -1,6 +1,6 @@
 import React from "react";
 import applePhones from "../../assets/apple-phones.png";
-// import FeaturedProducts from "../Shared/FeaturedProducts";
+import FeaturedProducts from "../Shared/FeaturedProducts";
 
 function HomePage() {
   return (
@@ -16,7 +16,7 @@ function HomePage() {
           Use devices that works for you! Not devices that you work for.
         </p>
       </section>
-      <section>
+      <section className="mb-6">
         <img src={applePhones} alt="Stack of Apple phones" />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
@@ -31,7 +31,26 @@ function HomePage() {
           devices.
         </p>
       </section>
-      {/* <FeaturedProducts /> */}
+      <section className="py-10 flex flex-col justify-center items-center">
+        <h2 className="text-center text-2xl">Featured Products</h2>
+        <div className="text-center">See What&apos;s Trending Right Now</div>
+        <FeaturedProducts />
+        <span className="border-b-2 border-b-tertiary pt-3">View more</span>
+      </section>
+      <section className="py-10 bg-tertiary mb-10">
+        <h2 className="text-center text-2xl text-primary">Tech News</h2>
+        <p className="text-center p-5 text-primary">
+          Check Out the latest news in the tech industry.
+        </p>
+      </section>
+      <section>
+        <img src={applePhones} alt="Stack of Apple phones" />
+        <p className="text-center py-4">
+          <span className="border-b-2 border-b-tertiary">
+            Check out Android gadjets.
+          </span>
+        </p>
+      </section>
     </div>
   );
 }
