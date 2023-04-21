@@ -1,5 +1,6 @@
 import React from "react";
 import applePhones from "../../assets/apple-phones.png";
+import droid from "../../assets/droid.png";
 import FeaturedProducts from "../Shared/FeaturedProducts";
 
 function HomePage() {
@@ -43,8 +44,8 @@ function HomePage() {
           Check Out the latest news in the tech industry.
         </p>
       </section>
-      <section>
-        <img src={applePhones} alt="Stack of Apple phones" />
+      <section className="py-10">
+        <img src={droid} alt="A Droid Robot" />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
             Check out Android gadjets.
