@@ -25,7 +25,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t">
+    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full">
       <div className="flex items-center justify-between">
         <Hamburger
           direction="right"
@@ -41,7 +41,7 @@ const NavBar = () => {
         <span className="px-3 text-tertiary">{getTime()}</span>
       </div>
       {open ? (
-        <ul className="flex gap-4 fixed bg-primary mt-1 inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
+        <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
           <li>New Stock</li>
           <li>Tech News</li>
           <li>Smart Hacks</li>

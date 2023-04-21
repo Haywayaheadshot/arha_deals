@@ -3,7 +3,7 @@ import HomePage from "./components/LandingPage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
 
 const App = () => (
-  <div className="p-0">
+  <div className="">
     <NavBar />
     <HomePage />
   </div>
