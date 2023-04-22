@@ -8,7 +8,7 @@ function HomePage() {
     <div className="bg-primary">
       <section className="bg-home-bg bg-cover bg-no-repeat bg-center h-full">
         <h1 className="font-bold text-5xl text-center px-2 py-20 bg-clip-text text-transparent bg-gradient-to-r from-yellow-100 to-yellow-400">
-          Quality Products. Best Prices!
+          Quality Affordable Products!
         </h1>
       </section>
       <section className="py-10">
