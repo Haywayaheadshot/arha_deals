@@ -1,5 +1,6 @@
 import { Spiral as Hamburger } from "hamburger-react";
 import React, { useEffect, useState } from "react";
+import { FaCrown } from "react-icons/fa";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +38,11 @@ const NavBar = () => {
           toggle={setOpen}
           color="#484848"
         />
-        <h1 className="text-xl text-tertiary">Arha Deals</h1>
+        <h1 className="text-xl text-tertiary flex">
+          Tailored
+          <FaCrown />
+          Budget
+        </h1>
         <span className="px-3 text-tertiary">{getTime()}</span>
       </div>
       {open ? (

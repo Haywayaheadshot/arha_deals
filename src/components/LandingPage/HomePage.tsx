@@ -8,7 +8,7 @@ function HomePage() {
     <div className="bg-primary">
       <section className="bg-home-bg bg-cover bg-no-repeat bg-center h-full">
         <h1 className="font-bold text-5xl text-center px-2 py-20 bg-clip-text text-transparent bg-gradient-to-r from-yellow-100 to-yellow-400">
-          Quality Products. Best Prices!
+          Quality Affordable Products!
         </h1>
       </section>
       <section className="py-10">
@@ -29,7 +29,7 @@ function HomePage() {
           </span>
         </p>
       </section>
-      <section className="py-10 bg-tertiary">
+      <section className="py-10 bg-box">
         <h2 className="text-center text-2xl text-primary">Tech Hacks</h2>
         <p className="text-center p-5 text-primary">
           Check out simple hacks to help you realize the capabilities of your
@@ -42,7 +42,7 @@ function HomePage() {
         <FeaturedProducts />
         <span className="border-b-2 border-b-tertiary pt-3">View more</span>
       </section>
-      <section className="py-10 bg-tertiary mb-10">
+      <section className="py-10 bg-box mb-10">
         <h2 className="text-center text-2xl text-primary">Tech News</h2>
         <p className="text-center p-5 text-primary">
           Check Out the latest news in the tech industry.
@@ -56,10 +56,11 @@ function HomePage() {
           </span>
         </p>
       </section>
-      <section className="py-10 bg-tertiary mb-10">
+      <section className="py-10 bg-box mb-10">
         <h2 className="text-center text-2xl text-primary">Exclusive Items</h2>
         <p className="text-center p-5 text-primary">
-          This is a category of items that are not necessarily tech but rare.
+          This is a category of items that are not necessarily tech but
+          authentic.
         </p>
       </section>
     </div>

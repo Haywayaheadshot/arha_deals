@@ -7,6 +7,7 @@ export default {
         primary: "hsl(0, 0%, 100%)",
         secondary: "#202020",
         tertiary: "#484848",
+        box: "#5E6A72",
         "gray-100": "#BCB7B7",
         "blue-100": "#104A82",
         "blue-200": "#0074E4",
@@ -18,6 +19,9 @@ export default {
         "purple-200": "#5847A3",
         "purple-300": "#423579",
         "line-t": "#949494",
+        "footer-one": "#22303E",
+        "footer-two": "#22303E",
+        black: "#000000",
       },
       fontFamily: {
         brutal: ["Brutal Type", "sans-serif"],
