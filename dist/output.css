@@ -571,10 +571,6 @@ video {
   margin-top: 2.5rem;
 }
 
-.mb-12 {
-  margin-bottom: 3rem;
-}
-
 .flex {
   display: flex;
 }
@@ -591,12 +587,12 @@ video {
   width: 100vw;
 }
 
-.max-w-rousel {
-  max-width: 80vw;
-}
-
 .max-w-home-image {
   max-width: 90vw;
+}
+
+.max-w-rousel {
+  max-width: 80vw;
 }
 
 .snap-x {
@@ -742,10 +738,6 @@ video {
 
 .pt-3 {
   padding-top: 0.75rem;
-}
-
-.pb-5 {
-  padding-bottom: 1.25rem;
 }
 
 .text-center {
