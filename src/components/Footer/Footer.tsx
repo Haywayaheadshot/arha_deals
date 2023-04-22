@@ -49,7 +49,7 @@ const Footer = () => {
         </ul>
         <span className="flex flex-row justify-center items-center gap-2 py-5">
           <FaRegCopyright />
-          <h6>2023, Designed By Abubakar Ummar</h6>
+          <i>2023, Designed By Abubakar Ummar</i>
         </span>
       </section>
     </div>
