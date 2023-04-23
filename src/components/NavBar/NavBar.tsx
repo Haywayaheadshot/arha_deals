@@ -1,6 +1,7 @@
 import { Spiral as Hamburger } from "hamburger-react";
 import React, { useEffect, useState } from "react";
 import { FaCrown } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -38,17 +39,21 @@ const NavBar = () => {
           toggle={setOpen}
           color="#484848"
         />
-        <h1 className="text-xl text-tertiary flex">
-          Tailored
-          <FaCrown />
-          Budget
-        </h1>
+        <NavLink to="/">
+          <h1 className="text-xl text-tertiary flex">
+            Tailored
+            <FaCrown />
+            Budget
+          </h1>
+        </NavLink>
         <span className="px-3 text-tertiary">{getTime()}</span>
       </div>
       {open ? (
         <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
           <li>New Stock</li>
-          <li>Tech News</li>
+          <NavLink to="/technews" onClick={() => setOpen(false)}>
+            <li>Tech News</li>
+          </NavLink>
           <li>Smart Hacks</li>
         </ul>
       ) : null}
