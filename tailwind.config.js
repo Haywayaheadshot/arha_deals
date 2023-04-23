@@ -19,7 +19,7 @@ export default {
         "purple-200": "#5847A3",
         "purple-300": "#423579",
         "line-t": "#949494",
-        "footer-one": "#22303E",
+        "footer-one": "rgb(71,88,104)",
         "footer-two": "#22303E",
         black: "#000000",
       },
