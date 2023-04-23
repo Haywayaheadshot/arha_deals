@@ -39,7 +39,7 @@ const NavBar = () => {
           toggle={setOpen}
           color="#484848"
         />
-        <NavLink to="/">
+        <NavLink to="/" onClick={() => setOpen(false)}>
           <h1 className="text-xl text-tertiary flex">
             Tailored
             <FaCrown />
