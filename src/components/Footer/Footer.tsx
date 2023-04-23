@@ -34,22 +34,40 @@ const Footer = () => {
       <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
         <h3>Follow Us On Social Media</h3>
         <ul className="flex flex-row gap-10 py-3">
-          <li className="flex flex-col items-center gap-2">
-            <FaTiktok />
-            <span>Tik Tok</span>
-          </li>
-          <li className="flex flex-col items-center gap-2">
-            <FaInstagram />
-            <span>Instagram</span>
-          </li>
-          <li className="flex flex-col items-center gap-2">
-            <FaTwitter />
-            <span>Twitter</span>
-          </li>
+          <a
+            href="https://www.tiktok.com/@arhadeals"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li className="flex flex-col items-center gap-2">
+              <FaTiktok />
+              <span>Tik Tok</span>
+            </li>
+          </a>
+          <a
+            href="https://www.instagram.com/arha_deals/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li className="flex flex-col items-center gap-2">
+              <FaInstagram />
+              <span>Instagram</span>
+            </li>
+          </a>
+          <a
+            href="https://twitter.com/arha_deals"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li className="flex flex-col items-center gap-2">
+              <FaTwitter />
+              <span>Twitter</span>
+            </li>
+          </a>
         </ul>
         <span className="flex flex-row justify-center items-center gap-2 py-5">
           <FaRegCopyright />
-          <i>2023, Designed By Abubakar Ummar</i>
+          <i>2023. Designed By Abubakar Ummar</i>
         </span>
       </section>
     </div>
