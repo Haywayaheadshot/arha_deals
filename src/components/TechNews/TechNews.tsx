@@ -5,16 +5,21 @@ import { ThunkDispatch } from "redux-thunk";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 
 interface Props {
-  data: [];
+  data?: any[];
 }
 
 interface RootState {
-  news: unknown;
+  news: {
+    data: any[];
+    loading: boolean;
+  };
 }
 
-const TechNews: React.FC<Props> = () => {
-  const news = useSelector((state: RootState) => state.news);
-  const newsArr = news.data;
+const TechNews: React.FC<Props> = ({ data = [] }) => {
+  const news = useSelector((state: RootState) => state.news) as {
+    data: unknown[];
+  };
+  const newsArr = news.data || data;
 
   const dispatch: ThunkDispatch<any, any, any> = useDispatch();
   useEffect(() => {
@@ -32,7 +37,7 @@ const TechNews: React.FC<Props> = () => {
       {(newsArr.length === 0 && <LoadingAnimation />) ||
         (news.loading && <LoadingAnimation />)}
       <section className="flex flex-col justify-center items-center gap-4 mt-3">
-        {newsArr.map((article) => (
+        {newsArr.map((article: any) => (
           <div
             className="flex flex-col justify-center items-center p-4 border-2 rounded-lg gap-2"
             key={article.id}
