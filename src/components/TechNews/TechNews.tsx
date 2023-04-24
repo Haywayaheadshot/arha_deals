@@ -65,5 +65,4 @@ const TechNews: React.FC<Props> = () => {
   );
 };
 
-
 export default TechNews;
