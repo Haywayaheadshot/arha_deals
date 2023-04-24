@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaRegCopyright,
 } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   const handleScrollToTop = () => {
@@ -25,7 +26,9 @@ const Footer = () => {
         <ul className="grid grid-cols-2 w-screen place-items-center gap-2">
           <li>iProducts</li>
           <li>Androids</li>
-          <li>Tech News</li>
+          <NavLink to="/technews">
+            <li>Tech News</li>
+          </NavLink>
           <li>Tech Hacks</li>
           <li>Exclusive</li>
           <li>Testimonies</li>
