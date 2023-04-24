@@ -15,11 +15,9 @@ interface RootState {
   };
 }
 
-const TechNews: React.FC<Props> = ({ data = [] }) => {
-  const news = useSelector((state: RootState) => state.news) as {
-    data: unknown[];
-  };
-  const newsArr = news.data || data;
+const TechNews: React.FC<Props> = () => {
+  const news = useSelector((state: RootState) => state.news);
+  const { data: newsArr, loading } = news;
 
   const dispatch: ThunkDispatch<any, any, any> = useDispatch();
   useEffect(() => {
@@ -35,9 +33,9 @@ const TechNews: React.FC<Props> = ({ data = [] }) => {
         Check out the latest events happening in the technological world.
       </p>
       {(newsArr.length === 0 && <LoadingAnimation />) ||
-        (news.loading && <LoadingAnimation />)}
+        (loading && <LoadingAnimation />)}
       <section className="flex flex-col justify-center items-center gap-4 mt-3">
-        {newsArr.map((article: any) => (
+        {newsArr.map((article) => (
           <div
             className="flex flex-col justify-center items-center p-4 border-2 rounded-lg gap-2"
             key={article.id}
@@ -66,5 +64,6 @@ const TechNews: React.FC<Props> = ({ data = [] }) => {
     </div>
   );
 };
+
 
 export default TechNews;
