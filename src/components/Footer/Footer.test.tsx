@@ -41,6 +41,7 @@ describe("Footer component", () => {
   test("should have links to social media accounts", () => {
     const tiktokLink = screen.getByRole("link", { name: /Tik Tok/i });
     const instagramLink = screen.getByRole("link", { name: /Instagram/i });
+    const twitterLink = screen.getByRole("link", { name: /Twitter/i });
 
     expect(tiktokLink).toHaveAttribute(
       "href",
@@ -54,5 +55,11 @@ describe("Footer component", () => {
     );
     expect(instagramLink).toHaveAttribute("target", "_blank");
     expect(instagramLink).toHaveAttribute("rel", "noopener noreferrer");
+    expect(twitterLink).toHaveAttribute(
+      "href",
+      "https://twitter.com/arha_deals"
+    );
+    expect(twitterLink).toHaveAttribute("target", "_blank");
+    expect(twitterLink).toHaveAttribute("rel", "noopener noreferrer");
   });
 });

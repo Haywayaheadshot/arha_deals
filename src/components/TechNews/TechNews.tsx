@@ -32,8 +32,10 @@ const TechNews: React.FC<Props> = () => {
       <p className="text-center">
         Check out the latest events happening in the technological world.
       </p>
-      {(newsArr.length === 0 && <LoadingAnimation />) ||
-        (loading && <LoadingAnimation />)}
+      {(newsArr.length === 0 && (
+        <LoadingAnimation data-testid="loading-animation" />
+      )) ||
+        (loading && <LoadingAnimation data-testid="loading-animation" />)}
       <section className="flex flex-col justify-center items-center gap-4 mt-3">
         {newsArr.map((article) => (
           <div
