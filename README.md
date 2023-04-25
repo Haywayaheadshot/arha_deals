@@ -129,6 +129,7 @@ To fix errors, run the following command:
 
 > These are some of the future features we want to add.
 
+- [ ] ***Add mobile money payment system***
 - [ ] ***Recieve proucts from a database***
 - [ ] ***Add a signup button to allow users keep track of their purchases***
 - [ ] ***Add a favourite button to allow users favourite products***
