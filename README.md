@@ -101,6 +101,13 @@ To run tests, run the following command:
 - npm test
 
 ``
+
+``
+To test a particular file.
+
+- npm test `File name.` (e.g npm test TechNews.test.tsx)
+
+``
 To fix errors, run the following command:
 
 ``
