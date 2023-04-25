@@ -43,6 +43,7 @@ const FeaturedProducts = () => {
   return (
     <section
       ref={containerRef}
+      role="region"
       className="bg-tertiary flex flex-row overflow-x-auto w-screen scroll-p-6 snap-x gap-2 mt-10"
     >
       {carouselContent.map((item) => (

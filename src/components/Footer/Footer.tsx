@@ -19,7 +19,10 @@ const Footer = () => {
   return (
     <div className="flex flex-col justify-center items-center pt-10">
       <section className="bg-footer-one w-full text-primary flex flex-col justify-center items-center py-3 gap-2">
-        <BsArrowUpCircleFill onClick={handleScrollToTop} />
+        <BsArrowUpCircleFill
+          data-testid="arrow-up"
+          onClick={handleScrollToTop}
+        />
         <h2 className="text-primary">TOP OF PAGE</h2>
       </section>
       <section className="bg-footer-two w-full text-primary py-5">
