@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import applePhones from "../../assets/apple-phones.png";
-import droid from "../../assets/droid.png";
+import droid from "../../assets/black_baby_feeding_bottle_3.png";
 import FeaturedProducts from "../Shared/FeaturedProducts";
 
 function HomePage() {
@@ -25,7 +26,7 @@ function HomePage() {
         />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
-            Check out iProducts
+            Check Out Phones section
           </span>
         </p>
       </section>
@@ -43,16 +44,18 @@ function HomePage() {
         <span className="border-b-2 border-b-tertiary pt-3">View more</span>
       </section>
       <section className="py-10 bg-box mb-10">
-        <h2 className="text-center text-2xl text-primary">Tech News</h2>
-        <p className="text-center p-5 text-primary">
-          Check Out the latest news in the tech industry.
-        </p>
+        <NavLink to="/technews">
+          <h2 className="text-center text-2xl text-primary">Tech News</h2>
+          <p className="text-center p-5 text-primary">
+            Check Out the latest news in the tech industry.
+          </p>
+        </NavLink>
       </section>
       <section className="py-10 mb-6 flex flex-col justify-center items-center">
         <img src={droid} alt="A Droid Robot" className="max-w-home-image" />
         <p className="text-center py-4">
           <span className="border-b-2 border-b-tertiary">
-            Check out Android gadjets.
+            Check out baby products from Turkey.
           </span>
         </p>
       </section>
