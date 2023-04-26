@@ -11,6 +11,10 @@ const Reels = () => {
           Check out interracting content we created just for you.
         </p>
       </section>
+      <section>
+        <h3>Filter By</h3>
+        {/* Install react select and use to to filter reels */}
+      </section>
       <section className="flex flex-col gap-5 justify-center items-center px-10">
         <div className="border-2 px-3 py-5 rounded-lg flex flex-col gap-2 justify-center items-center">
           <h1>Reel Video</h1>
