@@ -40,7 +40,7 @@ const NavBar = () => {
           color="#484848"
         />
         <NavLink to="/" onClick={() => setOpen(false)}>
-          <h1 className="text-xl text-tertiary flex">
+          <h1 className="text-xl text-tertiary flex flex-wrap">
             Tailored
             <FaCrown />
             Budget
@@ -50,11 +50,16 @@ const NavBar = () => {
       </div>
       {open ? (
         <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
-          <li>New Stock</li>
+          <NavLink to="/reels" onClick={() => setOpen(false)}>
+            <li>Reels</li>
+          </NavLink>
+          <li>Phones</li>
           <NavLink to="/technews" onClick={() => setOpen(false)}>
             <li>Tech News</li>
           </NavLink>
-          <li>Smart Hacks</li>
+          <li>Tech Hacks</li>
+          <li>Baby Products</li>
+          <li>Exclusive Items</li>
         </ul>
       ) : null}
     </nav>
