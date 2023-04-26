@@ -27,14 +27,16 @@ const Footer = () => {
       </section>
       <section className="bg-footer-two w-full text-primary py-5">
         <ul className="grid grid-cols-2 w-screen place-items-center gap-2">
-          <li>iProducts</li>
-          <li>Androids</li>
+          <li>Phones</li>
+          <NavLink to="/reels">
+            <li>Reels</li>
+          </NavLink>
+          <li>Baby Products</li>
           <NavLink to="/technews">
             <li>Tech News</li>
           </NavLink>
+          <li>Exclusive Items</li>
           <li>Tech Hacks</li>
-          <li>Exclusive</li>
-          <li>Testimonies</li>
         </ul>
       </section>
       <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
