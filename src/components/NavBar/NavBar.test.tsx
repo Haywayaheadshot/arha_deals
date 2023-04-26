@@ -25,8 +25,18 @@ describe("Check that NavBar component", () => {
 
   test("shows the menu when the hamburger is clicked", () => {
     const hamburgerElement = screen.getByLabelText(/Show menu/);
-    expect(screen.queryByText(/New Stock/)).not.toBeInTheDocument(); // Menu is initially closed
+    expect(screen.queryByText(/Reels/)).not.toBeInTheDocument(); // Menu is initially closed
     fireEvent.click(hamburgerElement);
-    expect(screen.getByText(/New Stock/)).toBeInTheDocument(); // Menu is opened
+    expect(screen.getByText(/Reels/)).toBeInTheDocument(); // Menu is opened
+  });
+
+  test("closes the menu when an item the hamburger is clicked", () => {
+    const hamburgerElement = screen.getByLabelText(/Show menu/);
+    expect(screen.queryByText(/Tech News/)).not.toBeInTheDocument(); // Menu is initially closed
+    fireEvent.click(hamburgerElement);
+    expect(screen.getByText(/Tech News/)).toBeInTheDocument(); // Menu is opened
+    const clickLink = screen.getByText(/Tech News/);
+    fireEvent.click(clickLink);
+    expect(screen.queryByText(/Tech News/)).not.toBeInTheDocument(); // Menu is closed when the item is clicked
   });
 });

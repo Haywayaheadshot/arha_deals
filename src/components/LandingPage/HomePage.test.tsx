@@ -4,7 +4,10 @@ import HomePage from "./HomePage";
 import "@testing-library/jest-dom";
 
 jest.mock("../../assets/apple-phones.png", () => "path/to/apple-phones.png");
-jest.mock("../../assets/droid.png", () => "path/to/droid.png");
+jest.mock(
+  "../../assets/black_baby_feeding_bottle_3.png",
+  () => "path/to/droid.png"
+);
 
 describe("HomePage component", () => {
   it("renders the heading", () => {
@@ -13,9 +16,9 @@ describe("HomePage component", () => {
     expect(headingElement).toBeInTheDocument();
   });
 
-  it('renders the "Check out iProducts" text', () => {
+  it('renders the "Check out phones" text', () => {
     render(<HomePage />);
-    const iProductsElement = screen.getByText("Check out iProducts");
+    const iProductsElement = screen.getByText("Check Out Phones section");
     expect(iProductsElement).toBeInTheDocument();
   });
 
@@ -35,7 +38,7 @@ describe("HomePage component", () => {
   it('renders the "Check out Android gadjets" text', () => {
     render(<HomePage />);
     const androidGadjetsElement = screen.getByText(
-      "Check out Android gadjets."
+      "Check out baby products from Turkey."
     );
     expect(androidGadjetsElement).toBeInTheDocument();
   });

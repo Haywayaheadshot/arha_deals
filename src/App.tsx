@@ -8,6 +8,7 @@ import {
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/LandingPage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
+import Reels from "./components/Reels/Reels";
 import TechNews from "./components/TechNews/TechNews";
 
 const App = () => (
@@ -26,6 +27,11 @@ const App = () => (
           <Route
             path="/technews"
             element={<TechNews />}
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/reels"
+            element={<Reels />}
             {...(exactProp as RouteProps)}
           />
         </Routes>
