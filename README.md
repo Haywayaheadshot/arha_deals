@@ -78,7 +78,6 @@ Install this project with:
 ``
 
 - npm install
-- npx tailwindcss -i ./src/styles/index.css -o ./dist/output.css --watch
 
 ``
 
@@ -89,6 +88,7 @@ To run the project, execute the following command:
 ``
 
 - npm run dev
+- npx tailwindcss -i ./src/styles/index.css -o ./dist/output.css --watch
   
 ``
 
