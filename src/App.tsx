@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Footer";
 import HomePage from "./components/LandingPage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
 import Reels from "./components/Reels/Reels";
-import PhoneHacks from "./components/TechHacks/PhoneHacks";
+import PhoneHacks from "./components/PhoneHacks/PhoneHacks";
 import TechNews from "./components/TechNews/TechNews";
 
 const App = () => (
