@@ -5,7 +5,7 @@ import {
   RenderResult,
   fireEvent,
 } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import Footer from "./Footer";
 
@@ -14,9 +14,9 @@ describe("Footer component", () => {
 
   beforeEach(() => {
     component = render(
-      <Router>
+      <BrowserRouter>
         <Footer />
-      </Router>
+      </BrowserRouter>
     );
   });
 
@@ -36,6 +36,11 @@ describe("Footer component", () => {
       top: 0,
       behavior: "smooth",
     });
+  });
+
+  it("should contain link to Tech News page", () => {
+    const techNewsLink = component.getByText("Tech News");
+    expect(techNewsLink).toBeInTheDocument();
   });
 
   test("should have links to social media accounts", () => {
