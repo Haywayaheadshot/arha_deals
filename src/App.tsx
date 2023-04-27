@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import HomePage from "./components/LandingPage/HomePage";
 import NavBar from "./components/NavBar/NavBar";
 import Reels from "./components/Reels/Reels";
+import PhoneHacks from "./components/PhoneHacks/PhoneHacks";
 import TechNews from "./components/TechNews/TechNews";
 
 const App = () => (
@@ -32,6 +33,11 @@ const App = () => (
           <Route
             path="/reels"
             element={<Reels />}
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/phonehacks"
+            element={<PhoneHacks />}
             {...(exactProp as RouteProps)}
           />
         </Routes>

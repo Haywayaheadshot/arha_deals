@@ -4,7 +4,7 @@ import applePhones from "../../assets/apple-phones.png";
 import droid from "../../assets/black_baby_feeding_bottle_3.png";
 import FeaturedProducts from "../Shared/FeaturedProducts";
 
-function HomePage() {
+const HomePage = () => {
   return (
     <div className="bg-primary pt-10">
       <section className="bg-home-bg bg-cover mt-1 bg-no-repeat bg-center h-full">
@@ -31,11 +31,13 @@ function HomePage() {
         </p>
       </section>
       <section className="py-10 bg-box">
-        <h2 className="text-center text-2xl text-primary">Tech Hacks</h2>
-        <p className="text-center p-5 text-primary">
-          Check out simple hacks to help you realize the capabilities of your
-          devices.
-        </p>
+        <NavLink to="/phonehacks">
+          <h2 className="text-center text-2xl text-primary">Phone Hacks</h2>
+          <p className="text-center p-5 text-primary">
+            Check out simple hacks to help you realize the capabilities of your
+            devices.
+          </p>
+        </NavLink>
       </section>
       <section className="py-10 flex flex-col justify-center items-center">
         <h2 className="text-center text-2xl">Featured Products</h2>
@@ -68,6 +70,6 @@ function HomePage() {
       </section>
     </div>
   );
-}
+};
 
 export default HomePage;

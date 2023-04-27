@@ -28,15 +28,15 @@ const Footer = () => {
       <section className="bg-footer-two w-full text-primary py-5">
         <ul className="grid grid-cols-2 w-screen place-items-center gap-2">
           <li>Phones</li>
-          <NavLink to="/reels">
-            <li>Reels</li>
-          </NavLink>
+          <li>
+            <NavLink to="/reels">Reels</NavLink>
+          </li>
           <li>Baby Products</li>
-          <NavLink to="/technews">
-            <li>Tech News</li>
-          </NavLink>
+          <li>
+            <NavLink to="/technews">Tech News</NavLink>
+          </li>
           <li>Exclusive Items</li>
-          <li>Tech Hacks</li>
+          <li>Phone Hacks</li>
         </ul>
       </section>
       <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">

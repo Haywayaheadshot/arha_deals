@@ -50,14 +50,22 @@ const NavBar = () => {
       </div>
       {open ? (
         <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
-          <NavLink to="/reels" onClick={() => setOpen(false)}>
-            <li>Reels</li>
-          </NavLink>
+          <li>
+            <NavLink to="/reels" onClick={() => setOpen(false)}>
+              Reels
+            </NavLink>
+          </li>
           <li>Phones</li>
-          <NavLink to="/technews" onClick={() => setOpen(false)}>
-            <li>Tech News</li>
-          </NavLink>
-          <li>Tech Hacks</li>
+          <li>
+            <NavLink to="/technews" onClick={() => setOpen(false)}>
+              Tech News
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/phonehacks" onClick={() => setOpen(false)}>
+              Phone Hacks
+            </NavLink>
+          </li>
           <li>Baby Products</li>
           <li>Exclusive Items</li>
         </ul>

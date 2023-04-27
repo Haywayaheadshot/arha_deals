@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import HomePage from "./HomePage";
 import "@testing-library/jest-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 jest.mock("../../assets/apple-phones.png", () => "path/to/apple-phones.png");
 jest.mock(
@@ -10,33 +11,46 @@ jest.mock(
 );
 
 describe("HomePage component", () => {
+  beforeEach(() => {
+    render(
+      <Router>
+        <HomePage />
+      </Router>
+    );
+  });
+
   it("renders the heading", () => {
-    render(<HomePage />);
     const headingElement = screen.getByText("Quality Affordable Products!");
     expect(headingElement).toBeInTheDocument();
   });
 
   it('renders the "Check out phones" text', () => {
-    render(<HomePage />);
     const iProductsElement = screen.getByText("Check Out Phones section");
     expect(iProductsElement).toBeInTheDocument();
   });
 
+  it('renders the "Phone Hacks" heading', () => {
+    const featuredProductsHeadingElement = screen.getByText("Phone Hacks");
+    expect(featuredProductsHeadingElement).toBeInTheDocument();
+  });
+
   it('renders the "Featured Products" heading', () => {
-    render(<HomePage />);
     const featuredProductsHeadingElement =
       screen.getByText("Featured Products");
     expect(featuredProductsHeadingElement).toBeInTheDocument();
   });
 
   it('renders the "View more" text', () => {
-    render(<HomePage />);
     const viewMoreElement = screen.getByText("View more");
     expect(viewMoreElement).toBeInTheDocument();
   });
 
-  it('renders the "Check out Android gadjets" text', () => {
-    render(<HomePage />);
+  it('renders the "Tech News" text', () => {
+    const viewMoreElement = screen.getByText("Tech News");
+    expect(viewMoreElement).toBeInTheDocument();
+  });
+
+  it('renders the "Check out Baby Products paragraph" text', () => {
     const androidGadjetsElement = screen.getByText(
       "Check out baby products from Turkey."
     );
@@ -44,7 +58,6 @@ describe("HomePage component", () => {
   });
 
   it('renders the "Exclusive Items" heading', () => {
-    render(<HomePage />);
     const exclusiveItemsHeadingElement = screen.getByText("Exclusive Items");
     expect(exclusiveItemsHeadingElement).toBeInTheDocument();
   });
