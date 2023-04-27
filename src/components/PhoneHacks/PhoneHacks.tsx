@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Select, { ActionMeta } from "react-select";
+import React from "react";
+import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 const PhoneHacks = () => {
@@ -11,19 +11,7 @@ const PhoneHacks = () => {
 
   const animatedComponents = makeAnimated();
 
-  const [validSelect, setValidSelect] = useState(false);
-
-  const handleSelectChange = (
-    newValue: ValueType<OptionType, true>,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    actionMeta: ActionMeta<OptionType>
-  ) => {
-    if (newValue && (Array.isArray(newValue) ? newValue.length > 0 : true)) {
-      setValidSelect(true);
-    } else {
-      setValidSelect(false);
-    }
-  };
+  // const [validSelect, setValidSelect] = useState(false);
 
   return (
     <div className="py-10 px-4 flex flex-col gap-4">
@@ -40,8 +28,6 @@ const PhoneHacks = () => {
           options={options}
           components={animatedComponents}
           defaultValue={[options[0]]}
-          className={validSelect ? "valid:border-green-500" : ""}
-          onChange={handleSelectChange}
         />
       </section>
       <section className="flex flex-col gap-6">
