@@ -4,19 +4,19 @@ const FeaturedProducts = () => {
   const carouselContent = [
     {
       id: 1,
-      imageUrl: "src/assets/baby_feeding_bottle_5.png",
+      imageUrl: "/baby_feeding_bottle_5.png",
       caption: "First slide",
       alt: "First slide",
     },
     {
       id: 2,
-      imageUrl: "src/assets/black_baby_feeding_bottle_2.png",
+      imageUrl: "/black_baby_feeding_bottle_2.png",
       caption: "Second slide",
       alt: "Second slide",
     },
     {
       id: 3,
-      imageUrl: "src/assets/black_baby_feeding_bottle.png",
+      imageUrl: "/black_baby_feeding_bottle.png",
       caption: "Third slide",
       alt: "Third slide",
     },
