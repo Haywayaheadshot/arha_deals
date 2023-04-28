@@ -2,24 +2,27 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import RootState from "../../redux/phoneHacks/PhoneHacks";
+import { PhoneHacksState } from "../../redux/phoneHacks/types";
+
+interface Hack {
+  id: string;
+  title: string;
+  os: string;
+  description: string | JSX.Element;
+  video_url: string;
+  advantages: string | JSX.Element;
+}
 
 const PhoneHacks = () => {
-  const hacks = useSelector((state: typeof RootState) => state.hacks.hacks);
+  const hacks = useSelector((state: PhoneHacksState) => state.hacks);
+
+  console.log(hacks);
 
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleSelectChange = (selectedOption) => {
+  const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption.value);
   };
-
-  const filteredHacks = hacks.filter((hack) => {
-    if (selectedOption === "") {
-      return true;
-    } else {
-      return hack.os === selectedOption;
-    }
-  });
 
   const options = [
     { value: "", label: "All" },
@@ -27,9 +30,17 @@ const PhoneHacks = () => {
     { value: "iphone", label: "iPhone" },
   ];
 
+  // const filteredHacks = hacks.filter((hack) => {
+  //   if (selectedOption === "") {
+  //     return true;
+  //   } else {
+  //     return hack.os === selectedOption;
+  //   }
+  // });
+
   const animatedComponents = makeAnimated();
 
-  const capitalize = (str) => {
+  const capitalize = (str: string) => {
     return str.toUpperCase();
   };
 
@@ -51,32 +62,36 @@ const PhoneHacks = () => {
           onChange={handleSelectChange}
         />
       </section>
-      <section className="flex flex-col gap-6">
-        {filteredHacks.map((hack: typeof hacks) => (
-          <div
-            key={hack.id}
-            className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center"
-          >
-            <ul className="flex flex-row justify-between gap-10">
-              <li>
-                <h1>{hack.title}</h1>
-              </li>
-              <li>
-                <h2>{capitalize(hack.os)}</h2>
-              </li>
-            </ul>
-            <p>{hack.description}</p>
-            <iframe
-              width="300"
-              height="300"
-              src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-            <section>{hack.advantages}</section>
-          </div>
-        ))}
-      </section>
+      {Array.isArray(hacks) ? (
+        <section className="flex flex-col gap-6">
+          {hacks.map((hack: Hack) => (
+            <div
+              key={hack.id}
+              className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center"
+            >
+              <ul className="flex flex-row justify-between gap-10">
+                <li>
+                  <h1>hack.title</h1>
+                </li>
+                <li>
+                  <h2>{capitalize(hack.os)}</h2>
+                </li>
+              </ul>
+              <p>hack.description</p>
+              <iframe
+                width="300"
+                height="300"
+                src={hack.video_url}
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+              <section>hack.advantages</section>
+            </div>
+          ))}
+        </section>
+      ) : (
+        <p>Loading hacks...</p>
+      )}
     </div>
   );
 };

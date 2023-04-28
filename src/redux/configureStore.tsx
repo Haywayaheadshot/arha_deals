@@ -1,14 +1,14 @@
 import { createLogger } from "redux-logger";
 import { configureStore } from "@reduxjs/toolkit";
 import newsSlice from "./news/News";
-import phoneHacksSlice from "./phoneHacks/PhoneHacks";
+import phoneHacksReducer from "./phoneHacks/PhoneHacks";
 
 const logger = createLogger();
 
 const store = configureStore({
   reducer: {
     news: newsSlice,
-    hacks: phoneHacksSlice,
+    hacks: phoneHacksReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
