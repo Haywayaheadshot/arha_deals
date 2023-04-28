@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { PhoneHacksState } from "../../redux/phoneHacks/types";
+import LoadingAnimation from "../Shared/LoadingAnimation";
 
 interface Hack {
   id: string;
@@ -71,13 +72,13 @@ const PhoneHacks = () => {
             >
               <ul className="flex flex-row justify-between gap-10">
                 <li>
-                  <h1>hack.title</h1>
+                  <h1>{hack.title}</h1>
                 </li>
                 <li>
                   <h2>{capitalize(hack.os)}</h2>
                 </li>
               </ul>
-              <p>hack.description</p>
+              <p>{hack.description}</p>
               <iframe
                 width="300"
                 height="300"
@@ -85,12 +86,12 @@ const PhoneHacks = () => {
                 frameBorder="0"
                 allowFullScreen
               ></iframe>
-              <section>hack.advantages</section>
+              <section>{hack.advantages}</section>
             </div>
           ))}
         </section>
       ) : (
-        <p>Loading hacks...</p>
+        <LoadingAnimation />
       )}
     </div>
   );
