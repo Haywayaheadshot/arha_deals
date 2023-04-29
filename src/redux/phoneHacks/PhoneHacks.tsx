@@ -31,22 +31,6 @@
 // export const { addHack } = phoneHacksSlice.actions;
 // export default phoneHacksSlice.reducer;
 
-// import { createReducer } from "@reduxjs/toolkit";
-// import { fetchHacks } from "./actions";
-// import { PhoneHacksState } from "./types";
-
-// const initialState: PhoneHacksState = {
-//   hacks: [], // default empty array
-// };
-
-// const phoneHacksReducer = createReducer(initialState, (builder) => {
-//   builder.addCase(fetchHacks, (state, action) => {
-//     state.hacks = action.payload; // update hacks state
-//   });
-// });
-
-// export default phoneHacksReducer;
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PhoneHacksState, Hack } from "./types";
 import defaultState from "./defaultState";
