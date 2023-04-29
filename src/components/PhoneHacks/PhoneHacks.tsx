@@ -17,7 +17,7 @@ interface Hack {
 const PhoneHacks = () => {
   const hacks = useSelector((state: PhoneHacksState) => state.hacks);
 
-  console.log(hacks);
+  console.log(typeof hacks);
 
   const [selectedOption, setSelectedOption] = useState("");
 
