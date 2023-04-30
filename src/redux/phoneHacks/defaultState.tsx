@@ -24,7 +24,7 @@ const defaultState = [
         s fkldkfdfkl dkfdkldlkdkdl lkklfd
       </React.Fragment>
     ),
-    video_url: "",
+    video_url: "https://www.youtube.com/embed/3u_ulMvTYZI",
     advantages: (
       <React.Fragment>
         sfkdfmksmfksdfksm flskdmlfsmd lkfmslkdfmskdfms kdfsdmfksdfksl
@@ -56,7 +56,7 @@ const defaultState = [
         s fkldkfdfkl dkfdkldlkdkdl lkklfd
       </React.Fragment>
     ),
-    video_url: "",
+    video_url: "https://www.youtube.com/embed/3u_ulMvTYZI",
     advantages: (
       <React.Fragment>
         sfkdfmksmfksdfksm flskdmlfsmd lkfmslkdfmskdfms kdfsdmfksdfksl

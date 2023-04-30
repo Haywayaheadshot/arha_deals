@@ -15,9 +15,7 @@ interface Hack {
 }
 
 const PhoneHacks = () => {
-  const hacks = useSelector((state: PhoneHacksState) => state.hacks);
-
-  console.log(typeof hacks);
+  const hacks = useSelector((state: PhoneHacksState) => state.hacks.hacks);
 
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -31,13 +29,13 @@ const PhoneHacks = () => {
     { value: "iphone", label: "iPhone" },
   ];
 
-  // const filteredHacks = hacks.filter((hack) => {
-  //   if (selectedOption === "") {
-  //     return true;
-  //   } else {
-  //     return hack.os === selectedOption;
-  //   }
-  // });
+  const filteredHacks = hacks.filter((hack: { os: string }) => {
+    if (selectedOption === "") {
+      return true;
+    } else {
+      return hack.os === selectedOption;
+    }
+  });
 
   const animatedComponents = makeAnimated();
 
@@ -63,9 +61,9 @@ const PhoneHacks = () => {
           onChange={handleSelectChange}
         />
       </section>
-      {Array.isArray(hacks) ? (
+      {Array.isArray(filteredHacks) ? (
         <section className="flex flex-col gap-6">
-          {hacks.map((hack: Hack) => (
+          {filteredHacks.map((hack: Hack) => (
             <div
               key={hack.id}
               className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center"
@@ -80,6 +78,7 @@ const PhoneHacks = () => {
               </ul>
               <p>{hack.description}</p>
               <iframe
+                title="YouTube video player"
                 width="300"
                 height="300"
                 src={hack.video_url}
