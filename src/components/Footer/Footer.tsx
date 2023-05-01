@@ -36,7 +36,9 @@ const Footer = () => {
             <NavLink to="/technews">Tech News</NavLink>
           </li>
           <li>Exclusive Items</li>
-          <li>Phone Hacks</li>
+          <NavLink to="/phonehacks">
+            <li>Phone Hacks</li>
+          </NavLink>
         </ul>
       </section>
       <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
