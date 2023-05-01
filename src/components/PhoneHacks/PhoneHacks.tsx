@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
@@ -15,9 +15,20 @@ interface Hack {
 }
 
 const PhoneHacks = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const hacks = useSelector((state: PhoneHacksState) => state.hacks.hacks);
 
   const [selectedOption, setSelectedOption] = useState("");
+  const [showFilteredHacks, setShowFilteredHacks] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowFilteredHacks(true);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [selectedOption]);
 
   const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption.value);
@@ -61,22 +72,25 @@ const PhoneHacks = () => {
           onChange={handleSelectChange}
         />
       </section>
-      {Array.isArray(filteredHacks) ? (
+      {showFilteredHacks && Array.isArray(filteredHacks) ? (
         <section className="flex flex-col gap-6">
           {filteredHacks.map((hack: Hack) => (
             <div
               key={hack.id}
-              className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center"
+              className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center gap-4"
             >
-              <ul className="flex flex-row justify-between gap-10">
+              <ul className="flex flex-row justify-between items-center gap-10">
                 <li>
-                  <h1>{hack.title}</h1>
+                  <h1 className="text-3xl border-b-2">{hack.title}</h1>
                 </li>
                 <li>
-                  <h2>{capitalize(hack.os)}</h2>
+                  <h2 className="bg-yellow-300 text-primary rounded-md py-2 px-1">
+                    {capitalize(hack.os)}
+                  </h2>
                 </li>
               </ul>
-              <p>{hack.description}</p>
+              <section>{hack.advantages}</section>
+              <ol className="flex flex-col gap-2">{hack.description}</ol>
               <iframe
                 title="YouTube video player"
                 width="300"
@@ -84,8 +98,8 @@ const PhoneHacks = () => {
                 src={hack.video_url}
                 frameBorder="0"
                 allowFullScreen
+                className="py-3"
               ></iframe>
-              <section>{hack.advantages}</section>
             </div>
           ))}
         </section>
