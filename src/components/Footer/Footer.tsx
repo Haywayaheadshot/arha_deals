@@ -35,10 +35,12 @@ const Footer = () => {
           <li>
             <NavLink to="/technews">Tech News</NavLink>
           </li>
-          <li>Exclusive Items</li>
-          <NavLink to="/phonehacks">
-            <li>Phone Hacks</li>
-          </NavLink>
+          <li>
+            <NavLink to="/exclusiveitems">Exclusive Items</NavLink>
+          </li>
+          <li>
+            <NavLink to="/phonehacks">Phone Hacks</NavLink>
+          </li>
         </ul>
       </section>
       <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
