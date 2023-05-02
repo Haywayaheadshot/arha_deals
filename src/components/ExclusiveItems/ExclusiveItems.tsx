@@ -23,7 +23,29 @@ const ExclusiveItems = () => {
           100%.
         </p>
       </section>
-      <section className="px-4">
+      <section className="px-4 flex flex-col justify-center items-center gap-8">
+        <button
+          className="border-tertiary border-2 rounded-md"
+          onClick={() => handleShowDetails()}
+        >
+          <ul className="flex flex-row justify-center gap-4 bg-secondary">
+            <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
+              Item Name
+            </li>
+            <li className="bg-tertiary rounded-md px-2 py-1 text-primary">
+              Time Item Has Been Available
+            </li>
+          </ul>
+          <img src={gem} alt="Gem Stone" />
+          <ul className="flex flex-row justify-center gap-4 bg-secondary">
+            <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
+              Price
+            </li>
+            <li className="bg-tertiary rounded-md px-2 py-1 text-primary">
+              Amount Available
+            </li>
+          </ul>
+        </button>
         <button
           className="border-tertiary border-2 rounded-md"
           onClick={() => handleShowDetails()}
