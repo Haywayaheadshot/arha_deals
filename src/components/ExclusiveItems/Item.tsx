@@ -8,7 +8,7 @@ interface ItemProps {
 
 const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
   return (
-    <div className="p-10 bg-primary rounded-md h-100">
+    <div className="p-10 bg-primary rounded-md h-auto">
       <section className="w-full flex flex-row justify-end">
         <RiEyeCloseLine size={30} onClick={closeModal} />
       </section>
@@ -18,7 +18,15 @@ const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
           This item is a is a is a is a is a is a is a is a is a is a is a is a
           is a is a is a is a is a is a is a is a is a is a is a is a is a is a
           is a is a is a is a is a is a is a is a is a is a is a is a is a is a
-          is a is a is a is a is a is a is a is a is a is a is a.
+          is a is a is a is a is a is a is a is a is a is a is a. is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a is a is a is a. This item is a is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a is a is a is a is a is a is a is a is a is a
+          is a is a is a is a is a.
         </p>
       </section>
     </div>

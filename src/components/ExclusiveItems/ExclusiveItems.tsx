@@ -48,8 +48,8 @@ const ExclusiveItems = () => {
         </button>
       </section>
       {showModal && (
-        <div className="fixed top-0 left-0 right-0 flex h-full">
-          <div className="p-10 w-full bg-secondary flex justify-center items-center">
+        <div className="fixed bg-secondary top-0 left-0 right-0 flex h-full">
+          <div className="p-10 h-full w-full flex justify-center overflow-y-auto snap-y">
             <Item closeModal={handleCloseModal} />
           </div>
         </div>

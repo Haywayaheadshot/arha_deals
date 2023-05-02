@@ -571,6 +571,10 @@ video {
   top: 0px;
 }
 
+.m-10 {
+  margin: 2.5rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -635,6 +639,18 @@ video {
   height: 50%;
 }
 
+.h-96 {
+  height: 24rem;
+}
+
+.h-20 {
+  height: 5rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -667,6 +683,10 @@ video {
 
 .snap-x {
   scroll-snap-type: x var(--tw-scroll-snap-strictness);
+}
+
+.snap-y {
+  scroll-snap-type: y var(--tw-scroll-snap-strictness);
 }
 
 .scroll-p-6 {
@@ -731,6 +751,10 @@ video {
 
 .overflow-x-auto {
   overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded-lg {
