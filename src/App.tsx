@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Reels from "./components/Reels/Reels";
 import PhoneHacks from "./components/PhoneHacks/PhoneHacks";
 import TechNews from "./components/TechNews/TechNews";
+import ExclusiveItems from "./components/ExclusiveItems/ExclusiveItems";
 
 const App = () => (
   <div className="">
@@ -38,6 +39,11 @@ const App = () => (
           <Route
             path="/phonehacks"
             element={<PhoneHacks />}
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/exclusiveitems"
+            element={<ExclusiveItems />}
             {...(exactProp as RouteProps)}
           />
         </Routes>

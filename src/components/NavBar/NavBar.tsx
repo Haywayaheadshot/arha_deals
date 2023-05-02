@@ -67,7 +67,11 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>Baby Products</li>
-          <li>Exclusive Items</li>
+          <li>
+            <NavLink to="/exclusiveitems" onClick={() => setOpen(false)}>
+              Exclusive Items
+            </NavLink>
+          </li>
         </ul>
       ) : null}
     </nav>
