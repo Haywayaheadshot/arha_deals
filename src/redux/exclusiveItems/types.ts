@@ -2,7 +2,7 @@ export interface Items {
   id: string;
   itemName: string;
   availableSince: string;
-  Price: string;
+  price: string;
   stock: string;
   image_url: string;
 }
