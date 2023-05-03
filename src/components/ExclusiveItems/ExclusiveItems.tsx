@@ -4,6 +4,15 @@ import LoadingAnimation from "../Shared/LoadingAnimation";
 import { useSelector } from "react-redux";
 import { ExclusiveItemsState } from "../../redux/exclusiveItems/types";
 
+interface Items {
+  id: string;
+  itemName: string;
+  availableSince: string;
+  image_url: string;
+  price: string;
+  stock: string;
+}
+
 const ExclusiveItems = () => {
   const [showModal, setShowModal] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,7 +39,7 @@ const ExclusiveItems = () => {
       </section>
       {Array.isArray(items) ? (
         <section className="px-4 flex flex-col justify-center items-center gap-8">
-          {items.map((item) => (
+          {items.map((item: Items) => (
             <section
               className="border-tertiary border-2 rounded-md"
               key={item.id}
