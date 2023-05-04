@@ -40,9 +40,26 @@ export default {
         "extra-bold": "800",
         black: "900",
       },
+      minWidth: {
+        rouselMin: "60vw",
+        rousel: "80vw",
+        "home-image": "90vw",
+        "tab-image": "85vw",
+      },
       maxWidth: {
         rousel: "80vw",
         "home-image": "90vw",
+        "tab-image": "85vw",
+      },
+      screens: {
+        // => @media (min-width: 481px) { ... }
+        tablet: "481px",
+
+        // => @media (min-width: 769px) { ... }
+        laptop: "769px",
+
+        // => @media (min-width: 1025px) { ... }
+        desktop: "1025px",
       },
     },
   },
