@@ -48,7 +48,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo](https://arha-deals-git-development-haywayaheadshot.vercel.app/)
+- [Live Demo](https://arha-deals.netlify.app/)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
