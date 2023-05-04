@@ -687,6 +687,10 @@ video {
   animation: spin 1s linear infinite;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .snap-x {
   scroll-snap-type: x var(--tw-scroll-snap-strictness);
 }
@@ -1249,6 +1253,10 @@ video {
     justify-content: stretch;
   }
 
+  .desktop\:gap-0 {
+    gap: 0px;
+  }
+
   .desktop\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -1264,6 +1272,11 @@ video {
     padding-bottom: 1rem;
   }
 
+  .desktop\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
   .desktop\:pt-8 {
     padding-top: 2rem;
   }
@@ -1271,5 +1284,20 @@ video {
   .desktop\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .desktop\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .desktop\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .desktop\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
