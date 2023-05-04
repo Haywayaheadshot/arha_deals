@@ -51,7 +51,7 @@ const FeaturedProducts = () => {
           <img
             src={item.imageUrl}
             alt={item.alt}
-            className="max-w-rousel min-h-10"
+            className="max-w-rousel min-h-10 tablet:min-w-rouselMin"
           />
           <p>{item.caption}</p>
         </div>
