@@ -27,7 +27,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full">
+    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full desktop:py-4">
       <div className="flex items-center justify-between desktop:grid desktop:grid-flow-col desktop:justify-stretch desktop:px-10">
         <section className="desktop:hidden">
           <Hamburger

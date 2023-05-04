@@ -1259,4 +1259,14 @@ video {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
+
+  .desktop\:py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .desktop\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
