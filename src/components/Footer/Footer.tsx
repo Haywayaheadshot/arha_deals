@@ -18,15 +18,17 @@ const Footer = () => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-10">
-      <section className="bg-footer-one w-full text-primary flex flex-col justify-center items-center py-3 gap-2">
+      <section className="bg-footer-one w-full text-primary flex flex-col justify-center items-center py-3 gap-2 cursor-pointer">
         <BsArrowUpCircleFill
           data-testid="arrow-up"
           onClick={handleScrollToTop}
         />
-        <h2 className="text-primary">TOP OF PAGE</h2>
+        <h2 className="text-primary tablet:text-2xl desktop:text-sm">
+          TOP OF PAGE
+        </h2>
       </section>
       <section className="bg-footer-two w-full text-primary py-5">
-        <ul className="grid grid-cols-2 w-screen place-items-center gap-2">
+        <ul className="grid grid-cols-2 w-screen place-items-center gap-2 tablet:text-2xl desktop:text-sm desktop:px-20">
           <li>Phones</li>
           <li>
             <NavLink to="/reels">Reels</NavLink>
@@ -43,7 +45,7 @@ const Footer = () => {
           </li>
         </ul>
       </section>
-      <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
+      <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10 tablet:text-xl desktop:text-sm">
         <h3>Follow Us On Social Media</h3>
         <ul className="flex flex-row gap-10 py-3">
           <li>
@@ -82,7 +84,13 @@ const Footer = () => {
         </ul>
         <span className="flex flex-row justify-center items-center gap-2 py-5">
           <FaRegCopyright />
-          <i>2023. Designed By Abubakar Ummar</i>
+          <a
+            href="https://abubakar-ummar-portfolio.netlify.app/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            2023. Designed By Abubakar Ummar
+          </a>
         </span>
       </section>
     </div>

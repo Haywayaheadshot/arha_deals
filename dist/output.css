@@ -520,6 +520,12 @@ video {
   width: 100%;
 }
 
+@media (min-width: 481px) {
+  .container {
+    max-width: 481px;
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
@@ -532,9 +538,21 @@ video {
   }
 }
 
+@media (min-width: 769px) {
+  .container {
+    max-width: 769px;
+  }
+}
+
 @media (min-width: 1024px) {
   .container {
     max-width: 1024px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1025px;
   }
 }
 
@@ -623,6 +641,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-4 {
   height: 1rem;
 }
@@ -663,6 +685,10 @@ video {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .snap-x {
@@ -721,6 +747,10 @@ video {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -759,6 +789,10 @@ video {
 
 .border-b-2 {
   border-bottom-width: 2px;
+}
+
+.border-r-2 {
+  border-right-width: 2px;
 }
 
 .border-line-t {
@@ -811,6 +845,11 @@ video {
   background-color: hsl(0 0% 100% / var(--tw-bg-opacity));
 }
 
+.bg-red-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
 .bg-secondary {
   --tw-bg-opacity: 1;
   background-color: rgb(32 32 32 / var(--tw-bg-opacity));
@@ -824,16 +863,6 @@ video {
 .bg-yellow-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(150 121 14 / var(--tw-bg-opacity));
-}
-
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
-.bg-red-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -959,6 +988,10 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .pt-10 {
@@ -1117,5 +1150,154 @@ video {
   .dark\:focus\:ring-blue-800:focus {
     --tw-ring-opacity: 1;
     --tw-ring-color: rgb(30 64 175 / var(--tw-ring-opacity));
+  }
+}
+
+@media (min-width: 481px) {
+  .tablet\:min-w-rouselMin {
+    min-width: 60vw;
+  }
+
+  .tablet\:min-w-tab-image {
+    min-width: 85vw;
+  }
+
+  .tablet\:max-w-tab-image {
+    max-width: 85vw;
+  }
+
+  .tablet\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .tablet\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .tablet\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .tablet\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .tablet\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .desktop\:m-20 {
+    margin: 5rem;
+  }
+
+  .desktop\:block {
+    display: block;
+  }
+
+  .desktop\:flex {
+    display: flex;
+  }
+
+  .desktop\:grid {
+    display: grid;
+  }
+
+  .desktop\:hidden {
+    display: none;
+  }
+
+  .desktop\:max-h-l {
+    max-height: 70vh;
+  }
+
+  .desktop\:max-h-s {
+    max-height: 20vh;
+  }
+
+  .desktop\:min-w-last {
+    min-width: 35vw;
+  }
+
+  .desktop\:max-w-home-image-low {
+    max-width: 40vw;
+  }
+
+  .desktop\:max-w-last {
+    max-width: 20vw;
+  }
+
+  .desktop\:grid-flow-col {
+    grid-auto-flow: column;
+  }
+
+  .desktop\:flex-row {
+    flex-direction: row;
+  }
+
+  .desktop\:justify-end {
+    justify-content: flex-end;
+  }
+
+  .desktop\:justify-center {
+    justify-content: center;
+  }
+
+  .desktop\:justify-stretch {
+    justify-content: stretch;
+  }
+
+  .desktop\:gap-0 {
+    gap: 0px;
+  }
+
+  .desktop\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .desktop\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .desktop\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .desktop\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .desktop\:pt-8 {
+    padding-top: 2rem;
+  }
+
+  .desktop\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .desktop\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .desktop\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .desktop\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }

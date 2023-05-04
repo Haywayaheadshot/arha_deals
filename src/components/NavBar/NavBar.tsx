@@ -27,18 +27,38 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full">
-      <div className="flex items-center justify-between">
-        <Hamburger
-          direction="right"
-          easing="ease-in"
-          label="Show menu"
-          distance="lg"
-          toggled={open}
-          size={20}
-          toggle={setOpen}
-          color="#484848"
-        />
+    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full desktop:py-4">
+      <div className="flex items-center justify-between desktop:grid desktop:grid-flow-col desktop:justify-stretch desktop:px-10">
+        <section className="desktop:hidden">
+          <Hamburger
+            direction="right"
+            easing="ease-in"
+            label="Show menu"
+            distance="lg"
+            toggled={open}
+            size={20}
+            toggle={setOpen}
+            color="#484848"
+          />
+        </section>
+        <section className="hidden desktop:flex">
+          <ul className="flex flex-row gap-2 py-3">
+            <li className="border-r-2 pr-2 flex">
+              <NavLink to="/reels">Reels</NavLink>
+            </li>
+            <li className="border-r-2 pr-2">Phones</li>
+            <li className="border-r-2 pr-2">
+              <NavLink to="/technews">News</NavLink>
+            </li>
+            <li className="border-r-2 pr-2">
+              <NavLink to="/phonehacks">Hacks</NavLink>
+            </li>
+            <li className="border-r-2 pr-2">Babies</li>
+            <li>
+              <NavLink to="/exclusiveitems">Exclusive</NavLink>
+            </li>
+          </ul>
+        </section>
         <NavLink to="/" onClick={() => setOpen(false)}>
           <h1 className="text-xl text-tertiary flex flex-wrap">
             Tailored
@@ -46,7 +66,9 @@ const NavBar = () => {
             Budget
           </h1>
         </NavLink>
-        <span className="px-3 text-tertiary">{getTime()}</span>
+        <span className="px-3 text-tertiary desktop:flex desktop:justify-end">
+          {getTime()}
+        </span>
       </div>
       {open ? (
         <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
