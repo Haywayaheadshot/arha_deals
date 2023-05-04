@@ -20,6 +20,12 @@ const FeaturedProducts = () => {
       caption: "Third slide",
       alt: "Third slide",
     },
+    {
+      id: 4,
+      imageUrl: "/rare_gem.png",
+      caption: "Fourth slide",
+      alt: "Fourth slide",
+    },
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,9 +57,9 @@ const FeaturedProducts = () => {
           <img
             src={item.imageUrl}
             alt={item.alt}
-            className="max-w-rousel min-h-10 tablet:min-w-rouselMin"
+            className="max-w-rousel min-h-10 tablet:min-w-rouselMin desktop:max-h-l desktop:min-w-last"
           />
-          <p>{item.caption}</p>
+          <p className="text-primary text-center">{item.caption}</p>
         </div>
       ))}
     </section>

@@ -703,10 +703,6 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -739,16 +735,16 @@ video {
   justify-content: space-between;
 }
 
-.justify-stretch {
-  justify-content: stretch;
-}
-
 .gap-10 {
   gap: 2.5rem;
 }
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-4 {
@@ -765,10 +761,6 @@ video {
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-3 {
-  gap: 0.75rem;
 }
 
 .overflow-x-auto {
@@ -797,10 +789,6 @@ video {
 
 .border-r-2 {
   border-right-width: 2px;
-}
-
-.border-l-2 {
-  border-left-width: 2px;
 }
 
 .border-line-t {
@@ -998,6 +986,10 @@ video {
   padding-bottom: 1.25rem;
 }
 
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1012,10 +1004,6 @@ video {
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .text-center {
@@ -1162,14 +1150,6 @@ video {
 }
 
 @media (min-width: 481px) {
-  .tablet\:min-w-home-image {
-    min-width: 90vw;
-  }
-
-  .tablet\:min-w-rousel {
-    min-width: 80vw;
-  }
-
   .tablet\:min-w-rouselMin {
     min-width: 60vw;
   }
@@ -1202,11 +1182,6 @@ video {
     line-height: 1;
   }
 
-  .tablet\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
   .tablet\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -1214,6 +1189,14 @@ video {
 }
 
 @media (min-width: 1025px) {
+  .desktop\:m-20 {
+    margin: 5rem;
+  }
+
+  .desktop\:block {
+    display: block;
+  }
+
   .desktop\:flex {
     display: flex;
   }
@@ -1226,33 +1209,44 @@ video {
     display: none;
   }
 
+  .desktop\:max-h-l {
+    max-height: 70vh;
+  }
+
+  .desktop\:max-h-s {
+    max-height: 20vh;
+  }
+
+  .desktop\:min-w-last {
+    min-width: 35vw;
+  }
+
+  .desktop\:max-w-home-image-low {
+    max-width: 40vw;
+  }
+
+  .desktop\:max-w-last {
+    max-width: 20vw;
+  }
+
   .desktop\:grid-flow-col {
     grid-auto-flow: column;
   }
 
-  .desktop\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .desktop\:flex-row {
+    flex-direction: row;
   }
 
   .desktop\:justify-end {
     justify-content: flex-end;
   }
 
-  .desktop\:justify-around {
-    justify-content: space-around;
+  .desktop\:justify-center {
+    justify-content: center;
   }
 
   .desktop\:justify-stretch {
     justify-content: stretch;
-  }
-
-  .desktop\:gap-4 {
-    gap: 1rem;
-  }
-
-  .desktop\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
   }
 
   .desktop\:px-10 {
@@ -1260,13 +1254,22 @@ video {
     padding-right: 2.5rem;
   }
 
-  .desktop\:py-5 {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+  .desktop\:py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 
   .desktop\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .desktop\:pt-8 {
+    padding-top: 2rem;
+  }
+
+  .desktop\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
