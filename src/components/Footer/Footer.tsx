@@ -23,10 +23,10 @@ const Footer = () => {
           data-testid="arrow-up"
           onClick={handleScrollToTop}
         />
-        <h2 className="text-primary">TOP OF PAGE</h2>
+        <h2 className="text-primary tablet:text-2xl">TOP OF PAGE</h2>
       </section>
       <section className="bg-footer-two w-full text-primary py-5">
-        <ul className="grid grid-cols-2 w-screen place-items-center gap-2">
+        <ul className="grid grid-cols-2 w-screen place-items-center gap-2 tablet:text-2xl">
           <li>Phones</li>
           <li>
             <NavLink to="/reels">Reels</NavLink>
@@ -43,7 +43,7 @@ const Footer = () => {
           </li>
         </ul>
       </section>
-      <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10">
+      <section className="bg-black text-primary w-full py-5 flex flex-col justify-center items-center gap-10 tablet:text-xl">
         <h3>Follow Us On Social Media</h3>
         <ul className="flex flex-row gap-10 py-3">
           <li>
