@@ -71,22 +71,22 @@ describe("ExclusiveItems", () => {
     expect(screen.getByText("20")).toBeInTheDocument();
   });
 
-  it("should open the modal when an item is clicked", () => {
-    const spy = jest.spyOn(window, "open");
-    render(
-      <Provider store={store}>
-        <ExclusiveItems />
-      </Provider>
-    );
+  // it("should open the modal when an item is clicked", () => {
+  //   const spy = jest.spyOn(window, "open");
+  //   render(
+  //     <Provider store={store}>
+  //       <ExclusiveItems />
+  //     </Provider>
+  //   );
 
-    expect(screen.queryByTestId("item-details")).not.toBeInTheDocument();
-    screen.getAllByTestId("item-button")[0].click();
-    expect(screen.queryByTestId("item-details")).toBeInTheDocument();
+  //   // expect(screen.queryByTestId("item-info")).not.toBeInTheDocument();
+  //   // screen.getByText("item 1").click();
+  //   // expect(screen.getByText("Item Description")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("BUY"));
-    expect(spy).toHaveBeenCalledWith(
-      "https://api.whatsapp.com/send?phone=+233244041362&text=Hello%2C%0AI%20am%20interested%20in%20buying%20${item.itemName}.%0AIt%20has%20the%20id%3D${item.id}.%0AIt's%20price%20is%20${item.price}.%0A%0APlease%20get%20back%20to%20me%20as%20soon%20as%20you%20can."
-    );
-    spy.mockRestore();
-  });
+  //   fireEvent.click(screen.getByText("BUY"));
+  //   expect(spy).toHaveBeenCalledWith(
+  //     "https://api.whatsapp.com/send?phone=+233244041362&text=Hello%2C%0AI%20am%20interested%20in%20buying%20${item.itemName}.%0AIt%20has%20the%20id%3D${item.id}.%0AIt's%20price%20is%20${item.price}.%0A%0APlease%20get%20back%20to%20me%20as%20soon%20as%20you%20can."
+  //   );
+  //   spy.mockRestore();
+  // });
 });

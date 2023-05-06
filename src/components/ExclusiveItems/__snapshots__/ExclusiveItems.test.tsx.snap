@@ -23,9 +23,9 @@ exports[`ExclusiveItems should render correctly 1`] = `
   >
     <section
       className="border-tertiary border-2 rounded-md"
-      data-testid="item-button"
     >
       <div
+        data-testid="item-button"
         onClick={[Function]}
       >
         <ul
@@ -76,9 +76,9 @@ exports[`ExclusiveItems should render correctly 1`] = `
     </section>
     <section
       className="border-tertiary border-2 rounded-md"
-      data-testid="item-button"
     >
       <div
+        data-testid="item-button"
         onClick={[Function]}
       >
         <ul

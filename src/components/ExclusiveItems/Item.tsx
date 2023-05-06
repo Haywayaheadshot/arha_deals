@@ -13,7 +13,7 @@ const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
       </section>
       <section>
         <h1 className="text-4xl text-center" data-testid="item-info">
-          Item Name
+          Item Description
         </h1>
         <p className="py-3">
           This item is a is a is a is a is a is a is a is a is a is a is a is a
