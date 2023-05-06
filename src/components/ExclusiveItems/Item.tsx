@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import PropTypes from "prop-types";
 import { RiEyeCloseLine } from "react-icons/ri";
 
 interface ItemProps {
@@ -13,7 +12,9 @@ const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
         <RiEyeCloseLine size={30} onClick={closeModal} />
       </section>
       <section>
-        <h1 className="text-4xl text-center">Item Name</h1>
+        <h1 className="text-4xl text-center" data-testid="item-info">
+          Item Description
+        </h1>
         <p className="py-3">
           This item is a is a is a is a is a is a is a is a is a is a is a is a
           is a is a is a is a is a is a is a is a is a is a is a is a is a is a
@@ -34,12 +35,3 @@ const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
 };
 
 export default Item;
-
-Item.propTypes = {
-  // service: PropTypes.shape({
-  //   name: PropTypes.string.isRequired,
-  //   id: PropTypes.string.isRequired,
-  //   offers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // }).isRequired,
-  closeModal: PropTypes.func.isRequired,
-};

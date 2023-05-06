@@ -44,7 +44,10 @@ const ExclusiveItems = () => {
               className="border-tertiary border-2 rounded-md"
               key={item.id}
             >
-              <div onClick={() => handleShowDetails()}>
+              <div
+                onClick={() => handleShowDetails()}
+                data-testid="item-button"
+              >
                 <ul className="flex flex-row justify-center gap-4 bg-secondary">
                   <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
                     {item.itemName}
@@ -53,7 +56,7 @@ const ExclusiveItems = () => {
                     {item.availableSince}
                   </li>
                 </ul>
-                <img src={item.image_url} alt="Gem Stone" />
+                <img src={item.image_url} alt={`Image of ${item.itemName}`} />
                 <ul className="flex flex-row justify-center gap-4 bg-secondary">
                   <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
                     {item.price}

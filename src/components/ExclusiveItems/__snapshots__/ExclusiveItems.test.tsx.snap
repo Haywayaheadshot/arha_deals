@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExclusiveItems should render correctly 1`] = `
+<div
+  className="py-5"
+>
+  <section
+    className="pt-10"
+  >
+    <h1
+      className="text-3xl text-center"
+    >
+      Exclusive Items
+    </h1>
+    <p
+      className="px-5 text-center py-3"
+    >
+      Please note that this section is for collectors and is rearely populated. If there is an item, be rest assured the authencity is 100%.
+    </p>
+  </section>
+  <section
+    className="px-4 flex flex-col justify-center items-center gap-8"
+  >
+    <section
+      className="border-tertiary border-2 rounded-md"
+    >
+      <div
+        data-testid="item-button"
+        onClick={[Function]}
+      >
+        <ul
+          className="flex flex-row justify-center gap-4 bg-secondary"
+        >
+          <li
+            className="bg-yellow-300 rounded-md px-2 py-1 text-primary"
+          >
+            item 1
+          </li>
+          <li
+            className="bg-tertiary rounded-md px-2 py-1 text-primary"
+          >
+            2022-05-01
+          </li>
+        </ul>
+        <img
+          alt="Image of item 1"
+          src="https://example.com/image1.jpg"
+        />
+        <ul
+          className="flex flex-row justify-center gap-4 bg-secondary"
+        >
+          <li
+            className="bg-yellow-300 rounded-md px-2 py-1 text-primary"
+          >
+            100
+          </li>
+          <li
+            className="bg-tertiary rounded-md px-2 py-1 text-primary"
+          >
+            10
+          </li>
+        </ul>
+      </div>
+      <a
+        href="https://api.whatsapp.com/send?phone=+233244041362&text=Hello%2C%0AI%20am%20interested%20in%20buying%20item 1.%0AIt%20has%20the%20id%3D1.%0AIt's%20price%20is%20100.%0A%0APlease%20get%20back%20to%20me%20as%20soon%20as%20you%20can."
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <button
+          className="text-xl text-center bg-red-200 text-tertiary font-semibold w-full"
+          type="button"
+        >
+          BUY
+        </button>
+      </a>
+    </section>
+    <section
+      className="border-tertiary border-2 rounded-md"
+    >
+      <div
+        data-testid="item-button"
+        onClick={[Function]}
+      >
+        <ul
+          className="flex flex-row justify-center gap-4 bg-secondary"
+        >
+          <li
+            className="bg-yellow-300 rounded-md px-2 py-1 text-primary"
+          >
+            item 2
+          </li>
+          <li
+            className="bg-tertiary rounded-md px-2 py-1 text-primary"
+          >
+            2022-05-02
+          </li>
+        </ul>
+        <img
+          alt="Image of item 2"
+          src="https://example.com/image2.jpg"
+        />
+        <ul
+          className="flex flex-row justify-center gap-4 bg-secondary"
+        >
+          <li
+            className="bg-yellow-300 rounded-md px-2 py-1 text-primary"
+          >
+            200
+          </li>
+          <li
+            className="bg-tertiary rounded-md px-2 py-1 text-primary"
+          >
+            20
+          </li>
+        </ul>
+      </div>
+      <a
+        href="https://api.whatsapp.com/send?phone=+233244041362&text=Hello%2C%0AI%20am%20interested%20in%20buying%20item 2.%0AIt%20has%20the%20id%3D2.%0AIt's%20price%20is%20200.%0A%0APlease%20get%20back%20to%20me%20as%20soon%20as%20you%20can."
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <button
+          className="text-xl text-center bg-red-200 text-tertiary font-semibold w-full"
+          type="button"
+        >
+          BUY
+        </button>
+      </a>
+    </section>
+  </section>
+</div>
+`;
