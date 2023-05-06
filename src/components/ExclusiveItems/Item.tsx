@@ -12,7 +12,9 @@ const Item: FunctionComponent<ItemProps> = ({ closeModal }) => {
         <RiEyeCloseLine size={30} onClick={closeModal} />
       </section>
       <section>
-        <h1 className="text-4xl text-center">Item Name</h1>
+        <h1 className="text-4xl text-center" data-testid="item-details">
+          Item Name
+        </h1>
         <p className="py-3">
           This item is a is a is a is a is a is a is a is a is a is a is a is a
           is a is a is a is a is a is a is a is a is a is a is a is a is a is a

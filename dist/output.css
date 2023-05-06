@@ -1217,20 +1217,12 @@ video {
     max-height: 70vh;
   }
 
-  .desktop\:max-h-s {
-    max-height: 20vh;
-  }
-
   .desktop\:min-w-last {
     min-width: 35vw;
   }
 
   .desktop\:max-w-home-image-low {
     max-width: 40vw;
-  }
-
-  .desktop\:max-w-last {
-    max-width: 20vw;
   }
 
   .desktop\:grid-flow-col {
@@ -1253,13 +1245,14 @@ video {
     justify-content: stretch;
   }
 
-  .desktop\:gap-0 {
-    gap: 0px;
-  }
-
   .desktop\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .desktop\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .desktop\:py-20 {
@@ -1272,11 +1265,6 @@ video {
     padding-bottom: 1rem;
   }
 
-  .desktop\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
   .desktop\:pt-8 {
     padding-top: 2rem;
   }
@@ -1286,18 +1274,8 @@ video {
     line-height: 1;
   }
 
-  .desktop\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .desktop\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-
-  .desktop\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 }

@@ -43,6 +43,7 @@ const ExclusiveItems = () => {
             <section
               className="border-tertiary border-2 rounded-md"
               key={item.id}
+              data-testid="item-button"
             >
               <div onClick={() => handleShowDetails()}>
                 <ul className="flex flex-row justify-center gap-4 bg-secondary">
@@ -53,7 +54,7 @@ const ExclusiveItems = () => {
                     {item.availableSince}
                   </li>
                 </ul>
-                <img src={item.image_url} alt="Gem Stone" />
+                <img src={item.image_url} alt={`Image of ${item.itemName}`} />
                 <ul className="flex flex-row justify-center gap-4 bg-secondary">
                   <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
                     {item.price}
