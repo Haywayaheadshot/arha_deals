@@ -66,8 +66,22 @@ const NavBar = () => {
             Budget
           </h1>
         </NavLink>
-        <span className="px-3 text-tertiary desktop:flex desktop:justify-end">
-          {getTime()}
+        <span className="px-3 text-tertiary flex desktop:justify-end flex-row">
+          <ul className="flex flex-row justify-center items-center gap-2">
+            <li className="border-r-2 pr-2 flex">
+              <NavLink to="/signup">
+                <button>Sign Up</button>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/signin">
+                <button>Sign In</button>
+              </NavLink>
+            </li>
+            <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
+              {getTime()}
+            </li>
+          </ul>
         </span>
       </div>
       {open ? (
