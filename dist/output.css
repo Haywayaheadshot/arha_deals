@@ -625,6 +625,10 @@ video {
   margin-top: 1rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .inline {
   display: inline;
 }
@@ -655,6 +659,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
 }
 
 .w-4 {
@@ -727,6 +735,10 @@ video {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -787,6 +799,10 @@ video {
   border-width: 2px;
 }
 
+.border-\[1px\] {
+  border-width: 1px;
+}
+
 .border-b-2 {
   border-bottom-width: 2px;
 }
@@ -803,6 +819,11 @@ video {
 .border-tertiary {
   --tw-border-opacity: 1;
   border-color: rgb(72 72 72 / var(--tw-border-opacity));
+}
+
+.border-yellow-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(150 121 14 / var(--tw-border-opacity));
 }
 
 .border-b-line-t {
@@ -840,6 +861,10 @@ video {
   background-color: rgb(34 48 62 / var(--tw-bg-opacity));
 }
 
+.bg-inherit {
+  background-color: inherit;
+}
+
 .bg-primary {
   --tw-bg-opacity: 1;
   background-color: hsl(0 0% 100% / var(--tw-bg-opacity));
@@ -871,6 +896,10 @@ video {
 
 .bg-home-bg {
   background-image: url('/src/assets/homepage-image-mobile.png');
+}
+
+.bg-sign-up-bg {
+  background-image: url('/src/assets/mountain.png');
 }
 
 .from-yellow-100 {
@@ -990,6 +1019,10 @@ video {
   padding-bottom: 1.25rem;
 }
 
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1034,6 +1067,11 @@ video {
   line-height: 1;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1056,8 +1094,16 @@ video {
   font-weight: 600;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .capitalize {
   text-transform: capitalize;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .text-black {
@@ -1087,6 +1133,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-yellow-300 {
+  --tw-text-opacity: 1;
+  color: rgb(150 121 14 / var(--tw-text-opacity));
 }
 
 .underline {
