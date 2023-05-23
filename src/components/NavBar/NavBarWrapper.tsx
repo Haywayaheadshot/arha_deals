@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Routes } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "../Footer/Footer";
 
@@ -11,7 +10,7 @@ const NavBarWrapper = ({ children }: NavBarWrapperProps) => {
   return (
     <>
       <NavBar />
-      <Routes>{children}</Routes>
+      {children}
       <Footer />
     </>
   );

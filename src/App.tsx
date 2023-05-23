@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  RouteProps,
+  Routes,
+} from "react-router-dom";
 import HomePage from "./components/LandingPage/HomePage";
 import Reels from "./components/Reels/Reels";
 import PhoneHacks from "./components/PhoneHacks/PhoneHacks";
@@ -18,20 +23,63 @@ const App = () => (
             path="/"
             element={
               <NavBarWrapper>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/technews" element={<TechNews />} />
-                <Route path="/reels" element={<Reels />} />
-                <Route path="/phonehacks" element={<PhoneHacks />} />
-                <Route path="/exclusiveitems" element={<ExclusiveItems />} />
+                <HomePage />
               </NavBarWrapper>
             }
+            {...(exactProp as RouteProps)}
           />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route
+            path="/technews"
+            element={
+              <NavBarWrapper>
+                <TechNews />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/reels"
+            element={
+              <NavBarWrapper>
+                <Reels />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/phonehacks"
+            element={
+              <NavBarWrapper>
+                <PhoneHacks />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/exclusiveitems"
+            element={
+              <NavBarWrapper>
+                <ExclusiveItems />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/signup"
+            element={<SignUpPage />}
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/signin"
+            element={<SignInPage />}
+            {...(exactProp as RouteProps)}
+          />
         </Routes>
       </main>
     </Router>
   </div>
 );
+
+const exactProp = { exact: true };
 
 export default App;
