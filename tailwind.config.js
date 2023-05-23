@@ -28,6 +28,7 @@ export default {
       },
       backgroundImage: {
         "home-bg": "url('/src/assets/homepage-image-mobile.png')",
+        "sign-up-bg": "url('/src/assets/mountain.png')",
       },
       fontWeight: {
         hairline: "100",
