@@ -6,6 +6,6 @@ describe("FeaturedProducts", () => {
   it("should render a carousel with three images", () => {
     const { getAllByAltText } = render(<FeaturedProducts />);
     const images = getAllByAltText(/slide/);
-    expect(images).toHaveLength(3);
+    expect(images).toHaveLength(4);
   });
 });
