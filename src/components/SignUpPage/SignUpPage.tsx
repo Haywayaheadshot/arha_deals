@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaCrown } from "react-icons/fa";
 import { RxEyeClosed } from "react-icons/rx";
+import { FaCrown } from "react-icons/fa";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +41,7 @@ const SignUpPage = () => {
   const handleSignUpSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validation for name input
     if (userInputs.name.length < 5) {
       setErrorMessage({
         ...errorMessage,
@@ -52,6 +53,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Validation for email input
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!userInputs.email.match(emailRegex)) {
       setErrorMessage({
@@ -64,6 +66,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Validation for user name input
     if (userInputs.userName.length < 3 || userInputs.userName.length > 8) {
       setErrorMessage({
         ...errorMessage,
@@ -75,6 +78,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Validation for date of birth input
     const dobInput = dateOfBirth.current;
 
     if (!dobInput) {
@@ -98,6 +102,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Validation for password input
     if (
       !userInputs.password.match(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/
@@ -114,6 +119,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Validation for confirm password input
     if (userInputs.password !== userInputs.confirmPassword) {
       setErrorMessage({
         ...errorMessage,
@@ -125,6 +131,7 @@ const SignUpPage = () => {
       return;
     }
 
+    // Send data to backend to create user
     const data = {
       user: {
         password: userInputs.password,
@@ -183,7 +190,7 @@ const SignUpPage = () => {
 
   return (
     <div className="h-[100vh] flex flex-col justify-start items-center px-4 gap-2 bg-sign-up-bg bg-no-repeat bg-center">
-      <NavLink to="/">
+      <NavLink to="/" className="flex flex-col justify-center items-center">
         <h1 className="text-xl text-secondary flex flex-wrap py-3">
           Tailored
           <FaCrown />
@@ -200,7 +207,7 @@ const SignUpPage = () => {
           <br />
           {errorMessage.name && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.name}
               </p>
             </div>
@@ -221,7 +228,7 @@ const SignUpPage = () => {
           <br />
           {errorMessage.email && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.email}
               </p>
             </div>
@@ -242,7 +249,7 @@ const SignUpPage = () => {
           <br />
           {errorMessage.userName && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.userName}
               </p>
             </div>
@@ -276,7 +283,7 @@ const SignUpPage = () => {
           <br />
           {errorMessage.dateOfBirth && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.dateOfBirth}
               </p>
             </div>
@@ -297,7 +304,7 @@ const SignUpPage = () => {
           Password:
           {errorMessage.password && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.password}
               </p>
             </div>
@@ -315,7 +322,7 @@ const SignUpPage = () => {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               title={showPassword ? "Hide Password" : "Show Password"}
-              className="bg-yellow-300 text-primary rounded-md p-2"
+              className="bg-yellow-300 text-primary p-2 btn"
             >
               <RxEyeClosed />
             </button>
@@ -326,7 +333,7 @@ const SignUpPage = () => {
           <br />
           {errorMessage.confirmPassword && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.confirmPassword}
               </p>
             </div>
@@ -343,7 +350,7 @@ const SignUpPage = () => {
         <label htmlFor="submit">
           {errorMessage.signUp && (
             <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary">
+              <p className="chat-bubble chat-bubble-secondary text-primary">
                 {errorMessage.signUp}
               </p>
             </div>
@@ -357,7 +364,7 @@ const SignUpPage = () => {
           )}
           <input
             aria-label="Submit Form"
-            className="bg-yellow-300 text-primary rounded-md w-full uppercase py-1 font-bold cursor-pointer"
+            className="bg-yellow-300 text-primary w-full uppercase py-1 font-bold cursor-pointer btn"
             id="submit"
             role="button"
             type="submit"
@@ -366,12 +373,9 @@ const SignUpPage = () => {
         </label>
       </form>
       <section>
-        <span className="text-xl text-secondary">
+        <span className="text-xl pb-6">
           Already have an account?
-          <NavLink
-            to="/singin"
-            className="rounded-md bg-yellow-300 text-primary ml-2 px-2 py-1"
-          >
+          <NavLink to="/signin" className="bg-yellow-300 text-primary ml-2 btn">
             Sign in
           </NavLink>
         </span>
