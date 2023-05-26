@@ -25,7 +25,7 @@ const TechNews: React.FC<Props> = () => {
   }, [dispatch]);
 
   return (
-    <div className="text-black py-10 px-5">
+    <div className="py-10 px-5">
       <h1 className="mt-2 text-center text-2xl py-3">
         Welcome to the Tech News Page.
       </h1>
