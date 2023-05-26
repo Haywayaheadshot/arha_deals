@@ -1,7 +1,8 @@
 import { Spiral as Hamburger } from "hamburger-react";
 import React, { useEffect, useState } from "react";
-import { FaCrown } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import ChangeThemes from "../Shared/ChangeThemes";
+import Logo from "../Shared/Logo";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ const NavBar = () => {
             color="#484848"
           />
         </section>
-        <section className="hidden desktop:flex">
+        <section className="hidden desktop:flex text-secondary">
           <ul className="flex flex-row gap-2 py-3">
             <li className="border-r-2 pr-2 flex">
               <NavLink to="/reels">Reels</NavLink>
@@ -59,13 +60,9 @@ const NavBar = () => {
             </li>
           </ul>
         </section>
-        <NavLink to="/" onClick={() => setOpen(false)}>
-          <h1 className="text-xl text-tertiary flex flex-wrap">
-            Tailored
-            <FaCrown />
-            Budget
-          </h1>
-        </NavLink>
+        <section onClick={() => setOpen(false)}>
+          <Logo />
+        </section>
         <span className="px-3 text-tertiary flex desktop:justify-end flex-row">
           <div className="bg-yellow-300 rounded-md px-2 py-1 text-primary desktop:hidden">
             {getTime()}
@@ -88,7 +85,7 @@ const NavBar = () => {
         </span>
       </div>
       {open ? (
-        <ul className="flex gap-4 fixed bg-primary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
+        <ul className="desktop:hidden flex gap-4 fixed bg-primary text-secondary inset-x-0 border-line-t border-b-2 px-3 py-5 flex-col transition-all ease-in-out delay-500">
           <li>
             <NavLink to="/reels" onClick={() => setOpen(false)}>
               Reels
@@ -120,6 +117,9 @@ const NavBar = () => {
             <NavLink to="/signin" onClick={() => setOpen(false)}>
               <button>Sign In</button>
             </NavLink>
+          </li>
+          <li onClick={() => setOpen(false)}>
+            <ChangeThemes />
           </li>
         </ul>
       ) : null}
