@@ -6,7 +6,7 @@ import FeaturedProducts from "../Shared/FeaturedProducts";
 
 const HomePage = () => {
   return (
-    <div className="bg-primary pt-10 tablet:pt-15">
+    <div className=" pt-10 tablet:pt-15">
       <section className="desktop:py-20 bg-home-bg bg-cover mt-1 bg-no-repeat bg-center h-full">
         <h1 className="desktop:m-20 desktop:py-20 tablet:text-7xl font-bold text-5xl text-center px-2 py-20 bg-clip-text text-transparent bg-gradient-to-r from-yellow-100 to-yellow-400">
           Quality Affordable Products!
