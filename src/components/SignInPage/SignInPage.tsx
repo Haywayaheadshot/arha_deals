@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FaCrown } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Cookie from "universal-cookie";
 
 const SignInPage = () => {
+  const cookies = new Cookie();
+  const navigate = useNavigate();
   const [userInputs, setUserInputs] = useState({
     email: "",
     password: "",
@@ -64,7 +67,13 @@ const SignInPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "success") {
-          console.log(data.token);
+          // Store the token in a secure cookie
+          cookies.set("token", data.token, {
+            secure: true,
+            sameSite: "strict",
+          });
+
+          navigate("/");
         } else {
           setErrorMessage({
             ...errorMessage,
@@ -98,10 +107,8 @@ const SignInPage = () => {
           Email:
           <br />
           {errorMessage.email && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.email}
-              </p>
+            <div className="toast toast-end">
+              <p className="alert alert-error">{errorMessage.email}</p>
             </div>
           )}
           <input
@@ -122,10 +129,8 @@ const SignInPage = () => {
           Password:
           <br />
           {errorMessage.password && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.password}
-              </p>
+            <div className="toast toast-end">
+              <p className="alert alert-error">{errorMessage.password}</p>
             </div>
           )}
           <input
@@ -144,10 +149,8 @@ const SignInPage = () => {
         </label>
         <section>
           {errorMessage.authentication && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.authentication}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.authentication}</p>
             </div>
           )}
           <input
