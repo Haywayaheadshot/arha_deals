@@ -45,7 +45,7 @@ const SignUpPage = () => {
     if (userInputs.name.length < 5) {
       setErrorMessage({
         ...errorMessage,
-        name: "Please enter at least 5 characters",
+        name: "Please enter your name. At least 5 characters",
       });
       setTimeout(() => {
         setErrorMessage({ ...errorMessage, name: "" });
@@ -70,7 +70,7 @@ const SignUpPage = () => {
     if (userInputs.userName.length < 3 || userInputs.userName.length > 8) {
       setErrorMessage({
         ...errorMessage,
-        userName: "Please enter between 3 to 8 characters",
+        userName: "Please enter a user name between 3 to 8 characters",
       });
       setTimeout(() => {
         setErrorMessage({ ...errorMessage, userName: "" });
@@ -206,10 +206,8 @@ const SignUpPage = () => {
           Name:
           <br />
           {errorMessage.name && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.name}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.name}</p>
             </div>
           )}
           <input
@@ -227,10 +225,8 @@ const SignUpPage = () => {
           Email:
           <br />
           {errorMessage.email && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.email}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.email}</p>
             </div>
           )}
           <input
@@ -248,10 +244,8 @@ const SignUpPage = () => {
           User Name:
           <br />
           {errorMessage.userName && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.userName}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.userName}</p>
             </div>
           )}
           <input
@@ -271,7 +265,7 @@ const SignUpPage = () => {
           <input
             type="file"
             id="display-picture"
-            className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md bg-primary"
+            className="file-input file-input-bordered "
             value={userInputs.photo}
             onChange={(e) => {
               setUserInputs({ ...userInputs, photo: e.target.value });
@@ -282,10 +276,8 @@ const SignUpPage = () => {
           Date Of Birth:
           <br />
           {errorMessage.dateOfBirth && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.dateOfBirth}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.dateOfBirth}</p>
             </div>
           )}
           <input
@@ -293,7 +285,7 @@ const SignUpPage = () => {
             type="date"
             id="dob"
             data-testId="date-of-birth"
-            className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md text-primary"
+            className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md"
             value={userInputs.dateOfBirth}
             onChange={(e) => {
               setUserInputs({ ...userInputs, dateOfBirth: e.target.value });
@@ -303,10 +295,8 @@ const SignUpPage = () => {
         <label htmlFor="password" className="flex flex-col uppercase text-lg">
           Password:
           {errorMessage.password && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.password}
-              </p>
+            <div className="toast toast-top">
+              <p className="alert alert-error">{errorMessage.password}</p>
             </div>
           )}
           <span className="flex flex-row gap-2">
@@ -332,8 +322,8 @@ const SignUpPage = () => {
           Confirm Password:
           <br />
           {errorMessage.confirmPassword && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
+            <div className="toast toast-top">
+              <p className="alert alert-error">
                 {errorMessage.confirmPassword}
               </p>
             </div>
@@ -349,17 +339,13 @@ const SignUpPage = () => {
         </label>
         <label htmlFor="submit">
           {errorMessage.signUp && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-secondary text-primary">
-                {errorMessage.signUp}
-              </p>
+            <div className="toast toast-end">
+              <p className="alert alert-error">{errorMessage.signUp}</p>
             </div>
           )}
           {successMessage.signUp && (
-            <div className="chat chat-end">
-              <p className="chat-bubble chat-bubble-success">
-                {successMessage.signUp}
-              </p>
+            <div className="toast toast-end">
+              <p className="alert alert-success">{successMessage.signUp}</p>
             </div>
           )}
           <input
