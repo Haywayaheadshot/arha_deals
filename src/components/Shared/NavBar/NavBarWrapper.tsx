@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import NavBar from "./NavBar";
-import Footer from "../Footer/Footer";
+import Footer from "../../Footer/Footer";
 
 interface NavBarWrapperProps {
   children: ReactNode;

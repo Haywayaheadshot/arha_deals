@@ -25,11 +25,10 @@ const ChangeThemes = () => {
       <button
         type="button"
         onClick={handleDarkMode}
-        className="flex flex-row justify-center items-center btn gap-2 text-primary"
+        className="flex flex-row justify-center items-center btn btn-sm gap-2 text-primary"
       >
         <IconContext.Provider
           value={{
-            size: "2em",
             className: `global-class-name ${
               theme === "night" ? "night-mode" : ""
             }`,

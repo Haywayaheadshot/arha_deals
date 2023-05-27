@@ -12,7 +12,7 @@ import TechNews from "./components/TechNews/TechNews";
 import ExclusiveItems from "./components/ExclusiveItems/ExclusiveItems";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import SignInPage from "./components/SignInPage/SignInPage";
-import NavBarWrapper from "./components/NavBar/NavBarWrapper";
+import NavBarWrapper from "./components/Shared/NavBar/NavBarWrapper";
 
 const App = () => (
   <div className="">
