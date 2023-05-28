@@ -24,7 +24,7 @@ export default {
         black: "#000000",
       },
       fontFamily: {
-        brutal: ["Brutal Type", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       backgroundImage: {
         "home-bg": "url('/src/assets/homepage-image-mobile.png')",
