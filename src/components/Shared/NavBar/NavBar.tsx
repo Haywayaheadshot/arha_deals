@@ -63,7 +63,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full desktop:py-4 flex flex-col">
+    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col">
       {appreciation && (
         <div className="toast ease-in-out">
           <div className="alert alert-info">
@@ -122,6 +122,7 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
               <li>
+                {/* If carts is not empty, display this */}
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost btn-circle">
                     <div className="indicator">
@@ -146,14 +147,48 @@ const NavBar = () => {
                     tabIndex={0}
                     className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
                   >
-                    <div className="card-body">
-                      <span className="font-bold text-lg">8 Items</span>
-                      <span className="text-info">Subtotal: $999</span>
-                      <div className="card-actions">
-                        <button className="btn btn-primary btn-block">
-                          Checkout
-                        </button>
+                    <NavLink to="/confirmorder">
+                      <div className="card-body">
+                        <span className="font-bold text-lg">8 Items</span>
+                        <span className="text-info">Subtotal: $999</span>
+                        <div className="card-actions">
+                          <button className="btn btn-primary btn-block">
+                            Checkout
+                          </button>
+                        </div>
                       </div>
+                    </NavLink>
+                  </div>
+                </div>
+                {/* Else, display this */}
+                <div className="dropdown dropdown-end">
+                  <label tabIndex={0} className="btn btn-ghost btn-circle">
+                    <div className="indicator">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
+                    </div>
+                  </label>
+                  <div
+                    tabIndex={0}
+                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                  >
+                    <div className="card-body">
+                      <span className="text-info">
+                        You have no items in your cart. Please check through our
+                        products and add items to your cart.
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -215,11 +250,33 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign out</button>
               </li>
               <li>
-                <div className="indicator">
-                  <span className="indicator-item badge badge-secondary">
-                    8
-                  </span>
-                  <button className="btn">Cart</button>
+                {/* Display this when cart is not empty */}
+                <NavLink to="/confirmorder">
+                  <div className="indicator">
+                    <span className="indicator-item badge badge-secondary">
+                      8
+                    </span>
+                    <button onClick={() => setOpen(false)} className="btn">
+                      Cart
+                    </button>
+                  </div>
+                </NavLink>
+                {/* Else display this */}
+                <div className="dropdown dropdown-start">
+                  <label tabIndex={0} className="btn">
+                    <div className="indicator">Cart</div>
+                  </label>
+                  <div
+                    tabIndex={0}
+                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                  >
+                    <div className="card-body">
+                      <span className="text-info">
+                        You have no items in your cart. Please check through our
+                        products and add items to your cart.
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </li>
             </>
