@@ -50,14 +50,14 @@ const FeaturedProducts = () => {
     <section
       ref={containerRef}
       role="region"
-      className="bg-tertiary flex flex-row overflow-x-auto w-screen scroll-p-6 snap-x gap-2 mt-10"
+      className="bg-tertiary flex flex-row items-center overflow-x-auto w-screen scroll-p-6 snap-x gap-2 mt-10 py-2 px-4"
     >
       {carouselContent.map((item) => (
         <div key={item.id}>
           <img
             src={item.imageUrl}
             alt={item.alt}
-            className="max-w-rousel min-h-10 tablet:min-w-rouselMin desktop:max-h-l desktop:min-w-last"
+            className="max-w-rousel min-h-10 tablet:min-w-rouselMin desktop:max-h-[40vh] desktop:min-w-[20vw]"
           />
           <p className="text-primary text-center">{item.caption}</p>
         </div>

@@ -2328,6 +2328,17 @@ html {
   height: auto;
 }
 
+.table {
+  position: relative;
+  text-align: left;
+}
+
+.table th:first-child {
+  position: sticky;
+  left: 0px;
+  z-index: 11;
+}
+
 .toast {
   position: fixed;
   display: flex;
@@ -3118,6 +3129,64 @@ html {
   background-position: calc(0% + 12px) calc(1px + 50%), calc(0% + 16px) calc(1px + 50%);
 }
 
+.table :where(th, td) {
+  white-space: nowrap;
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.table tr.active th,
+    .table tr.active td,
+    .table tr.active:nth-child(even) th,
+    .table tr.active:nth-child(even) td {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
+}
+
+.table tr.hover:hover th,
+    .table tr.hover:hover td,
+    .table tr.hover:nth-child(even):hover th,
+    .table tr.hover:nth-child(even):hover td {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
+}
+
+.table:where(:not(.table-zebra)) :where(thead, tbody, tfoot) :where(tr:not(:last-child) :where(th, td)) {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity));
+}
+
+.table :where(thead, tfoot) :where(th, td) {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.table :where(tbody th, tbody td) {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+}
+
+:where(.table *:first-child) :where(*:first-child) :where(th, td):first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+:where(.table *:first-child) :where(*:first-child) :where(th, td):last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+:where(.table *:last-child) :where(*:last-child) :where(th, td):first-child {
+  border-bottom-left-radius: 0.5rem;
+}
+
+:where(.table *:last-child) :where(*:last-child) :where(th, td):last-child {
+  border-bottom-right-radius: 0.5rem;
+}
+
 .toast>* {
   animation: toast-pop 0.25s ease-out;
 }
@@ -3186,14 +3255,6 @@ html {
   padding-right: 0.438rem;
 }
 
-.btn-xs {
-  height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  min-height: 1.5rem;
-  font-size: 0.75rem;
-}
-
 .btn-sm {
   height: 2rem;
   padding-left: 0.75rem;
@@ -3204,12 +3265,6 @@ html {
 
 .btn-block {
   width: 100%;
-}
-
-.btn-square:where(.btn-xs) {
-  height: 1.5rem;
-  width: 1.5rem;
-  padding: 0px;
 }
 
 .btn-square:where(.btn-sm) {
@@ -3493,10 +3548,6 @@ html {
   margin-top: 1rem;
 }
 
-.mt-0 {
-  margin-top: 0px;
-}
-
 .inline {
   display: inline;
 }
@@ -3507,6 +3558,10 @@ html {
 
 .inline-flex {
   display: inline-flex;
+}
+
+.table {
+  display: table;
 }
 
 .grid {
@@ -3527,10 +3582,6 @@ html {
 
 .h-\[100vh\] {
   height: 100vh;
-}
-
-.h-\[20px\] {
-  height: 20px;
 }
 
 .h-auto {
@@ -3559,14 +3610,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[20px\] {
-  width: 20px;
-}
-
-.w-\[40px\] {
-  width: 40px;
 }
 
 .min-w-\[30vw\] {
@@ -3677,10 +3720,6 @@ html {
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .overflow-x-auto {
@@ -3811,26 +3850,8 @@ html {
   background-image: url('/src/assets/mountain.png');
 }
 
-.from-yellow-100 {
-  --tw-gradient-from: #CFAA1E var(--tw-gradient-from-position);
-  --tw-gradient-from-position:  ;
-  --tw-gradient-to: rgb(207 170 30 / 0)  var(--tw-gradient-from-position);
-  --tw-gradient-to-position:  ;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.to-yellow-400 {
-  --tw-gradient-to: #facc15 var(--tw-gradient-to-position);
-  --tw-gradient-to-position:  ;
-}
-
 .bg-cover {
   background-size: cover;
-}
-
-.bg-clip-text {
-  -webkit-background-clip: text;
-          background-clip: text;
 }
 
 .bg-center {
@@ -3964,6 +3985,10 @@ html {
   text-align: center;
 }
 
+.font-montserrat {
+  font-family: Montserrat, sans-serif;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -4038,6 +4063,11 @@ html {
   color: hsl(0 0% 100% / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-secondary {
   --tw-text-opacity: 1;
   color: rgb(32 32 32 / var(--tw-text-opacity));
@@ -4046,10 +4076,6 @@ html {
 .text-tertiary {
   --tw-text-opacity: 1;
   color: rgb(72 72 72 / var(--tw-text-opacity));
-}
-
-.text-transparent {
-  color: transparent;
 }
 
 .text-white {
@@ -4166,14 +4192,6 @@ html {
 }
 
 @media (min-width: 1025px) {
-  .desktop\:m-20 {
-    margin: 5rem;
-  }
-
-  .desktop\:mt-10 {
-    margin-top: 2.5rem;
-  }
-
   .desktop\:block {
     display: block;
   }
@@ -4190,20 +4208,24 @@ html {
     display: none;
   }
 
+  .desktop\:max-h-\[40vh\] {
+    max-height: 40vh;
+  }
+
   .desktop\:max-h-l {
     max-height: 70vh;
+  }
+
+  .desktop\:min-w-\[20vw\] {
+    min-width: 20vw;
   }
 
   .desktop\:min-w-\[40vw\] {
     min-width: 40vw;
   }
 
-  .desktop\:min-w-last {
-    min-width: 35vw;
-  }
-
-  .desktop\:max-w-home-image-low {
-    max-width: 40vw;
+  .desktop\:max-w-last {
+    max-width: 20vw;
   }
 
   .desktop\:grid-flow-col {
@@ -4231,9 +4253,19 @@ html {
     padding-right: 2.5rem;
   }
 
-  .desktop\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
+  .desktop\:px-\[20vw\] {
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
+
+  .desktop\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .desktop\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .desktop\:py-20 {
@@ -4241,26 +4273,27 @@ html {
     padding-bottom: 5rem;
   }
 
-  .desktop\:py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  .desktop\:pt-2 {
+    padding-top: 0.5rem;
   }
 
-  .desktop\:pt-8 {
-    padding-top: 2rem;
+  .desktop\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
-  .desktop\:pt-20 {
-    padding-top: 5rem;
-  }
-
-  .desktop\:text-6xl {
-    font-size: 3.75rem;
+  .desktop\:text-7xl {
+    font-size: 4.5rem;
     line-height: 1;
   }
 
   .desktop\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .desktop\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }

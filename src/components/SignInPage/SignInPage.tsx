@@ -90,7 +90,7 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="h-[100vh] flex flex-col justify-start items-center px-4 gap-2 bg-sign-up-bg bg-no-repeat bg-center">
+    <div className="h-[100vh] flex flex-col justify-start items-center px-4 gap-2 bg-sign-up-bg bg-no-repeat pt-3 bg-center">
       <NavLink to="/" className="flex flex-col justify-center items-center">
         <h1 className="text-xl text-secondary flex flex-wrap py-3">
           Tailored

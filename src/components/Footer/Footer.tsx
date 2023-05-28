@@ -17,7 +17,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center pt-10">
+    <div className="flex flex-col justify-center items-center pt-10 font-montserrat">
       <section className="bg-footer-one w-full text-primary flex flex-col justify-center items-center py-3 gap-2 cursor-pointer">
         <BsArrowUpCircleFill
           data-testid="arrow-up"
@@ -28,7 +28,7 @@ const Footer = () => {
         </h2>
       </section>
       <section className="bg-footer-two w-full text-primary py-5">
-        <ul className="grid grid-cols-2 w-screen place-items-center gap-2 tablet:text-2xl desktop:text-sm desktop:px-20">
+        <ul className="grid grid-cols-2 w-screen place-items-center gap-2 tablet:text-2xl desktop:text-l desktop:px-[20vw]">
           <li>Phones</li>
           <li>
             <NavLink to="/reels">Reels</NavLink>

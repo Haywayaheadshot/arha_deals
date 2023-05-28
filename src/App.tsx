@@ -13,6 +13,7 @@ import ExclusiveItems from "./components/ExclusiveItems/ExclusiveItems";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import SignInPage from "./components/SignInPage/SignInPage";
 import NavBarWrapper from "./components/Shared/NavBar/NavBarWrapper";
+import ConfirmOrder from "./components/ConfirmOrder/ConfirmOrder";
 
 const App = () => (
   <div className="">
@@ -60,6 +61,15 @@ const App = () => (
             element={
               <NavBarWrapper>
                 <ExclusiveItems />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/confirmorder"
+            element={
+              <NavBarWrapper>
+                <ConfirmOrder />
               </NavBarWrapper>
             }
             {...(exactProp as RouteProps)}
