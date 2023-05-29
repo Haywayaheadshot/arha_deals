@@ -14,6 +14,7 @@ import SignUpPage from "./components/SignUpPage/SignUpPage";
 import SignInPage from "./components/SignInPage/SignInPage";
 import NavBarWrapper from "./components/Shared/NavBar/NavBarWrapper";
 import ConfirmOrder from "./components/ConfirmOrder/ConfirmOrder";
+import PhonePage from "./components/PhonesPage/PhonePage";
 
 const App = () => (
   <div className="">
@@ -70,6 +71,15 @@ const App = () => (
             element={
               <NavBarWrapper>
                 <ConfirmOrder />
+              </NavBarWrapper>
+            }
+            {...(exactProp as RouteProps)}
+          />
+          <Route
+            path="/phones"
+            element={
+              <NavBarWrapper>
+                <PhonePage />
               </NavBarWrapper>
             }
             {...(exactProp as RouteProps)}
