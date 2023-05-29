@@ -96,7 +96,9 @@ const NavBar = () => {
             <li className="border-r-2 pr-2 flex">
               <NavLink to="/reels">Reels</NavLink>
             </li>
-            <li className="border-r-2 pr-2">Phones</li>
+            <li className="border-r-2 pr-2">
+              <NavLink to="/phones">Phones</NavLink>
+            </li>
             <li className="border-r-2 pr-2">
               <NavLink to="/technews">News</NavLink>
             </li>
@@ -223,7 +225,11 @@ const NavBar = () => {
               Reels
             </NavLink>
           </li>
-          <li>Phones</li>
+          <li>
+            <NavLink to="/phones" onClick={() => setOpen(false)}>
+              Phones
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/technews" onClick={() => setOpen(false)}>
               Tech News
