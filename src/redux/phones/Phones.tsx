@@ -7,7 +7,7 @@ export interface PhonesData {
   amount: number;
   stock: number;
   images_src: [];
-  spec: object;
+  specs: [];
   condition: string;
   video_src: string;
 }
