@@ -15,7 +15,7 @@ const PhonePage = () => {
   const phonesArr = phones.data;
 
   return (
-    <div className="py-5">
+    <div className="p-5">
       <section className="pt-10">
         <h1 className="text-3xl text-center">Phones</h1>
         <p className="px-5 text-center py-3">
@@ -23,17 +23,17 @@ const PhonePage = () => {
         </p>
       </section>
       {Array.isArray(phonesArr) ? (
-        <section className="h-96 carousel carousel-vertical px-4 flex flex-col justify-center items-center gap-8">
+        <section className="h-96 carousel carousel-vertical gap-8">
           {phonesArr.map((phone) => (
             <div
-              className="w-96 bg-base-100 shadow-xl border-tertiary border-2 rounded-lg"
+              className="shadow-xl border-tertiary border-2 rounded-lg"
               key={phone.id}
             >
               <figure>
-                <section className="flex flex-row max-w-tab-image carousel carousel-center px-2 gap-3 rounded-lg">
+                <section className="carousel carousel-center rounded-lg">
                   {phone.images_src.map((image, index) => (
                     <img
-                      className="w-8 h-3 carousel-item"
+                      className="carousel-item"
                       src={image}
                       alt={`${phone.name} portrait`}
                       key={index}
