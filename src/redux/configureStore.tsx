@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import newsSlice from "./news/News";
 import phoneHacksReducer from "./phoneHacks/PhoneHacks";
 import exclusiveItemsReducer from "./exclusiveItems/ExclusiveItems";
+import phonesReducer from "./phones/Phones";
 
 const logger = createLogger();
 
@@ -11,6 +12,7 @@ const store = configureStore({
     news: newsSlice,
     hacks: phoneHacksReducer,
     items: exclusiveItemsReducer,
+    phones: phonesReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
