@@ -39,11 +39,23 @@ const PhonePage = () => {
                       key={index}
                     />
                   ))}
+                  <iframe
+                    title="YouTube video player"
+                    src={phone.video_src}
+                    frameBorder="0"
+                    allowFullScreen
+                    className="carousel-item"
+                  ></iframe>
                 </section>
               </figure>
               <div className="card-body bg-yellow-300 text-primary">
                 <h2 className="card-title">{phone.name}</h2>
                 <span>Available Stock: {phone.stock}</span>
+                <span>
+                  {phone.specs.map((spec, index) => (
+                    <div key={index}>{spec}</div>
+                  ))}
+                </span>
                 <div className="card-actions justify-end">
                   <button className="btn btn-primary">Add To Cart</button>
                 </div>
