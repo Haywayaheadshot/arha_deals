@@ -12,6 +12,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Installation](#installation)
+    - [Option 2: Docker](#option-2-docker)
     - [Usage](#usage)
     - [Run tests and Fix linter error](#run-tests-and-fix-linter-error)
   - [👥 Authors ](#-authors-)
@@ -80,6 +81,20 @@ Install this project with:
 - npm install
 
 ``
+
+### Option 2: Docker
+
+Build the Docker image.
+
+```bash
+docker build -t arha_deals .
+```
+
+Run the Docker container.
+
+```bash
+docker run -p 8000:8000 arha_deals
+```
 
 ### Usage
 
