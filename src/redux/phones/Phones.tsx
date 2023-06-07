@@ -1,25 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export interface PhonesData {
-  id: number;
-  name: string;
-  amount: number;
-  stock: number;
-  images_src: [];
-  specs: {
-    capacity: string;
-    body: {
-      color: string;
-      scratches: string;
-      status: string;
-      batteryHealth: number;
-      screenSize: string;
-    };
-  };
-  condition: string;
-  video_src: string;
-}
+import { PhonesData } from "./types";
 
 interface Phones {
   data: PhonesData[];
