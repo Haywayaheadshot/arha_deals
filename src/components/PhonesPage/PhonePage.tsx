@@ -4,32 +4,16 @@ import { getPhones } from "../../redux/phones/Phones";
 import { RootState } from "../../redux/configureStore";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 import ModalPop from "./ModalPop";
-
-interface Phones {
-  id: number;
-  name: string;
-  amount: number;
-  stock: number;
-  images_src: [];
-  specs: {
-    capacity: string;
-    body: {
-      color: string;
-      scratches: string;
-      status: string;
-      batteryHealth: number;
-      screenSize: string;
-    };
-  };
-  condition: string;
-  video_src: string;
-}
+import { PhonesData } from "../../redux/phones/types";
+import Cookie from "universal-cookie";
 
 const PhonePage = () => {
   const phones = useSelector((state: RootState) => state.phones);
-  const [selectedPhone, setSelectedPhone] = useState<Phones | null>(null);
-  const [cartItems, setCartItems] = useState<Phones[]>([]);
+  const [selectedPhone, setSelectedPhone] = useState<PhonesData | null>(null);
+  const [cartItems, setCartItems] = useState<PhonesData[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
+  const cookies = new Cookie();
 
   useEffect(() => {
     dispatch(getPhones() as any);
@@ -37,7 +21,7 @@ const PhonePage = () => {
 
   const phonesArr = phones.data;
 
-  const openModal = (phone: Phones) => {
+  const openModal = (phone: PhonesData) => {
     setSelectedPhone(phone);
   };
 
@@ -45,18 +29,29 @@ const PhonePage = () => {
     setSelectedPhone(null);
   };
 
-  const addToCart = (phone: Phones) => {
-    setCartItems((prevItems) => [...prevItems, phone]);
+  const addToCart = (phone: PhonesData) => {
+    if (cookies.get("token")) {
+      return setCartItems((prevItems) => [...prevItems, phone]);
+    }
+    setErrorMessage("You must have an account in order to perform this action");
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
   };
 
-  const removeFromCart = (phone: Phones) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== phone.id)
-    );
+  const removeFromCart = (phone: PhonesData) => {
+    if (cookies.get("token")) {
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item.id !== phone.id)
+      );
+      return;
+    }
   };
 
-  const isPhoneInCart = (phone: Phones) => {
-    return cartItems.some((item) => item.id === phone.id);
+  const isPhoneInCart = (phone: PhonesData) => {
+    if (cookies.get("token")) {
+      return cartItems.some((item) => item.id === phone.id);
+    }
   };
 
   return (
@@ -69,7 +64,7 @@ const PhonePage = () => {
       </section>
       {Array.isArray(phonesArr) ? (
         <section className="carousel carousel-vertical gap-8 items-center">
-          {phonesArr.map((phone: Phones) => (
+          {phonesArr.map((phone: PhonesData) => (
             <div
               className="shadow-xl border-tertiary border-2 rounded-lg max-w-tab-image"
               key={phone.id}
@@ -120,6 +115,11 @@ const PhonePage = () => {
                     </button>
                   )}
                 </div>
+                {errorMessage && (
+                  <div className="toast toast-top">
+                    <p className="alert alert-error">{errorMessage}</p>
+                  </div>
+                )}
               </div>
             </div>
           ))}
