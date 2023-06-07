@@ -25,7 +25,7 @@ interface ModalPopProps {
   closeModal: () => void;
 }
 
-function ModalPop({ selectedPhone, closeModal }: ModalPopProps) {
+const ModalPop = ({ selectedPhone, closeModal }: ModalPopProps) => {
   return (
     <div className="modal-box bg-secondary text-primary">
       <h3 className="font-bold text-lg">
@@ -46,6 +46,6 @@ function ModalPop({ selectedPhone, closeModal }: ModalPopProps) {
       </div>
     </div>
   );
-}
+};
 
 export default ModalPop;
