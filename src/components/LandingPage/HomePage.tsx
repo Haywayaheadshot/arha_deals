@@ -34,9 +34,11 @@ const HomePage = () => {
           />
         </div>
         <p className="text-center py-4">
-          <span className="border-b-2 border-b-tertiary tablet:text-2xl desktop:text-xl">
-            Check Out Phones section
-          </span>
+          <NavLink to="/phones">
+            <span className="border-b-2 border-b-tertiary tablet:text-2xl desktop:text-xl">
+              Check Out Phones section
+            </span>
+          </NavLink>
         </p>
       </section>
       <section className="py-10 bg-box tablet:px-5 desktop:py-10">
