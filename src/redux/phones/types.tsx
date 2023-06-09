@@ -17,3 +17,9 @@ export interface PhonesData {
   condition: string;
   video_src: string;
 }
+
+export default interface Phones {
+  data: PhonesData[];
+  success: boolean;
+  loading: boolean;
+}

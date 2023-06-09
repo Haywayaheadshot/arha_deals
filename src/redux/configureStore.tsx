@@ -4,6 +4,7 @@ import newsSlice from "./news/News";
 import phoneHacksReducer from "./phoneHacks/PhoneHacks";
 import exclusiveItemsReducer from "./exclusiveItems/ExclusiveItems";
 import phonesReducer from "./phones/Phones";
+import cartReducer from "./cart/Cart";
 
 const logger = createLogger();
 
@@ -13,6 +14,7 @@ const store = configureStore({
     hacks: phoneHacksReducer,
     items: exclusiveItemsReducer,
     phones: phonesReducer,
+    cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

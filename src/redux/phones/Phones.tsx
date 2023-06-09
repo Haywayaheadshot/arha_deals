@@ -1,12 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { PhonesData } from "./types";
-
-interface Phones {
-  data: PhonesData[];
-  success: boolean;
-  loading: boolean;
-}
+import Phones from "./types";
 
 const initialState: Phones = {
   data: [],
