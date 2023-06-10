@@ -31,7 +31,34 @@ const PhonePage = () => {
 
   const addToCart = (phone: PhonesData) => {
     if (cookies.get("token")) {
-      return setCartItems((prevItems) => [...prevItems, phone]);
+      const token = cookies.get("token");
+      setCartItems((prevItems) => [...prevItems, phone]);
+      const data = {
+        phone_id: phone.id,
+      };
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify(data),
+      };
+      const url = "http://127.0.0.1:5000/api/addtocart";
+      fetch(url, options)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.status === 201) {
+            // handle success
+            console.log(data.message);
+          } else {
+            // handle error
+            console.log(data);
+          }
+        });
+      return;
     }
     setErrorMessage("You must have an account in order to perform this action");
     setTimeout(() => {
