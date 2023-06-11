@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Phones {
-  id: number;
+  id: string | number;
   name: string;
   amount: number;
   stock: number;
