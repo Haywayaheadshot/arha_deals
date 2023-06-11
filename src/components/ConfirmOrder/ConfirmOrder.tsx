@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getCart } from "../../redux/cart/Cart";
+import { fetchCart } from "../../redux/cart/actions";
 import { RootState } from "../../redux/configureStore";
 
 const ConfirmOrder = () => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart() as any);
+    dispatch(fetchCart() as any);
   }, [dispatch]);
 
   console.log(cart);
