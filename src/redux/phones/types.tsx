@@ -1,5 +1,5 @@
 export interface PhonesData {
-  id: number;
+  id: string | number;
   name: string;
   amount: number;
   stock: number;

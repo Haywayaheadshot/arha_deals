@@ -5,21 +5,26 @@ import { RootState } from "../../redux/configureStore";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 import ModalPop from "./ModalPop";
 import { PhonesData } from "../../redux/phones/types";
-import Cookie from "universal-cookie";
+import { CartData } from "../../redux/cart/types";
+import { fetchCart, addToCart, removeFromCart } from "../../redux/cart/actions";
 
 const PhonePage = () => {
   const phones = useSelector((state: RootState) => state.phones);
+  const cart = useSelector((state: RootState) => state.cart);
   const [selectedPhone, setSelectedPhone] = useState<PhonesData | null>(null);
-  const [cartItems, setCartItems] = useState<PhonesData[]>([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState({
+    error: "",
+    success: "",
+  });
   const dispatch = useDispatch();
-  const cookies = new Cookie();
 
   useEffect(() => {
     dispatch(getPhones() as any);
+    dispatch(fetchCart() as any);
   }, [dispatch]);
 
   const phonesArr = phones.data;
+  const cartArr: CartData[] = cart.data;
 
   const openModal = (phone: PhonesData) => {
     setSelectedPhone(phone);
@@ -29,56 +34,58 @@ const PhonePage = () => {
     setSelectedPhone(null);
   };
 
-  const addToCart = (phone: PhonesData) => {
-    if (cookies.get("token")) {
-      const token = cookies.get("token");
-      setCartItems((prevItems) => [...prevItems, phone]);
-      const data = {
-        phone_id: phone.id,
-      };
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify(data),
-      };
-      const url = "http://127.0.0.1:5000/api/addtocart";
-      fetch(url, options)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.status === 201) {
-            // handle success
-            console.log(data.message);
-          } else {
-            // handle error
-            console.log(data);
-          }
-        });
-      return;
+  const handleAddToCart = async (phone: PhonesData) => {
+    try {
+      const result = await dispatch(addToCart(phone.id) as any);
+      if (result.payload) {
+        setMessage({ ...message, success: result.payload.message });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      } else {
+        setMessage({ ...message, error: "Failed to add item to cart" });
+      }
+    } catch (error) {
+      setMessage({ ...message, error: "Failed to add item to cart" });
     }
-    setErrorMessage("You must have an account in order to perform this action");
-    setTimeout(() => {
-      setErrorMessage("");
-    }, 3000);
   };
 
-  const removeFromCart = (phone: PhonesData) => {
-    if (cookies.get("token")) {
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item.id !== phone.id)
-      );
-      return;
+  const handleRemoveFromCart = async (phone: PhonesData) => {
+    try {
+      const result = await dispatch(removeFromCart(phone.id) as any);
+      if (result.payload) {
+        setMessage({ ...message, success: result.payload.message });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      } else {
+        setMessage({ ...message, error: "Failed to remove item from cart" });
+      }
+    } catch (error) {
+      setMessage({ ...message, error: "Failed to remove item from cart" });
     }
   };
 
   const isPhoneInCart = (phone: PhonesData) => {
-    if (cookies.get("token")) {
-      return cartItems.some((item) => item.id === phone.id);
+    return (
+      cartArr.length > 0 && cartArr.some((item) => item.phone_id === phone.id)
+    );
+  };
+
+  const addToCartHandler = (phone: PhonesData) => {
+    if (!isPhoneInCart(phone)) {
+      handleAddToCart(phone);
+      return;
     }
+    setMessage({ ...message, error: "This phone is already in your cart" });
+  };
+
+  const removeFromCartHandler = (phone: PhonesData) => {
+    if (isPhoneInCart(phone)) {
+      handleRemoveFromCart(phone);
+      return;
+    }
+    setMessage({ ...message, error: "This item is not in your cart" });
   };
 
   return (
@@ -129,22 +136,29 @@ const PhonePage = () => {
                   {isPhoneInCart(phone) ? (
                     <button
                       className="btn btn-primary"
-                      onClick={() => removeFromCart(phone)}
+                      onClick={() => removeFromCartHandler(phone)}
                     >
                       Remove from Cart
                     </button>
                   ) : (
                     <button
                       className="btn bg-secondary"
-                      onClick={() => addToCart(phone)}
+                      onClick={() => addToCartHandler(phone)}
                     >
                       Add to Cart
                     </button>
                   )}
                 </div>
-                {errorMessage && (
+                {message.error && (
                   <div className="toast toast-top">
-                    <p className="alert alert-error">{errorMessage}</p>
+                    <p className="alert alert-error">{message.error}</p>
+                  </div>
+                )}
+                {message.success && (
+                  <div className="toast toast-top toast-center w-full px-[10vw]">
+                    <p className="alert alert-success text-xl">
+                      {message.success}
+                    </p>
                   </div>
                 )}
               </div>

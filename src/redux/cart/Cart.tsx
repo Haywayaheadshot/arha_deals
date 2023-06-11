@@ -1,13 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { CartData } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
 import Cart from "./types";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
-const token = cookies.get("token");
-
-axios.defaults.headers.common["Authorization"] = `${token}`;
+import { fetchCart, addToCart, removeFromCart } from "./actions";
 
 const initialState: Cart = {
   data: [],
@@ -15,34 +8,52 @@ const initialState: Cart = {
   loading: true,
 };
 
-const getCartApi = "http://127.0.0.1:5000/api/carts";
-
-// action creators for display phones
-export const getCart = createAsyncThunk("src/redux/cart/getCart", async () => {
-  const response = await axios.get<CartData[]>(getCartApi);
-  const phones = response.data;
-  return phones;
-});
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCart.fulfilled, (state, action) => {
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.data = action.payload;
       state.success = true;
       state.loading = false;
     });
-    builder.addCase(getCart.rejected, (state) => {
+    builder.addCase(fetchCart.rejected, (state) => {
       state.success = false;
       state.loading = false;
     });
-    builder.addCase(getCart.pending, (state) => {
+    builder.addCase(fetchCart.pending, (state) => {
+      state.success = false;
+      state.loading = true;
+    });
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.success = true;
+      state.loading = false;
+    });
+    builder.addCase(addToCart.rejected, (state) => {
+      state.success = false;
+      state.loading = false;
+    });
+    builder.addCase(addToCart.pending, (state) => {
+      state.success = false;
+      state.loading = true;
+    });
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.success = true;
+      state.loading = false;
+    });
+    builder.addCase(removeFromCart.rejected, (state) => {
+      state.success = false;
+      state.loading = false;
+    });
+    builder.addCase(removeFromCart.pending, (state) => {
       state.success = false;
       state.loading = true;
     });
   },
 });
 
+export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
