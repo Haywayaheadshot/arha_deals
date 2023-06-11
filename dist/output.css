@@ -3766,6 +3766,11 @@ html {
   width: 13rem;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .w-full {
   width: 100%;
 }
@@ -3890,6 +3895,10 @@ html {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-x-auto {
@@ -4121,6 +4130,51 @@ html {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.px-\[80vw\] {
+  padding-left: 80vw;
+  padding-right: 80vw;
+}
+
+.px-\[50vw\] {
+  padding-left: 50vw;
+  padding-right: 50vw;
+}
+
+.px-\[20vw\] {
+  padding-left: 20vw;
+  padding-right: 20vw;
+}
+
+.px-\[30vw\] {
+  padding-left: 30vw;
+  padding-right: 30vw;
+}
+
+.px-\[40vw\] {
+  padding-left: 40vw;
+  padding-right: 40vw;
+}
+
+.px-\[35vw\] {
+  padding-left: 35vw;
+  padding-right: 35vw;
+}
+
+.px-\[25vw\] {
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+
+.px-\[10vw\] {
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 .pb-6 {
