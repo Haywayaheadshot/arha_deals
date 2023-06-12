@@ -5,12 +5,28 @@ import ChangeThemes from "../ChangeThemes";
 import Logo from "../Logo";
 import Cookie from "universal-cookie";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { fetchCart } from "../../../redux/cart/actions";
+import { getPhones } from "../../../redux/phones/Phones";
+import { PhonesData } from "../../../redux/phones/types";
+import { removeFromCart } from "../../../redux/cart/actions";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
-  const [appreciation, setAppreciation] = useState("");
+  const [message, setMessage] = useState({
+    appreciation: "",
+    success: "",
+    error: "",
+  });
   const cookies = new Cookie();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const cart = useSelector((state: RootState) => state.cart);
+  const phone = useSelector((state: RootState) => state.phones);
+  const cartArr = cart.data;
+  const phonesArr = phone.data;
+  const dispatch = useDispatch();
 
   const getTime = () => {
     const [time, setTime] = useState(new Date());
@@ -50,25 +66,77 @@ const NavBar = () => {
           },
         });
       } catch (error) {
-        // Handle error response or any additional error handling
+        setMessage({
+          ...message,
+          error:
+            "Your account has not signed out. Please check your internet connection and try again!",
+        });
+        setTimeout(() => {
+          setMessage({ ...message, error: "" });
+        }, 8000);
       }
-      // return;
-      setAppreciation("Thank you for your patronage. Hope to see you soon!");
+      setMessage({
+        ...message,
+        appreciation: "Thank you for your patronage. Hope to see you soon!",
+      });
       setTimeout(() => {
-        setAppreciation("");
+        setMessage({ ...message, appreciation: "" });
       }, 8000);
       setIsAuthenticated(false);
       cookies.remove("token");
     }
   };
 
+  // Display cart items and length
+  useEffect(() => {
+    dispatch(getPhones() as any);
+    dispatch(fetchCart() as any);
+  }, [dispatch]);
+
+  const displayCartLength = () => {
+    return cartArr.length;
+  };
+
+  const filteredCartItem: any = [];
+  let totalCart = 0;
+  const foundPhonesQuantity: number[] = [];
+
+  if (Array.isArray(phonesArr)) {
+    cartArr.forEach((cartItem) => {
+      const foundPhone = phonesArr.find(
+        (phone) => phone.id === cartItem.phone_id
+      );
+      if (foundPhone) {
+        filteredCartItem.push(foundPhone);
+        foundPhonesQuantity.push(cartItem.quantity);
+        totalCart += foundPhone.amount * cartItem.quantity;
+      }
+    });
+  }
+
+  const handleCartItemDel = async (item: PhonesData) => {
+    const result = await dispatch(removeFromCart(item.id) as any);
+    if (result.payload) {
+      setMessage({ ...message, success: result.payload.message });
+      setTimeout(() => {
+        setMessage({ ...message, success: "" });
+      }, 3000);
+    } else {
+      setMessage({ ...message, error: "Failed to add item to cart" });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    }
+    window.location.reload();
+  };
+
   return (
     <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col">
-      {appreciation && (
+      {message.appreciation && (
         <div className="toast ease-in-out">
           <div className="alert alert-info">
             <div>
-              <span>{appreciation}</span>
+              <span>{message.appreciation}</span>
             </div>
           </div>
           <div className="alert alert-success">
@@ -76,6 +144,16 @@ const NavBar = () => {
               <span>You have signed out successfully!</span>
             </div>
           </div>
+        </div>
+      )}
+      {message.error && (
+        <div className="toast toast-top">
+          <p className="alert alert-error">{message.error}</p>
+        </div>
+      )}
+      {message.success && (
+        <div className="toast toast-top toast-center w-full px-[10vw]">
+          <p className="alert alert-success text-xl">{message.success}</p>
         </div>
       )}
       <div className="flex items-center justify-between desktop:grid desktop:grid-flow-col desktop:justify-stretch desktop:px-10">
@@ -124,76 +202,104 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
               <li>
-                {/* If carts is not empty, display this */}
-                <div className="dropdown dropdown-end">
-                  <label tabIndex={0} className="btn btn-ghost btn-circle">
-                    <div className="indicator">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg>
-                      <span className="badge badge-sm indicator-item">8</span>
-                    </div>
-                  </label>
-                  <div
-                    tabIndex={0}
-                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-                  >
-                    <NavLink to="/confirmorder">
+                {cartArr.length > 0 ? (
+                  <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle">
+                      <div className="indicator">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                          />
+                        </svg>
+                        <span className="badge badge-sm indicator-item">
+                          {displayCartLength()}
+                        </span>
+                      </div>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="mt-3 card card-compact dropdown-content w-[30vw] bg-base-100 shadow"
+                    >
                       <div className="card-body">
-                        <span className="font-bold text-lg">8 Items</span>
-                        <span className="text-info">Subtotal: $999</span>
+                        <span className="font-bold text-lg">
+                          {displayCartLength()} Items
+                        </span>
+                        {filteredCartItem.map(
+                          (item: PhonesData, index: number) => (
+                            <div
+                              key={item.id}
+                              className="flex flex-row border-2 justify-between items-center p-2 rounded-md"
+                            >
+                              <div>
+                                <span className="flex flex-row">
+                                  {item.name}: {item.amount}Ghs
+                                </span>
+                                <span>x {foundPhonesQuantity[index]}</span>{" "}
+                              </div>
+                              <button
+                                className="btn btn-secondary btn-sm"
+                                onClick={() => handleCartItemDel(item)}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          )
+                        )}
+                        <span className="text-info">
+                          Subtotal: {totalCart}Ghs
+                        </span>
                         <div className="card-actions">
-                          <button className="btn btn-primary btn-block">
-                            Checkout
-                          </button>
+                          <NavLink to="/confirmorder">
+                            <button className="btn btn-primary btn-block">
+                              Checkout
+                            </button>
+                          </NavLink>
                         </div>
                       </div>
-                    </NavLink>
-                  </div>
-                </div>
-                {/* Else, display this */}
-                <div className="dropdown dropdown-end">
-                  <label tabIndex={0} className="btn btn-ghost btn-circle">
-                    <div className="indicator">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg>
-                    </div>
-                  </label>
-                  <div
-                    tabIndex={0}
-                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-                  >
-                    <div className="card-body">
-                      <span className="text-info">
-                        You have no items in your cart. Please check through our
-                        products and add items to your cart.
-                      </span>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle">
+                      <div className="indicator">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                          />
+                        </svg>
+                      </div>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                    >
+                      <div className="card-body">
+                        <span className="text-info">
+                          You have no items in your cart. Please check through
+                          our products and add items to your cart.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </li>
               <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
                 {getTime()}
@@ -256,34 +362,35 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign out</button>
               </li>
               <li>
-                {/* Display this when cart is not empty */}
-                <NavLink to="/confirmorder">
-                  <div className="indicator">
-                    <span className="indicator-item badge badge-secondary">
-                      8
-                    </span>
-                    <button onClick={() => setOpen(false)} className="btn">
-                      Cart
-                    </button>
-                  </div>
-                </NavLink>
-                {/* Else display this */}
-                <div className="dropdown dropdown-start">
-                  <label tabIndex={0} className="btn">
-                    <div className="indicator">Cart</div>
-                  </label>
-                  <div
-                    tabIndex={0}
-                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-                  >
-                    <div className="card-body">
-                      <span className="text-info">
-                        You have no items in your cart. Please check through our
-                        products and add items to your cart.
+                {cartArr.length > 0 ? (
+                  <NavLink to="/confirmorder">
+                    <div className="indicator">
+                      <span className="indicator-item badge badge-secondary">
+                        {displayCartLength()}
                       </span>
+                      <button onClick={() => setOpen(false)} className="btn">
+                        Cart
+                      </button>
+                    </div>
+                  </NavLink>
+                ) : (
+                  <div className="dropdown dropdown-start">
+                    <label tabIndex={0} className="btn">
+                      <div className="indicator">Cart</div>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                    >
+                      <div className="card-body">
+                        <span className="text-info">
+                          You have no items in your cart. Please check through
+                          our products and add items to your cart.
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </li>
             </>
           ) : (

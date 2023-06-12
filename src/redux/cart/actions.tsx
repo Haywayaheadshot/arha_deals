@@ -21,9 +21,12 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
 
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
-  async (phoneId: string | number, { getState }) => {
+  async (
+    { phoneId, quantity }: { phoneId: string | number; quantity: number },
+    { getState }
+  ) => {
     const state = getState() as RootState;
-    const data = { phone_id: phoneId };
+    const data = { phone_id: phoneId, quantity: quantity };
     const response = await axios.post<CartData[]>(addToCartApi, data);
     const result = response.data;
     return result;

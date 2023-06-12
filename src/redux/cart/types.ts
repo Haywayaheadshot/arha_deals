@@ -1,6 +1,7 @@
 export interface CartData {
   id: string | number;
   phone_id: number;
+  quantity: number;
   cart_id: string | number;
 }
 
