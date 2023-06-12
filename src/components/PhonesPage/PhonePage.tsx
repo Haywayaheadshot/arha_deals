@@ -34,9 +34,11 @@ const PhonePage = () => {
     setSelectedPhone(null);
   };
 
-  const handleAddToCart = async (phone: PhonesData) => {
+  const handleAddToCart = async (phone: PhonesData, quantity: number) => {
     try {
-      const result = await dispatch(addToCart(phone.id) as any);
+      const result = await (dispatch as any)(
+        addToCart({ phoneId: phone.id, quantity })
+      );
       if (result.payload) {
         setMessage({ ...message, success: result.payload.message });
         setTimeout(() => {
@@ -44,9 +46,16 @@ const PhonePage = () => {
         }, 3000);
       } else {
         setMessage({ ...message, error: "Failed to add item to cart" });
+        setTimeout(() => {
+          setMessage({ ...message, error: "" });
+        }, 3000);
       }
+      window.location.reload();
     } catch (error) {
       setMessage({ ...message, error: "Failed to add item to cart" });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
     }
   };
 
@@ -58,11 +67,22 @@ const PhonePage = () => {
         setTimeout(() => {
           setMessage({ ...message, success: "" });
         }, 3000);
+        window.location.reload();
       } else {
         setMessage({ ...message, error: "Failed to remove item from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, error: "" });
+        }, 3000);
       }
     } catch (error) {
-      setMessage({ ...message, error: "Failed to remove item from cart" });
+      setMessage({
+        ...message,
+        error:
+          "The item has not been removed from your cart. Please check your internet connection and try again!",
+      });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
     }
   };
 
@@ -72,12 +92,15 @@ const PhonePage = () => {
     );
   };
 
-  const addToCartHandler = (phone: PhonesData) => {
+  const addToCartHandler = (phone: PhonesData, quantity: number) => {
     if (!isPhoneInCart(phone)) {
-      handleAddToCart(phone);
+      handleAddToCart(phone, quantity);
       return;
     }
     setMessage({ ...message, error: "This phone is already in your cart" });
+    setTimeout(() => {
+      setMessage({ ...message, error: "" });
+    }, 3000);
   };
 
   const removeFromCartHandler = (phone: PhonesData) => {
@@ -86,6 +109,38 @@ const PhonePage = () => {
       return;
     }
     setMessage({ ...message, error: "This item is not in your cart" });
+    setTimeout(() => {
+      setMessage({ ...message, error: "" });
+    }, 3000);
+  };
+
+  // Handle quantity and stock
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (
+    phone: PhonesData,
+    event: { target: { value: string } }
+  ) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    if (newQuantity < 1) {
+      setQuantity(1);
+      setMessage({ ...message, error: "Quantity cannot be less than 1" });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    } else if (newQuantity > phone.stock) {
+      setQuantity(phone.stock);
+      setMessage({
+        ...message,
+        error: "Quantity cannot exceed available stock",
+      });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    } else {
+      setQuantity(newQuantity);
+      setMessage({ ...message, error: "" });
+    }
   };
 
   return (
@@ -141,12 +196,30 @@ const PhonePage = () => {
                       Remove from Cart
                     </button>
                   ) : (
-                    <button
-                      className="btn bg-secondary"
-                      onClick={() => addToCartHandler(phone)}
-                    >
-                      Add to Cart
-                    </button>
+                    <>
+                      <div className="flex flex-row gap-2 text-primary">
+                        <label className="label">
+                          <span className="label-text text-lg text-primary">
+                            Quantity
+                          </span>
+                        </label>
+                        <label className="input-group">
+                          <input
+                            type="number"
+                            placeholder="1"
+                            className="input input-bordered w-20 rounded-md bg-black"
+                            value={quantity}
+                            onChange={(e) => handleQuantityChange(phone, e)}
+                          />
+                        </label>
+                      </div>
+                      <button
+                        className="btn bg-secondary"
+                        onClick={() => addToCartHandler(phone, quantity)}
+                      >
+                        Add to Cart
+                      </button>
+                    </>
                   )}
                 </div>
                 {message.error && (
