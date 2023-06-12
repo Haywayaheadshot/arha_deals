@@ -5,16 +5,18 @@ import ChangeThemes from "./ChangeThemes";
 
 const Logo = () => {
   return (
-    <NavLink to="/" className="flex flex-row gap-2 justify-center items-center">
-      <h1 className="text-xl text-secondary flex flex-wrap py-3">
-        Tailored
-        <FaCrown />
-        Budget
-      </h1>
+    <span className="flex flex-row gap-2 justify-center items-center">
+      <NavLink to="/">
+        <h1 className="text-xl text-secondary flex flex-wrap py-3">
+          Tailored
+          <FaCrown />
+          Budget
+        </h1>
+      </NavLink>
       <section className="hidden desktop:flex">
         <ChangeThemes />
       </section>
-    </NavLink>
+    </span>
   );
 };
 
