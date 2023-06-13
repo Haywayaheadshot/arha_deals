@@ -24,8 +24,8 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const cart = useSelector((state: RootState) => state.cart);
   const phone = useSelector((state: RootState) => state.phones);
-  const cartArr = cart.data;
-  const phonesArr = phone.data;
+  const cartArr = Array.from(cart.data);
+  const phonesArr = Array.from(phone.data);
   const dispatch = useDispatch();
 
   const getTime = () => {
@@ -127,7 +127,6 @@ const NavBar = () => {
         setMessage({ ...message, error: "" });
       }, 3000);
     }
-    window.location.reload();
   };
 
   return (
