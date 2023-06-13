@@ -50,7 +50,6 @@ const PhonePage = () => {
           setMessage({ ...message, error: "" });
         }, 3000);
       }
-      window.location.reload();
     } catch (error) {
       setMessage({ ...message, error: "Failed to add item to cart" });
       setTimeout(() => {
@@ -67,7 +66,6 @@ const PhonePage = () => {
         setTimeout(() => {
           setMessage({ ...message, success: "" });
         }, 3000);
-        window.location.reload();
       } else {
         setMessage({ ...message, error: "Failed to remove item from cart" });
         setTimeout(() => {
@@ -144,7 +142,7 @@ const PhonePage = () => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 tablet:px-12">
       <section className="pt-10">
         <h1 className="text-3xl text-center">Phones</h1>
         <p className="px-5 text-center py-3">
@@ -152,17 +150,17 @@ const PhonePage = () => {
         </p>
       </section>
       {Array.isArray(phonesArr) ? (
-        <section className="carousel carousel-vertical gap-8 items-center">
+        <section className="carousel carousel-vertical gap-8 items-center tablet:flex-row tablet:py-10 tablet:px-5">
           {phonesArr.map((phone: PhonesData) => (
             <div
-              className="shadow-xl border-tertiary border-2 rounded-lg max-w-tab-image"
+              className="shadow-lg border-tertiary border-2 rounded-lg max-w-tab-image tablet:max-w-rouselMin hover:shadow-indigo-500/50 hover:scale-105 tablet:ease-in cursor-pointer tablet:duration-300"
               key={phone.id}
             >
               <figure>
-                <section className="carousel carousel-center gap-5 px-4 rounded-lg">
+                <section className="carousel carousel-center gap-5 px-4 rounded-lg tablet:carousel-vertical tablet:h-96">
                   {phone.images_src.map((image, index) => (
                     <img
-                      className="carousel-item max-w-[100%]"
+                      className="carousel-item max-w-[100%] tablet:py-10"
                       src={image}
                       alt={`${phone.name} portrait`}
                       key={index}
@@ -173,7 +171,7 @@ const PhonePage = () => {
                     src={phone.video_src}
                     frameBorder="0"
                     allowFullScreen
-                    className="carousel-item"
+                    className="carousel-item tablet:pb-5"
                     width="inherit"
                   ></iframe>
                 </section>
@@ -196,7 +194,7 @@ const PhonePage = () => {
                       Remove from Cart
                     </button>
                   ) : (
-                    <>
+                    <div className="flex flex-row justify-center items-center gap-3">
                       <div className="flex flex-row gap-2 text-primary">
                         <label className="label">
                           <span className="label-text text-lg text-primary">
@@ -219,7 +217,7 @@ const PhonePage = () => {
                       >
                         Add to Cart
                       </button>
-                    </>
+                    </div>
                   )}
                 </div>
                 {message.error && (
