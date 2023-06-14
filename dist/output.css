@@ -3737,6 +3737,18 @@ html {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+}
+
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -4372,12 +4384,6 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-xl {
-  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -4414,10 +4420,13 @@ html {
   }
 }
 
-.hover\:scale-125:hover {
-  --tw-scale-x: 1.25;
-  --tw-scale-y: 1.25;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+@media (min-width: 1025px) {
+  .toast:where(.desktop\:toast-center) {
+    right: 50%;
+    left: 50%;
+    --tw-translate-x: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
 }
 
 .hover\:scale-105:hover {
@@ -4429,17 +4438,6 @@ html {
 .hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
-}
-
-.hover\:shadow-lg:hover {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:shadow-cyan-500\/50:hover {
-  --tw-shadow-color: rgb(6 182 212 / 0.5);
-  --tw-shadow: var(--tw-shadow-colored);
 }
 
 .hover\:shadow-indigo-500\/50:hover {
@@ -4476,20 +4474,8 @@ html {
 }
 
 @media (min-width: 481px) {
-  .tablet\:flex {
-    display: flex;
-  }
-
   .tablet\:h-96 {
     height: 24rem;
-  }
-
-  .tablet\:h-11 {
-    height: 2.75rem;
-  }
-
-  .tablet\:h-20 {
-    height: 5rem;
   }
 
   .tablet\:min-w-rouselMin {
@@ -4500,34 +4486,16 @@ html {
     min-width: 85vw;
   }
 
-  .tablet\:max-w-tab-image {
-    max-width: 85vw;
-  }
-
-  .tablet\:max-w-last {
-    max-width: 20vw;
-  }
-
-  .tablet\:max-w-rousel {
-    max-width: 80vw;
-  }
-
   .tablet\:max-w-rouselMin {
     max-width: 60vw;
   }
 
+  .tablet\:max-w-tab-image {
+    max-width: 85vw;
+  }
+
   .tablet\:flex-row {
     flex-direction: row;
-  }
-
-  .tablet\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .tablet\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 
   .tablet\:px-12 {
@@ -4535,17 +4503,13 @@ html {
     padding-right: 3rem;
   }
 
+  .tablet\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .tablet\:py-10 {
     padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .tablet\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
-  .tablet\:pb-10 {
     padding-bottom: 2.5rem;
   }
 
@@ -4607,6 +4571,31 @@ html {
     max-height: 70vh;
   }
 
+  .desktop\:w-\[40vw\] {
+    width: 40vw;
+  }
+
+  .desktop\:w-\[20vw\] {
+    width: 20vw;
+  }
+
+  .desktop\:w-fit {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  .desktop\:w-\[10vw\] {
+    width: 10vw;
+  }
+
+  .desktop\:w-\[15vw\] {
+    width: 15vw;
+  }
+
+  .desktop\:w-\[17vw\] {
+    width: 17vw;
+  }
+
   .desktop\:min-w-\[20vw\] {
     min-width: 20vw;
   }
@@ -4666,6 +4655,10 @@ html {
 
   .desktop\:pt-2 {
     padding-top: 0.5rem;
+  }
+
+  .desktop\:text-center {
+    text-align: center;
   }
 
   .desktop\:text-4xl {

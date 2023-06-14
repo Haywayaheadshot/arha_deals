@@ -11,6 +11,8 @@ const SignInPage = () => {
     password: "",
   });
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   const [errorMessage, setErrorMessage] = useState({
     email: "",
     password: "",
@@ -73,7 +75,10 @@ const SignInPage = () => {
             sameSite: "strict",
           });
 
-          navigate("/");
+          setSuccessMessage("Welcome!");
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
         } else {
           setErrorMessage({
             ...errorMessage,
@@ -149,8 +154,13 @@ const SignInPage = () => {
         </label>
         <section>
           {errorMessage.authentication && (
-            <div className="toast toast-top">
+            <div className="toast toast-top desktop:toast-center desktop:w-[17vw] desktop:text-center">
               <p className="alert alert-error">{errorMessage.authentication}</p>
+            </div>
+          )}
+          {successMessage && (
+            <div className="toast toast-top desktop:toast-center desktop:w-fit desktop:text-center">
+              <p className="alert alert-success">{successMessage}</p>
             </div>
           )}
           <input
