@@ -230,7 +230,7 @@ const NavBar = () => {
                     >
                       <div className="card-body">
                         <span className="font-bold text-lg">
-                          {displayCartLength()} Items
+                          {displayCartLength()} Item(s)
                         </span>
                         {filteredCartItem.map(
                           (item: PhonesData, index: number) => (
