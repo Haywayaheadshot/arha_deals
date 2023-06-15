@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Item from "./Item";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 import { useSelector } from "react-redux";
-import { ExclusiveItemsState } from "../../redux/exclusiveItems/types";
+import { RootState } from "../../redux/configureStore";
 
 interface Items {
   id: string;
@@ -15,9 +15,7 @@ interface Items {
 
 const ExclusiveItems = () => {
   const [showModal, setShowModal] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const items = useSelector((state: ExclusiveItemsState) => state.items.items);
+  const items = useSelector((state: RootState) => state.items.items);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -38,10 +36,10 @@ const ExclusiveItems = () => {
         </p>
       </section>
       {Array.isArray(items) ? (
-        <section className="px-4 flex flex-col justify-center items-center gap-8">
+        <section className="px-4 flex flex-col justify-center items-center gap-8 desktop:flex-row desktop:px-15">
           {items.map((item: Items) => (
             <section
-              className="border-tertiary border-2 rounded-md"
+              className="border-tertiary border-2 rounded-md tablet:max-w-rouselMin desktop:max-w-home-image-low"
               key={item.id}
             >
               <div
@@ -56,7 +54,11 @@ const ExclusiveItems = () => {
                     {item.availableSince}
                   </li>
                 </ul>
-                <img src={item.image_url} alt={`Image of ${item.itemName}`} />
+                <img
+                  src={item.image_url}
+                  alt={`Image of ${item.itemName}`}
+                  className="desktop:max-h-m"
+                />
                 <ul className="flex flex-row justify-center gap-4 bg-secondary">
                   <li className="bg-yellow-300 rounded-md px-2 py-1 text-primary">
                     {item.price}

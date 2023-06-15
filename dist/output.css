@@ -3737,18 +3737,6 @@ html {
   position: fixed;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.sticky {
-  position: sticky;
-}
-
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -4563,6 +4551,14 @@ html {
     display: none;
   }
 
+  .desktop\:h-\[50vh\] {
+    height: 50vh;
+  }
+
+  .desktop\:h-\[80vh\] {
+    height: 80vh;
+  }
+
   .desktop\:max-h-\[40vh\] {
     max-height: 40vh;
   }
@@ -4571,29 +4567,29 @@ html {
     max-height: 70vh;
   }
 
-  .desktop\:w-\[40vw\] {
-    width: 40vw;
+  .desktop\:max-h-sPlus {
+    max-height: 40vh;
   }
 
-  .desktop\:w-\[20vw\] {
-    width: 20vw;
+  .desktop\:max-h-11 {
+    max-height: 2.75rem;
+  }
+
+  .desktop\:max-h-\[20vh\] {
+    max-height: 20vh;
+  }
+
+  .desktop\:max-h-m {
+    max-height: 50vh;
+  }
+
+  .desktop\:w-\[17vw\] {
+    width: 17vw;
   }
 
   .desktop\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
-  }
-
-  .desktop\:w-\[10vw\] {
-    width: 10vw;
-  }
-
-  .desktop\:w-\[15vw\] {
-    width: 15vw;
-  }
-
-  .desktop\:w-\[17vw\] {
-    width: 17vw;
   }
 
   .desktop\:min-w-\[20vw\] {
@@ -4606,6 +4602,10 @@ html {
 
   .desktop\:max-w-last {
     max-width: 20vw;
+  }
+
+  .desktop\:max-w-home-image-low {
+    max-width: 40vw;
   }
 
   .desktop\:grid-flow-col {
