@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { PhoneHacksState } from "../../redux/phoneHacks/types";
+import { RootState } from "../../redux/configureStore";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 
 interface Hack {
@@ -15,9 +15,7 @@ interface Hack {
 }
 
 const PhoneHacks = () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const hacks = useSelector((state: PhoneHacksState) => state.hacks.hacks);
+  const hacks = useSelector((state: RootState) => state.hacks.hacks);
 
   const [selectedOption, setSelectedOption] = useState("");
   const [showFilteredHacks, setShowFilteredHacks] = useState(false);
@@ -55,7 +53,7 @@ const PhoneHacks = () => {
   };
 
   return (
-    <div className="py-10 px-4 flex flex-col gap-4">
+    <div className="py-10 px-4 tablet:px-20 flex flex-col gap-4">
       <section className="pt-5 flex flex-col justify-center items-center text-center">
         <h1 className="text-3xl">Hacks You Will Like!</h1>
         <p className="text-xl py-3">
@@ -63,21 +61,22 @@ const PhoneHacks = () => {
           utilize your smart phone.
         </p>
       </section>
-      <section>
-        <h3>Choose your device</h3>
+      <section className="tablet:flex tablet:flex-row tablet:justify-center items-center gap-10">
+        <h3>Choose Your Device</h3>
         <Select
           options={options}
           components={animatedComponents}
           defaultValue={[options[0]]}
           onChange={handleSelectChange}
+          className="tablet:min-w-[10vw]"
         />
       </section>
       {showFilteredHacks && Array.isArray(filteredHacks) ? (
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col gap-6 desktop:flex-row flex-wrap justify-between px-[3vw]">
           {filteredHacks.map((hack: Hack) => (
             <div
               key={hack.id}
-              className="border-2 rounded-lg flex flex-col px-5 py-3 justify-center items-center gap-4"
+              className="border-2 rounded-lg flex flex-col px-5 py-3 items-center gap-4 desktop:max-w-[40vw]"
             >
               <ul className="flex flex-row justify-between items-center gap-10">
                 <li>

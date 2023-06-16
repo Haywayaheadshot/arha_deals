@@ -4224,6 +4224,26 @@ html {
   padding-bottom: 1.25rem;
 }
 
+.px-\[8vw\] {
+  padding-left: 8vw;
+  padding-right: 8vw;
+}
+
+.px-\[4vw\] {
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+
+.px-\[2vw\] {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.px-\[3vw\] {
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -4462,8 +4482,16 @@ html {
 }
 
 @media (min-width: 481px) {
+  .tablet\:flex {
+    display: flex;
+  }
+
   .tablet\:h-96 {
     height: 24rem;
+  }
+
+  .tablet\:w-10 {
+    width: 2.5rem;
   }
 
   .tablet\:min-w-rouselMin {
@@ -4472,6 +4500,14 @@ html {
 
   .tablet\:min-w-tab-image {
     min-width: 85vw;
+  }
+
+  .tablet\:min-w-last {
+    min-width: 35vw;
+  }
+
+  .tablet\:min-w-\[10vw\] {
+    min-width: 10vw;
   }
 
   .tablet\:max-w-rouselMin {
@@ -4484,6 +4520,14 @@ html {
 
   .tablet\:flex-row {
     flex-direction: row;
+  }
+
+  .tablet\:justify-center {
+    justify-content: center;
+  }
+
+  .tablet\:gap-20 {
+    gap: 5rem;
   }
 
   .tablet\:px-12 {
@@ -4499,6 +4543,11 @@ html {
   .tablet\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+  }
+
+  .tablet\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .tablet\:pb-5 {
@@ -4551,32 +4600,12 @@ html {
     display: none;
   }
 
-  .desktop\:h-\[50vh\] {
-    height: 50vh;
-  }
-
-  .desktop\:h-\[80vh\] {
-    height: 80vh;
-  }
-
   .desktop\:max-h-\[40vh\] {
     max-height: 40vh;
   }
 
   .desktop\:max-h-l {
     max-height: 70vh;
-  }
-
-  .desktop\:max-h-sPlus {
-    max-height: 40vh;
-  }
-
-  .desktop\:max-h-11 {
-    max-height: 2.75rem;
-  }
-
-  .desktop\:max-h-\[20vh\] {
-    max-height: 20vh;
   }
 
   .desktop\:max-h-m {
@@ -4600,11 +4629,23 @@ html {
     min-width: 40vw;
   }
 
+  .desktop\:max-w-home-image-low {
+    max-width: 40vw;
+  }
+
   .desktop\:max-w-last {
     max-width: 20vw;
   }
 
-  .desktop\:max-w-home-image-low {
+  .desktop\:max-w-rouselMin {
+    max-width: 60vw;
+  }
+
+  .desktop\:max-w-\[50vw\] {
+    max-width: 50vw;
+  }
+
+  .desktop\:max-w-\[40vw\] {
     max-width: 40vw;
   }
 
@@ -4651,6 +4692,11 @@ html {
   .desktop\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+
+  .desktop\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .desktop\:pt-2 {
