@@ -1,6 +1,6 @@
 import { Spiral as Hamburger } from "hamburger-react";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ChangeThemes from "../ChangeThemes";
 import Logo from "../Logo";
 import Cookie from "universal-cookie";
@@ -15,6 +15,7 @@ import { removeFromCart } from "../../../redux/cart/actions";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [message, setMessage] = useState({
     appreciation: "",
     success: "",
@@ -84,6 +85,7 @@ const NavBar = () => {
       }, 8000);
       setIsAuthenticated(false);
       cookies.remove("token");
+      navigate("/");
     }
   };
 
