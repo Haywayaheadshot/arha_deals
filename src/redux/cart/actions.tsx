@@ -28,7 +28,7 @@ export const addToCart = createAsyncThunk(
     const state = getState() as RootState;
     const data = { phone_id: phoneId, quantity: quantity };
     const response = await axios.post<CartData[]>(addToCartApi, data);
-    const result = response.data;
+    const result = { ...response.data, inCart: true }; // Add the inCart key with value true
     return result;
   }
 );
@@ -39,7 +39,7 @@ export const removeFromCart = createAsyncThunk(
     const state = getState() as RootState;
     const data = { phone_id: phoneId };
     const response = await axios.delete(removeFromCartApi, { data });
-    const result = response.data;
+    const result = { ...response.data, inCart: false }; // Add the inCart key with value false
     return result;
   }
 );

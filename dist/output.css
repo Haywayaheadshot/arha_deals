@@ -4184,6 +4184,11 @@ html {
   padding-right: 10vw;
 }
 
+.px-\[3vw\] {
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -4222,26 +4227,6 @@ html {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.px-\[8vw\] {
-  padding-left: 8vw;
-  padding-right: 8vw;
-}
-
-.px-\[4vw\] {
-  padding-left: 4vw;
-  padding-right: 4vw;
-}
-
-.px-\[2vw\] {
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
-
-.px-\[3vw\] {
-  padding-left: 3vw;
-  padding-right: 3vw;
 }
 
 .pb-6 {
@@ -4490,8 +4475,8 @@ html {
     height: 24rem;
   }
 
-  .tablet\:w-10 {
-    width: 2.5rem;
+  .tablet\:min-w-\[10vw\] {
+    min-width: 10vw;
   }
 
   .tablet\:min-w-rouselMin {
@@ -4500,14 +4485,6 @@ html {
 
   .tablet\:min-w-tab-image {
     min-width: 85vw;
-  }
-
-  .tablet\:min-w-last {
-    min-width: 35vw;
-  }
-
-  .tablet\:min-w-\[10vw\] {
-    min-width: 10vw;
   }
 
   .tablet\:max-w-rouselMin {
@@ -4526,13 +4503,14 @@ html {
     justify-content: center;
   }
 
-  .tablet\:gap-20 {
-    gap: 5rem;
-  }
-
   .tablet\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+
+  .tablet\:px-20 {
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 
   .tablet\:px-5 {
@@ -4543,11 +4521,6 @@ html {
   .tablet\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-  }
-
-  .tablet\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
   }
 
   .tablet\:pb-5 {
@@ -4621,6 +4594,10 @@ html {
     width: fit-content;
   }
 
+  .desktop\:w-full {
+    width: 100%;
+  }
+
   .desktop\:min-w-\[20vw\] {
     min-width: 20vw;
   }
@@ -4629,24 +4606,16 @@ html {
     min-width: 40vw;
   }
 
+  .desktop\:max-w-\[40vw\] {
+    max-width: 40vw;
+  }
+
   .desktop\:max-w-home-image-low {
     max-width: 40vw;
   }
 
   .desktop\:max-w-last {
     max-width: 20vw;
-  }
-
-  .desktop\:max-w-rouselMin {
-    max-width: 60vw;
-  }
-
-  .desktop\:max-w-\[50vw\] {
-    max-width: 50vw;
-  }
-
-  .desktop\:max-w-\[40vw\] {
-    max-width: 40vw;
   }
 
   .desktop\:grid-flow-col {
@@ -4674,6 +4643,11 @@ html {
     padding-right: 2.5rem;
   }
 
+  .desktop\:px-\[10vw\] {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+
   .desktop\:px-\[20vw\] {
     padding-left: 20vw;
     padding-right: 20vw;
@@ -4692,11 +4666,6 @@ html {
   .desktop\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
-  }
-
-  .desktop\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .desktop\:pt-2 {
