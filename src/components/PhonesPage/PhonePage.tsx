@@ -11,6 +11,10 @@ import { fetchCart, addToCart, removeFromCart } from "../../redux/cart/actions";
 const PhonePage = () => {
   const phones = useSelector((state: RootState) => state.phones);
   const cart = useSelector((state: RootState) => state.cart);
+  const [inCart, setInCart] = useState<{ [key: string]: boolean }>({});
+  const [inCartStatus, setInCartStatus] = useState<{
+    [phoneId: string]: boolean;
+  }>({});
   const [selectedPhone, setSelectedPhone] = useState<PhonesData | null>(null);
   const [message, setMessage] = useState({
     error: "",
@@ -20,11 +24,21 @@ const PhonePage = () => {
 
   useEffect(() => {
     dispatch(getPhones() as any);
-    dispatch(fetchCart() as any);
+    dispatch(fetchCart() as any).then((response: any) => {
+      const cartData = response.payload.data;
+      const phoneIdsInCart = cartData.map((item: CartData) => item.phone_id);
+      setInCart((prevInCart) => ({
+        ...prevInCart,
+        ...phoneIdsInCart.reduce((acc: any, id: string) => {
+          acc[id] = true;
+          return acc;
+        }, {}),
+      }));
+    });
   }, [dispatch]);
 
-  const phonesArr = phones.data;
-  const cartArr: CartData[] = cart.data;
+  const phonesArr = phones?.data || [];
+  const cartArr: CartData[] = cart?.data || []; // Initialize cartArr as an empty array if cart?.data is falsy
 
   const openModal = (phone: PhonesData) => {
     setSelectedPhone(phone);
@@ -34,81 +48,57 @@ const PhonePage = () => {
     setSelectedPhone(null);
   };
 
-  const handleAddToCart = async (phone: PhonesData, quantity: number) => {
-    try {
-      const result = await (dispatch as any)(
-        addToCart({ phoneId: phone.id, quantity })
-      );
-      if (result.payload) {
-        setMessage({ ...message, success: result.payload.message });
-        setTimeout(() => {
-          setMessage({ ...message, success: "" });
-        }, 3000);
-      } else {
-        setMessage({ ...message, error: "Failed to add item to cart" });
-        setTimeout(() => {
-          setMessage({ ...message, error: "" });
-        }, 3000);
-      }
-    } catch (error) {
-      setMessage({ ...message, error: "Failed to add item to cart" });
+  // Add phone to cart
+  const handleAddToCart = (phone: PhonesData, quantity: number) => {
+    if (isPhoneInCart(phone)) {
+      setMessage({ ...message, error: "This phone is already in your cart" });
       setTimeout(() => {
         setMessage({ ...message, error: "" });
+      }, 3000);
+    } else {
+      dispatch(addToCart({ phoneId: phone.id, quantity }) as any);
+      setInCart((prevInCart) => ({
+        ...prevInCart,
+        [phone.id]: true,
+      }));
+      setInCartStatus((prevInCartStatus) => ({
+        ...prevInCartStatus,
+        [phone.id]: true,
+      }));
+      setMessage({ ...message, success: "Phone added to cart" });
+      setTimeout(() => {
+        setMessage({ ...message, success: "" });
       }, 3000);
     }
   };
 
-  const handleRemoveFromCart = async (phone: PhonesData) => {
-    try {
-      const result = await dispatch(removeFromCart(phone.id) as any);
-      if (result.payload) {
-        setMessage({ ...message, success: result.payload.message });
-        setTimeout(() => {
-          setMessage({ ...message, success: "" });
-        }, 3000);
-      } else {
-        setMessage({ ...message, error: "Failed to remove item from cart" });
-        setTimeout(() => {
-          setMessage({ ...message, error: "" });
-        }, 3000);
-      }
-    } catch (error) {
-      setMessage({
-        ...message,
-        error:
-          "The item has not been removed from your cart. Please check your internet connection and try again!",
-      });
-      setTimeout(() => {
-        setMessage({ ...message, error: "" });
-      }, 3000);
+  const isPhoneInCartOnLoad = (phone: PhonesData) => {
+    if (Array.isArray(cartArr)) {
+      const itemInCart = cartArr.find((item) => item.phone_id === phone.id);
+      return !!itemInCart; // Return true if itemInCart is found, false otherwise
     }
+    return false; // Return false if cartArr is not an array
   };
 
   const isPhoneInCart = (phone: PhonesData) => {
-    return (
-      cartArr.length > 0 && cartArr.some((item) => item.phone_id === phone.id)
-    );
+    return inCart[phone.id] || false;
   };
 
-  const addToCartHandler = (phone: PhonesData, quantity: number) => {
-    if (!isPhoneInCart(phone)) {
-      handleAddToCart(phone, quantity);
-      return;
-    }
-    setMessage({ ...message, error: "This phone is already in your cart" });
-    setTimeout(() => {
-      setMessage({ ...message, error: "" });
-    }, 3000);
-  };
-
+  // Remove phone from cart
   const removeFromCartHandler = (phone: PhonesData) => {
-    if (isPhoneInCart(phone)) {
-      handleRemoveFromCart(phone);
-      return;
-    }
-    setMessage({ ...message, error: "This item is not in your cart" });
+    (dispatch as any)(removeFromCart(phone.id));
+    setInCart((prevInCart) => {
+      const updatedCart = { ...prevInCart };
+      delete updatedCart[phone.id];
+      return updatedCart;
+    });
+    setInCartStatus((prevInCartStatus) => ({
+      ...prevInCartStatus,
+      [phone.id]: false,
+    }));
+    setMessage({ ...message, success: "Phone removed from cart" });
     setTimeout(() => {
-      setMessage({ ...message, error: "" });
+      setMessage({ ...message, success: "" });
     }, 3000);
   };
 
@@ -186,14 +176,15 @@ const PhonePage = () => {
                   </button>
                 </section>
                 <div className="card-actions justify-end">
-                  {isPhoneInCart(phone) ? (
+                  {(isPhoneInCart(phone) || isPhoneInCartOnLoad(phone)) && (
                     <button
                       className="btn btn-primary"
                       onClick={() => removeFromCartHandler(phone)}
                     >
                       Remove from Cart
                     </button>
-                  ) : (
+                  )}
+                  {!isPhoneInCart(phone) && (
                     <div className="flex flex-row justify-center items-center gap-3">
                       <div className="flex flex-row gap-2 text-primary">
                         <label className="label">
@@ -213,7 +204,7 @@ const PhonePage = () => {
                       </div>
                       <button
                         className="btn bg-secondary"
-                        onClick={() => addToCartHandler(phone, quantity)}
+                        onClick={() => handleAddToCart(phone, quantity)}
                       >
                         Add to Cart
                       </button>
@@ -221,12 +212,12 @@ const PhonePage = () => {
                   )}
                 </div>
                 {message.error && (
-                  <div className="toast toast-top">
-                    <p className="alert alert-error">{message.error}</p>
+                  <div className="toast toast-top toast-center desktop:w-full desktop:px-[10vw]">
+                    <p className="alert alert-error text-xl">{message.error}</p>
                   </div>
                 )}
                 {message.success && (
-                  <div className="toast toast-top toast-center w-full px-[10vw]">
+                  <div className="toast toast-top toast-center desktop:w-full desktop:px-[10vw]">
                     <p className="alert alert-success text-xl">
                       {message.success}
                     </p>
