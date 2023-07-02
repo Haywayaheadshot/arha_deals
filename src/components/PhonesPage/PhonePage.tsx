@@ -73,9 +73,9 @@ const PhonePage = () => {
   };
 
   const isPhoneInCartOnLoad = (phone: PhonesData) => {
-    if (Array.isArray(cartArr)) {
-      const itemInCart = cartArr.find((item) => item.phone_id === phone.id);
-      return !!itemInCart; // Return true if itemInCart is found, false otherwise
+    const itemInCart = cartArr.find((item) => item.phone_id === phone.id);
+    if (itemInCart) {
+      return true; // Return true if itemInCart is found, false otherwise
     }
     return false; // Return false if cartArr is not an array
   };
@@ -177,14 +177,23 @@ const PhonePage = () => {
                 </section>
                 <div className="card-actions justify-end">
                   {(isPhoneInCart(phone) || isPhoneInCartOnLoad(phone)) && (
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => removeFromCartHandler(phone)}
-                    >
-                      Remove from Cart
-                    </button>
+                    <>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => removeFromCartHandler(phone)}
+                      >
+                        Remove from Cart
+                      </button>
+                      <button
+                        className="btn bg-secondary"
+                        onClick={() => handleAddToCart(phone, quantity)}
+                        disabled
+                      >
+                        Add to Cart
+                      </button>
+                    </>
                   )}
-                  {!isPhoneInCart(phone) && (
+                  {!isPhoneInCartOnLoad(phone) && (
                     <div className="flex flex-row justify-center items-center gap-3">
                       <div className="flex flex-row gap-2 text-primary">
                         <label className="label">

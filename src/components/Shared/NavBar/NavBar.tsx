@@ -25,8 +25,8 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const cart = useSelector((state: RootState) => state.cart);
   const phone = useSelector((state: RootState) => state.phones);
-  const cartArr = Array.from(cart.data);
-  const phonesArr = Array.from(phone.data);
+  const cartArr = cart?.data || [];
+  const phonesArr = phone?.data || [];
   const dispatch = useDispatch();
 
   const getTime = () => {
@@ -89,6 +89,8 @@ const NavBar = () => {
     }
   };
 
+  console.log(cartArr);
+
   // Display cart items and length
   useEffect(() => {
     dispatch(getPhones() as any);
@@ -132,7 +134,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col">
+    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col z-40">
       {message.appreciation && (
         <div className="toast ease-in-out">
           <div className="alert alert-info">
