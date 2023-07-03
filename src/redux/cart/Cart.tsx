@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cart from "./types";
 import { fetchCart, addToCart, removeFromCart } from "./actions";
+import { CartData } from "./types";
+import { Draft } from "immer";
 
-const initialState: Cart = {
+interface CartState {
+  data: Draft<CartData>[]; // Update the type to Draft<CartData>[]
+  success: boolean;
+  loading: boolean;
+}
+
+const initialState: CartState = {
   data: [],
   success: false,
   loading: true,
@@ -14,7 +21,7 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCart.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload as Draft<CartData>[]; // Cast the payload to Draft<CartData>[]
       state.success = true;
       state.loading = false;
     });
@@ -27,7 +34,7 @@ const cartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(addToCart.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload as unknown as Draft<CartData>[]; // Cast the payload to Draft<CartData>[]
       state.success = true;
       state.loading = false;
     });
@@ -40,7 +47,7 @@ const cartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(removeFromCart.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload as Draft<CartData>[]; // Cast the payload to Draft<CartData>[]
       state.success = true;
       state.loading = false;
     });

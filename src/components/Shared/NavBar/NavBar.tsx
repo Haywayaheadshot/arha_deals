@@ -89,8 +89,6 @@ const NavBar = () => {
     }
   };
 
-  console.log(cartArr);
-
   // Display cart items and length
   useEffect(() => {
     dispatch(getPhones() as any);
