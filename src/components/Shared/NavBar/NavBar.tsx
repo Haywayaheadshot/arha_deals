@@ -89,7 +89,7 @@ const NavBar = () => {
     }
   };
 
-  console.log(cartArr);
+  // console.log(cartArr);
 
   // Display cart items and length
   useEffect(() => {
