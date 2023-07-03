@@ -1,22 +1,41 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { useSelector } from "react-redux";
-import { fetchCart } from "../../redux/cart/actions";
 import { RootState } from "../../redux/configureStore";
-import image1 from "../../assets/apple-phones.png";
+import { RiDeleteBin3Line } from "react-icons/ri";
+import { IconContext } from "react-icons";
 
 const ConfirmOrder = () => {
   const cart = useSelector((state: RootState) => state.cart);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCart() as any);
-  }, [dispatch]);
+  const phone = useSelector((state: RootState) => state.phones);
 
-  console.log(cart);
+  const cartArr = cart?.data;
+  const phonesArr = phone?.data;
+
+  const cartItems: any[] = [];
+  const cartItemsQuantity: number[] = [];
+  let totalCart = 0;
+
+  if (Array.isArray(phonesArr)) {
+    cartArr.forEach((cartItem) => {
+      const foundPhone = phonesArr.find(
+        (phone) => phone.id === cartItem.phone_id
+      );
+      if (foundPhone) {
+        cartItems.push(foundPhone);
+        cartItemsQuantity.push(cartItem.quantity);
+        totalCart += foundPhone.amount * cartItem.quantity;
+      }
+    });
+  }
+
+  console.log(cartItems);
+  console.log(cartItemsQuantity);
+  console.log(totalCart);
 
   return (
     <div className="pt-20 flex flex-col gap-3 items-center">
       <span className="text-3xl px-5 self-start">Shopping Cart</span>
+      <span className="self-end px-5">You have {cartItems.length} items!</span>
       <table className="table-auto border-[6px] w-[100vw]">
         <thead>
           <tr className="text-left border-b-2">
@@ -28,33 +47,58 @@ const ConfirmOrder = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b-2">
-            <td className="flex flex-col gap-3 py-5 pr-5">
-              <img src={image1} alt="Test Image" className="px-2 w-[30vw]" />
-              <span className="text-2xl pl-3">Iphone5</span>
-            </td>
-            <td>
-              <ul>
-                <li>64GB</li>
-                <li>Space Grey</li>
-                <li className="py-4">Unlocked</li>
-              </ul>
-            </td>
-            <td className="px-2">2000</td>
-            <td className="px-2">
-              <label htmlFor="quantity">
-                <input
-                  placeholder="1"
-                  type="number"
-                  id="quantity"
-                  className="w-7 pr-3"
-                />
-              </label>
-            </td>
-            <td className="px-2 text-center">2000</td>
-          </tr>
+          {cartItems.map((item) => (
+            <>
+              <tr>
+                <td className="flex flex-col gap-3 py-5 pr-5">
+                  <img
+                    src={item.images_src[0]}
+                    alt="Test Image"
+                    className="px-2 w-[30vw]"
+                  />
+                  <span className="text-2xl pl-3">{item.name}</span>
+                </td>
+                <td>
+                  <ul>
+                    <li>{item.specs.capacity}</li>
+                    <li>{item.specs.body.color}</li>
+                    <li className="py-4">{item.specs.body.status}</li>
+                  </ul>
+                </td>
+                <td className="px-2">{item.amount}</td>
+                <td className="px-2">
+                  <label htmlFor="quantity">
+                    <input
+                      placeholder="1"
+                      type="number"
+                      id="quantity"
+                      className="w-7 pr-3"
+                    />
+                  </label>
+                </td>
+                <td className="px-2 text-center">2000</td>
+              </tr>
+              <tr className="border-b-2">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td className="flex items-end flex-col">
+                  <IconContext.Provider
+                    value={{
+                      size: "1.5em",
+                      className: "global-class-name",
+                    }}
+                  >
+                    <RiDeleteBin3Line />
+                  </IconContext.Provider>
+                </td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
+      <span className="w-full text-end px-5">Cart Total(GHs): {totalCart}</span>
     </div>
   );
 };
