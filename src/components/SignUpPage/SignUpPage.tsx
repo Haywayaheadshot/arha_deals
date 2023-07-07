@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RxEyeClosed } from "react-icons/rx";
 import { FaCrown } from "react-icons/fa";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState({
     name: "",
@@ -173,6 +174,9 @@ const SignUpPage = () => {
             dateOfBirth: "",
             photo: "",
           });
+          setTimeout(() => {
+            navigate("/signin");
+          }, 1000);
         } else {
           setErrorMessage({
             ...errorMessage,

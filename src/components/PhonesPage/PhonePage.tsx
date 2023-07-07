@@ -7,9 +7,11 @@ import ModalPop from "./ModalPop";
 import { PhonesData } from "../../redux/phones/types";
 import { CartData } from "../../redux/cart/types";
 import { fetchCart, addToCart, removeFromCart } from "../../redux/cart/actions";
+import Cookie from "universal-cookie";
 
 const PhonePage = () => {
   const phones = useSelector((state: RootState) => state.phones);
+  const cookies = new Cookie();
   const cart = useSelector((state: RootState) => state.cart);
   const [inCart, setInCart] = useState<{ [key: string]: boolean }>({});
   const [selectedPhone, setSelectedPhone] = useState<PhonesData | null>(null);
@@ -18,6 +20,8 @@ const PhonePage = () => {
     success: "",
   });
   const dispatch = useDispatch();
+
+  const userVerified = cookies.get("token");
 
   useEffect(() => {
     dispatch(getPhones() as any);
@@ -35,7 +39,7 @@ const PhonePage = () => {
   }, [dispatch]);
 
   const phonesArr = phones?.data || [];
-  const cartArr: CartData[] = cart?.data || []; // Initialize cartArr as an empty array if cart?.data is falsy
+  const cartArr: CartData[] = cart?.data || [];
 
   const openModal = (phone: PhonesData) => {
     setSelectedPhone(phone);
@@ -47,20 +51,30 @@ const PhonePage = () => {
 
   // Add phone to cart
   const handleAddToCart = (phone: PhonesData, quantity: number) => {
-    if (isPhoneInCart(phone)) {
-      setMessage({ ...message, error: "This phone is already in your cart" });
+    if (userVerified) {
+      if (isPhoneInCart(phone)) {
+        setMessage({ ...message, error: "This phone is already in your cart" });
+        setTimeout(() => {
+          setMessage({ ...message, error: "" });
+        }, 3000);
+      } else {
+        dispatch(addToCart({ phoneId: phone.id, quantity }) as any);
+        setInCart((prevInCart) => ({
+          ...prevInCart,
+          [phone.id]: true,
+        }));
+        setMessage({ ...message, success: "Phone added to cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      }
+    } else {
+      setMessage({
+        ...message,
+        error: "You have to log in to perfrom this action!",
+      });
       setTimeout(() => {
         setMessage({ ...message, error: "" });
-      }, 3000);
-    } else {
-      dispatch(addToCart({ phoneId: phone.id, quantity }) as any);
-      setInCart((prevInCart) => ({
-        ...prevInCart,
-        [phone.id]: true,
-      }));
-      setMessage({ ...message, success: "Phone added to cart" });
-      setTimeout(() => {
-        setMessage({ ...message, success: "" });
       }, 3000);
     }
   };
@@ -79,15 +93,25 @@ const PhonePage = () => {
 
   // Remove phone from cart
   const removeFromCartHandler = (phone: PhonesData) => {
-    (dispatch as any)(removeFromCart(phone.id));
-    setInCart((prevInCart) => ({
-      ...prevInCart,
-      [phone.id]: false,
-    }));
-    setMessage({ ...message, success: "Phone removed from cart" });
-    setTimeout(() => {
-      setMessage({ ...message, success: "" });
-    }, 3000);
+    if (userVerified) {
+      (dispatch as any)(removeFromCart(phone.id));
+      setInCart((prevInCart) => ({
+        ...prevInCart,
+        [phone.id]: false,
+      }));
+      setMessage({ ...message, success: "Phone removed from cart" });
+      setTimeout(() => {
+        setMessage({ ...message, success: "" });
+      }, 3000);
+    } else {
+      setMessage({
+        ...message,
+        error: "You have to log in to perfrom this action!",
+      });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    }
   };
 
   // Handle quantity and stock
@@ -127,6 +151,16 @@ const PhonePage = () => {
           Check out our different range of phones.
         </p>
       </section>
+      {message.error && (
+        <div className="toast toast-top top-10 z-40">
+          <p className="alert alert-error text-xl">{message.error}</p>
+        </div>
+      )}
+      {message.success && (
+        <div className="toast toast-top top-10 z-40">
+          <p className="alert alert-success text-xl">{message.success}</p>
+        </div>
+      )}
       {Array.isArray(phonesArr) ? (
         <section className="carousel carousel-vertical gap-8 items-center tablet:flex-row tablet:py-10 tablet:px-5">
           {phonesArr.map((phone: PhonesData) => (
@@ -212,18 +246,6 @@ const PhonePage = () => {
                       </div>
                     )}
                 </div>
-                {message.error && (
-                  <div className="toast toast-top toast-center desktop:w-full desktop:px-[10vw]">
-                    <p className="alert alert-error text-xl">{message.error}</p>
-                  </div>
-                )}
-                {message.success && (
-                  <div className="toast toast-top toast-center desktop:w-full desktop:px-[10vw]">
-                    <p className="alert alert-success text-xl">
-                      {message.success}
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
           ))}
