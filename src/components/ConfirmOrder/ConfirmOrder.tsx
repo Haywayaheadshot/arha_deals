@@ -34,7 +34,7 @@ const ConfirmOrder = () => {
 
   return (
     <div className="pt-20 flex flex-row gap-3 items-start justify-center">
-      <section>
+      <section className="flex flex-col">
         <span className="text-3xl px-5 self-start">Shopping Cart</span>
         <span className="self-end px-5">
           You have {cartItems.length} items!
@@ -101,9 +101,35 @@ const ConfirmOrder = () => {
             ))}
           </tbody>
         </table>
-        <span className="w-full text-end px-5">
-          Cart Total(GHs): {totalCart}
-        </span>
+        <section className="px-5 flex flex-col desktop:hidden">
+          <span className="text-xl py-2">Summary</span>
+          <ul className="flex flex-col gap-5 py-2 border-b-2 border-b-primary">
+            <li className="flex flex-row justify-between border-b-2 pb-2">
+              <span> Cart total:</span>
+              <span> GHs{totalCart}</span>
+            </li>
+            <li className="flex flex-row justify-between border-b-2 pb-2">
+              <span> Discount:</span>
+              <span> -GHs{totalCart * 0.05}</span>
+            </li>
+            <li className="flex flex-row justify-between border-b-2 pb-2">
+              <span> Shipping(Flat rate - Fixed):</span>
+              <span> GHs200</span>
+            </li>
+            <li className="flex flex-row justify-between py-3 text-2xl">
+              <span> Order Total</span>
+              <span> GHs{totalCart - totalCart * 0.05 + 200}</span>
+            </li>
+            <li className="flex flex-col gap-2 text-primary">
+              <button className="bg-yellow-300 py-3 rounded-md">
+                Pay With Card
+              </button>
+              <button className="bg-yellow-300 py-3 rounded-md">
+                Pay With Mobile Money
+              </button>
+            </li>
+          </ul>
+        </section>
       </section>
       <aside className="hidden desktop:flex gap-3 text-primary flex-col bg-box w-[25vw] px-3 py-5 sticky top-10 my-10">
         <span className="text-4xl pb-2 border-b-2 border-b-primary">
@@ -114,7 +140,7 @@ const ConfirmOrder = () => {
         </span>
         <ul className="flex flex-col gap-5 py-2 border-b-2 border-b-primary">
           <li className="flex flex-row justify-between">
-            <span> Subtotal:</span>
+            <span> Cart total:</span>
             <span> GHs{totalCart}</span>
           </li>
           <li className="flex flex-row justify-between">
