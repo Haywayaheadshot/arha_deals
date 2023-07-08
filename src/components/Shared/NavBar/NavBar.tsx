@@ -5,15 +5,27 @@ import ChangeThemes from "../ChangeThemes";
 import Logo from "../Logo";
 import Cookie from "universal-cookie";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/configureStore";
-import { useDispatch } from "react-redux";
-import { fetchCart } from "../../../redux/cart/actions";
-import { getPhones } from "../../../redux/phones/Phones";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../../../redux/configureStore";
+// import { useDispatch } from "react-redux";
+// import { fetchCart } from "../../../redux/cart/actions";
+// import { getPhones } from "../../../redux/phones/Phones";
 import { PhonesData } from "../../../redux/phones/types";
-import { removeFromCart } from "../../../redux/cart/actions";
+// import { removeFromCart } from "../../../redux/cart/actions";
 
-const NavBar = () => {
+interface NavBarProps {
+  totalCart: number;
+  cartArrLength: number;
+  filteredCartItem: [];
+  foundPhonesQuantity: any;
+}
+
+const NavBar = ({
+  totalCart,
+  cartArrLength,
+  filteredCartItem,
+  foundPhonesQuantity,
+}: NavBarProps) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [message, setMessage] = useState({
@@ -23,11 +35,11 @@ const NavBar = () => {
   });
   const cookies = new Cookie();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const cart = useSelector((state: RootState) => state.cart);
-  const phone = useSelector((state: RootState) => state.phones);
-  const cartArr = cart?.data || [];
-  const phonesArr = phone?.data || [];
-  const dispatch = useDispatch();
+  // const cart = useSelector((state: RootState) => state.cart);
+  // const phone = useSelector((state: RootState) => state.phones);
+  // const cartArr = cart?.data || [];
+  // const phonesArr = phone?.data || [];
+  // const dispatch = useDispatch();
 
   const getTime = () => {
     const [time, setTime] = useState(new Date());
@@ -89,47 +101,47 @@ const NavBar = () => {
     }
   };
 
-  // Display cart items and length
-  useEffect(() => {
-    dispatch(getPhones() as any);
-    dispatch(fetchCart() as any);
-  }, [dispatch]);
+  // // Display cart items and length
+  // useEffect(() => {
+  //   dispatch(getPhones() as any);
+  //   dispatch(fetchCart() as any);
+  // }, [dispatch]);
 
-  const displayCartLength = () => {
-    return cartArr.length;
-  };
+  // const displayCartLength = () => {
+  //   return cartArr.length;
+  // };
 
-  const filteredCartItem: any = [];
-  let totalCart = 0;
-  const foundPhonesQuantity: number[] = [];
+  // const filteredCartItem: any = [];
+  // let totalCart = 0;
+  // const foundPhonesQuantity: number[] = [];
 
-  if (Array.isArray(phonesArr)) {
-    cartArr.forEach((cartItem) => {
-      const foundPhone = phonesArr.find(
-        (phone) => phone.id === cartItem.phone_id
-      );
-      if (foundPhone) {
-        filteredCartItem.push(foundPhone);
-        foundPhonesQuantity.push(cartItem.quantity);
-        totalCart += foundPhone.amount * cartItem.quantity;
-      }
-    });
-  }
+  // if (Array.isArray(phonesArr)) {
+  //   cartArr.forEach((cartItem) => {
+  //     const foundPhone = phonesArr.find(
+  //       (phone) => phone.id === cartItem.phone_id
+  //     );
+  //     if (foundPhone) {
+  //       filteredCartItem.push(foundPhone);
+  //       foundPhonesQuantity.push(cartItem.quantity);
+  //       totalCart += foundPhone.amount * cartItem.quantity;
+  //     }
+  //   });
+  // }
 
-  const handleCartItemDel = async (item: PhonesData) => {
-    const result = await dispatch(removeFromCart(item.id) as any);
-    if (result.payload) {
-      setMessage({ ...message, success: result.payload.message });
-      setTimeout(() => {
-        setMessage({ ...message, success: "" });
-      }, 3000);
-    } else {
-      setMessage({ ...message, error: "Failed to add item to cart" });
-      setTimeout(() => {
-        setMessage({ ...message, error: "" });
-      }, 3000);
-    }
-  };
+  // const handleCartItemDel = async (item: PhonesData) => {
+  //   const result = await dispatch(removeFromCart(item.id) as any);
+  //   if (result.payload) {
+  //     setMessage({ ...message, success: result.payload.message });
+  //     setTimeout(() => {
+  //       setMessage({ ...message, success: "" });
+  //     }, 3000);
+  //   } else {
+  //     setMessage({ ...message, error: "Failed to add item to cart" });
+  //     setTimeout(() => {
+  //       setMessage({ ...message, error: "" });
+  //     }, 3000);
+  //   }
+  // };
 
   return (
     <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col z-40">
@@ -203,7 +215,7 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
               <li>
-                {cartArr.length > 0 ? (
+                {cartArrLength > 0 ? (
                   <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                       <div className="indicator">
@@ -222,7 +234,7 @@ const NavBar = () => {
                           />
                         </svg>
                         <span className="badge badge-sm indicator-item">
-                          {displayCartLength()}
+                          {cartArrLength}
                         </span>
                       </div>
                     </label>
@@ -232,7 +244,7 @@ const NavBar = () => {
                     >
                       <div className="card-body">
                         <span className="font-bold text-lg">
-                          {displayCartLength()} Item(s)
+                          {cartArrLength} Item(s)
                         </span>
                         {filteredCartItem.map(
                           (item: PhonesData, index: number) => (
@@ -248,7 +260,7 @@ const NavBar = () => {
                               </div>
                               <button
                                 className="btn btn-secondary btn-sm"
-                                onClick={() => handleCartItemDel(item)}
+                                // onClick={() => handleCartItemDel(item)}
                               >
                                 Delete
                               </button>
@@ -363,11 +375,11 @@ const NavBar = () => {
                 <button onClick={handleSignOut}>Sign out</button>
               </li>
               <li>
-                {cartArr.length > 0 ? (
+                {cartArrLength > 0 ? (
                   <NavLink to="/confirmorder">
                     <div className="indicator">
                       <span className="indicator-item badge badge-secondary">
-                        {displayCartLength()}
+                        {cartArrLength}
                       </span>
                       <button onClick={() => setOpen(false)} className="btn">
                         Cart
