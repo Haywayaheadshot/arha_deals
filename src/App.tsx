@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,44 +15,8 @@ import SignInPage from "./components/SignInPage/SignInPage";
 import NavBarWrapper from "./components/Shared/NavBar/NavBarWrapper";
 import ConfirmOrder from "./components/ConfirmOrder/ConfirmOrder";
 import PhonePage from "./components/PhonesPage/PhonePage";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { fetchCart } from "./redux/cart/actions";
-import { getPhones } from "./redux/phones/Phones";
-import { RootState } from "./redux/configureStore";
 
 const App = () => {
-  const cart = useSelector((state: RootState) => state.cart);
-  const phone = useSelector((state: RootState) => state.phones);
-  const cartArr = cart?.data || [];
-  const phonesArr = phone?.data || [];
-  const dispatch = useDispatch();
-
-  // Display cart items and length
-  useEffect(() => {
-    dispatch(getPhones() as any);
-    dispatch(fetchCart() as any);
-  }, [dispatch]);
-
-  const cartArrLength = cartArr.length;
-
-  const filteredCartItem: any = [];
-  let totalCart = 0;
-  const foundPhonesQuantity: number[] = [];
-
-  if (Array.isArray(phonesArr)) {
-    cartArr.forEach((cartItem) => {
-      const foundPhone = phonesArr.find(
-        (phone) => phone.id === cartItem.phone_id
-      );
-      if (foundPhone) {
-        filteredCartItem.push(foundPhone);
-        foundPhonesQuantity.push(cartItem.quantity);
-        totalCart += foundPhone.amount * cartItem.quantity;
-      }
-    });
-  }
-
   return (
     <div className="">
       <Router>
@@ -61,12 +25,7 @@ const App = () => {
             <Route
               path="/"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <HomePage />
                 </NavBarWrapper>
               }
@@ -75,12 +34,7 @@ const App = () => {
             <Route
               path="/technews"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <TechNews />
                 </NavBarWrapper>
               }
@@ -89,12 +43,7 @@ const App = () => {
             <Route
               path="/reels"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <Reels />
                 </NavBarWrapper>
               }
@@ -103,12 +52,7 @@ const App = () => {
             <Route
               path="/phonehacks"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <PhoneHacks />
                 </NavBarWrapper>
               }
@@ -117,12 +61,7 @@ const App = () => {
             <Route
               path="/exclusiveitems"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <ExclusiveItems />
                 </NavBarWrapper>
               }
@@ -131,12 +70,7 @@ const App = () => {
             <Route
               path="/confirmorder"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <ConfirmOrder />
                 </NavBarWrapper>
               }
@@ -145,12 +79,7 @@ const App = () => {
             <Route
               path="/phones"
               element={
-                <NavBarWrapper
-                  totalCart={totalCart}
-                  cartArrLength={cartArrLength}
-                  filteredCartItem={filteredCartItem}
-                  foundPhonesQuantity={foundPhonesQuantity}
-                >
+                <NavBarWrapper>
                   <PhonePage />
                 </NavBarWrapper>
               }
