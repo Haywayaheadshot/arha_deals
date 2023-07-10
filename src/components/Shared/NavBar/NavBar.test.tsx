@@ -8,12 +8,7 @@ describe("Check that NavBar component", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <NavBar
-          totalCart={0}
-          cartArrLength={0}
-          filteredCartItem={[]}
-          foundPhonesQuantity={undefined}
-        />
+        <NavBar />
       </BrowserRouter>
     );
   });
