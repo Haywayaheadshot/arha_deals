@@ -34,7 +34,7 @@ const cartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(addToCart.fulfilled, (state, action) => {
-      state.data = action.payload as unknown as Draft<CartData>[]; // Cast the payload to Draft<CartData>[]
+      state.data.push(action.payload);
       state.success = true;
       state.loading = false;
     });
@@ -47,7 +47,10 @@ const cartSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(removeFromCart.fulfilled, (state, action) => {
-      state.data = action.payload as Draft<CartData>[]; // Cast the payload to Draft<CartData>[]
+      const itemIdToRemove = action.payload;
+      state.data = state.data.filter(
+        (item) => item.phone_id !== itemIdToRemove
+      );
       state.success = true;
       state.loading = false;
     });
