@@ -1,33 +1,22 @@
 import { Spiral as Hamburger } from "hamburger-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import ChangeThemes from "../ChangeThemes";
 import Logo from "../Logo";
 import Cookie from "universal-cookie";
 import axios from "axios";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../../redux/configureStore";
-// import { useDispatch } from "react-redux";
-// import { fetchCart } from "../../../redux/cart/actions";
-// import { getPhones } from "../../../redux/phones/Phones";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { fetchCart } from "../../../redux/cart/actions";
+import { getPhones } from "../../../redux/phones/Phones";
 import { PhonesData } from "../../../redux/phones/types";
-// import { removeFromCart } from "../../../redux/cart/actions";
+import { removeFromCart } from "../../../redux/cart/actions";
 
-interface NavBarProps {
-  totalCart: number;
-  cartArrLength: number;
-  filteredCartItem: [];
-  foundPhonesQuantity: any;
-}
-
-const NavBar = ({
-  totalCart,
-  cartArrLength,
-  filteredCartItem,
-  foundPhonesQuantity,
-}: NavBarProps) => {
+const NavBar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [message, setMessage] = useState({
     appreciation: "",
     success: "",
@@ -35,11 +24,13 @@ const NavBar = ({
   });
   const cookies = new Cookie();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const cart = useSelector((state: RootState) => state.cart);
-  // const phone = useSelector((state: RootState) => state.phones);
-  // const cartArr = cart?.data || [];
-  // const phonesArr = phone?.data || [];
-  // const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.cart);
+  const phone = useSelector((state: RootState) => state.phones);
+  const cartArr = cart?.data || [];
+  const phonesArr = phone?.data || [];
+  const cartArrLength = cartArr.length;
+  const userVerified = cookies.get("token");
+  const navBarRef = useRef<HTMLDivElement>(null);
 
   const getTime = () => {
     const [time, setTime] = useState(new Date());
@@ -63,19 +54,42 @@ const NavBar = ({
 
   useEffect(() => {
     // Check if the token cookie is present
-    if (cookies.get("token")) {
+    if (userVerified) {
       setIsAuthenticated(true);
     }
   }, []);
 
+  // Display cart items and length
+  useEffect(() => {
+    dispatch(getPhones() as any);
+    dispatch(fetchCart() as any);
+  }, [dispatch]);
+
+  const filteredCartItem: any = [];
+  let totalCart = 0;
+  const foundPhonesQuantity: number[] = [];
+
+  if (Array.isArray(phonesArr)) {
+    cartArr.forEach((cartItem) => {
+      const foundPhone = phonesArr.find(
+        (phone) => phone.id === cartItem.phone_id
+      );
+      if (foundPhone) {
+        filteredCartItem.push(foundPhone);
+        foundPhonesQuantity.push(cartItem.quantity);
+        totalCart += foundPhone.amount * cartItem.quantity;
+      }
+    });
+  }
+
   // Handle the signout process
   const handleSignOut = async () => {
-    if (cookies.get("token")) {
-      const token = cookies.get("token");
+    if (userVerified) {
+      // const token = cookies.get("token");
       try {
         await axios.delete("http://127.0.0.1:5000/users/sign_out", {
           headers: {
-            Authorization: token,
+            Authorization: userVerified,
           },
         });
       } catch (error) {
@@ -101,50 +115,47 @@ const NavBar = ({
     }
   };
 
-  // // Display cart items and length
-  // useEffect(() => {
-  //   dispatch(getPhones() as any);
-  //   dispatch(fetchCart() as any);
-  // }, [dispatch]);
+  const removeFromCartHandler = (phone: PhonesData) => {
+    if (userVerified) {
+      (dispatch as any)(removeFromCart(phone.id));
+      setMessage({ ...message, success: "Phone removed from cart" });
+      setTimeout(() => {
+        setMessage({ ...message, success: "" });
+      }, 3000);
+    } else {
+      setMessage({
+        ...message,
+        error: "You have to log in to perfrom this action!",
+      });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    }
+  };
 
-  // const displayCartLength = () => {
-  //   return cartArr.length;
-  // };
+  // Set setOpen to false when user clicks outside the NavBar
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        navBarRef.current &&
+        !navBarRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
 
-  // const filteredCartItem: any = [];
-  // let totalCart = 0;
-  // const foundPhonesQuantity: number[] = [];
+    document.addEventListener("click", handleOutsideClick);
 
-  // if (Array.isArray(phonesArr)) {
-  //   cartArr.forEach((cartItem) => {
-  //     const foundPhone = phonesArr.find(
-  //       (phone) => phone.id === cartItem.phone_id
-  //     );
-  //     if (foundPhone) {
-  //       filteredCartItem.push(foundPhone);
-  //       foundPhonesQuantity.push(cartItem.quantity);
-  //       totalCart += foundPhone.amount * cartItem.quantity;
-  //     }
-  //   });
-  // }
-
-  // const handleCartItemDel = async (item: PhonesData) => {
-  //   const result = await dispatch(removeFromCart(item.id) as any);
-  //   if (result.payload) {
-  //     setMessage({ ...message, success: result.payload.message });
-  //     setTimeout(() => {
-  //       setMessage({ ...message, success: "" });
-  //     }, 3000);
-  //   } else {
-  //     setMessage({ ...message, error: "Failed to add item to cart" });
-  //     setTimeout(() => {
-  //       setMessage({ ...message, error: "" });
-  //     }, 3000);
-  //   }
-  // };
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   return (
-    <nav className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col z-40">
+    <nav
+      ref={navBarRef}
+      className="bg-primary px-2 border-b-2 border-b-line-t fixed w-full flex flex-col z-40"
+    >
       {message.appreciation && (
         <div className="toast ease-in-out">
           <div className="alert alert-info">
@@ -160,12 +171,12 @@ const NavBar = ({
         </div>
       )}
       {message.error && (
-        <div className="toast toast-top">
+        <div className="toast toast-top top-10 z-40">
           <p className="alert alert-error">{message.error}</p>
         </div>
       )}
       {message.success && (
-        <div className="toast toast-top toast-center w-full px-[10vw]">
+        <div className="toast toast-top top-10 z-40">
           <p className="alert alert-success text-xl">{message.success}</p>
         </div>
       )}
@@ -215,7 +226,7 @@ const NavBar = ({
                 <button onClick={handleSignOut}>Sign Out</button>
               </li>
               <li>
-                {cartArrLength > 0 ? (
+                {cartArrLength >= 1 ? (
                   <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                       <div className="indicator">
@@ -260,7 +271,7 @@ const NavBar = ({
                               </div>
                               <button
                                 className="btn btn-secondary btn-sm"
-                                // onClick={() => handleCartItemDel(item)}
+                                onClick={() => removeFromCartHandler(item)}
                               >
                                 Delete
                               </button>

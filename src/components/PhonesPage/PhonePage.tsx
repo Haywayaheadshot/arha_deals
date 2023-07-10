@@ -13,7 +13,6 @@ const PhonePage = () => {
   const phones = useSelector((state: RootState) => state.phones);
   const cookies = new Cookie();
   const cart = useSelector((state: RootState) => state.cart);
-  const [inCart, setInCart] = useState<{ [key: string]: boolean }>({});
   const [selectedPhone, setSelectedPhone] = useState<PhonesData | null>(null);
   const [message, setMessage] = useState({
     error: "",
@@ -25,17 +24,7 @@ const PhonePage = () => {
 
   useEffect(() => {
     dispatch(getPhones() as any);
-    dispatch(fetchCart() as any).then((response: any) => {
-      const cartData = response.payload.data;
-      const phoneIdsInCart = cartData.map((item: CartData) => item.phone_id);
-      setInCart((prevInCart) => ({
-        ...prevInCart,
-        ...phoneIdsInCart.reduce((acc: any, id: string) => {
-          acc[id] = true;
-          return acc;
-        }, {}),
-      }));
-    });
+    dispatch(fetchCart() as any);
   }, [dispatch]);
 
   const phonesArr = phones?.data || [];
@@ -52,17 +41,13 @@ const PhonePage = () => {
   // Add phone to cart
   const handleAddToCart = (phone: PhonesData, quantity: number) => {
     if (userVerified) {
-      if (isPhoneInCart(phone)) {
+      if (isPhoneInCartOnLoad(phone)) {
         setMessage({ ...message, error: "This phone is already in your cart" });
         setTimeout(() => {
           setMessage({ ...message, error: "" });
         }, 3000);
       } else {
         dispatch(addToCart({ phoneId: phone.id, quantity }) as any);
-        setInCart((prevInCart) => ({
-          ...prevInCart,
-          [phone.id]: true,
-        }));
         setMessage({ ...message, success: "Phone added to cart" });
         setTimeout(() => {
           setMessage({ ...message, success: "" });
@@ -87,18 +72,10 @@ const PhonePage = () => {
     return false; // Return false if cartArr is not an array
   };
 
-  const isPhoneInCart = (phone: PhonesData) => {
-    return inCart[phone.id] || false;
-  };
-
   // Remove phone from cart
   const removeFromCartHandler = (phone: PhonesData) => {
     if (userVerified) {
       (dispatch as any)(removeFromCart(phone.id));
-      setInCart((prevInCart) => ({
-        ...prevInCart,
-        [phone.id]: false,
-      }));
       setMessage({ ...message, success: "Phone removed from cart" });
       setTimeout(() => {
         setMessage({ ...message, success: "" });
@@ -198,9 +175,7 @@ const PhonePage = () => {
                   </button>
                 </section>
                 <div className="card-actions justify-end">
-                  {(isPhoneInCart(phone) ||
-                    isPhoneInCartOnLoad(phone) ||
-                    inCart[phone.id]) && (
+                  {isPhoneInCartOnLoad(phone) ? (
                     <>
                       <button
                         className="btn btn-primary"
@@ -216,35 +191,32 @@ const PhonePage = () => {
                         Add to Cart
                       </button>
                     </>
-                  )}
-                  {!inCart[phone.id] &&
-                    !isPhoneInCart(phone) &&
-                    !isPhoneInCartOnLoad(phone) && (
-                      <div className="flex flex-row justify-center items-center gap-3">
-                        <div className="flex flex-row gap-2 text-primary">
-                          <label className="label">
-                            <span className="label-text text-lg text-primary">
-                              Quantity
-                            </span>
-                          </label>
-                          <label className="input-group">
-                            <input
-                              type="number"
-                              placeholder="1"
-                              className="input input-bordered w-20 rounded-md bg-black"
-                              value={quantity}
-                              onChange={(e) => handleQuantityChange(phone, e)}
-                            />
-                          </label>
-                        </div>
-                        <button
-                          className="btn bg-secondary"
-                          onClick={() => handleAddToCart(phone, quantity)}
-                        >
-                          Add to Cart
-                        </button>
+                  ) : (
+                    <div className="flex flex-row justify-center items-center gap-3">
+                      <div className="flex flex-row gap-2 text-primary">
+                        <label className="label">
+                          <span className="label-text text-lg text-primary">
+                            Quantity
+                          </span>
+                        </label>
+                        <label className="input-group">
+                          <input
+                            type="number"
+                            placeholder="1"
+                            className="input input-bordered w-20 rounded-md bg-black"
+                            value={quantity}
+                            onChange={(e) => handleQuantityChange(phone, e)}
+                          />
+                        </label>
                       </div>
-                    )}
+                      <button
+                        className="btn bg-secondary"
+                        onClick={() => handleAddToCart(phone, quantity)}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

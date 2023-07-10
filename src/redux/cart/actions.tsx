@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "../configureStore";
 import { CartData } from "./types";
 import Cookies from "universal-cookie";
 
@@ -21,25 +20,26 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
 
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
-  async (
-    { phoneId, quantity }: { phoneId: string | number; quantity: number },
-    { getState }
-  ) => {
-    const state = getState() as RootState;
+  async ({
+    phoneId,
+    quantity,
+  }: {
+    phoneId: string | number;
+    quantity: number;
+  }) => {
     const data = { phone_id: phoneId, quantity: quantity };
-    const response = await axios.post<CartData[]>(addToCartApi, data);
-    const result = [{ ...response.data, inCart: true }]; // Add the inCart key with value true
+    const response = await axios.post(addToCartApi, data);
+    const result = response.data.added;
     return result;
   }
 );
 
 export const removeFromCart = createAsyncThunk(
   "cart/removeFromCart",
-  async (phoneId: string | number, { getState }) => {
-    const state = getState() as RootState;
+  async (phoneId: string | number) => {
     const data = { phone_id: phoneId };
-    const response = await axios.delete(removeFromCartApi, { data });
-    const result = [{ ...response.data, inCart: false }]; // Add the inCart key with value false
+    axios.delete(removeFromCartApi, { data });
+    const result = data.phone_id;
     return result;
   }
 );
