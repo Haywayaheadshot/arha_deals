@@ -222,12 +222,15 @@ const ConfirmOrder = () => {
             Please visit our pages for{" "}
             <NavLink
               to="/babyproducts"
-              className="underline-offset-8 underline"
+              className="underline-offset-8 underline hover:border-x-2 hover:px-2 hover:rounded-md hover:py-1"
             >
               babies
             </NavLink>{" "}
             and{" "}
-            <NavLink to="/phones" className="underline-offset-8 underline">
+            <NavLink
+              to="/phones"
+              className="underline-offset-8 underline hover:border-x-2 hover:px-2 hover:rounded-md hover:py-1"
+            >
               phones
             </NavLink>{" "}
             to add items to your cart
