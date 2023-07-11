@@ -15,6 +15,7 @@ import SignInPage from "./components/SignInPage/SignInPage";
 import NavBarWrapper from "./components/Shared/NavBar/NavBarWrapper";
 import ConfirmOrder from "./components/ConfirmOrder/ConfirmOrder";
 import PhonePage from "./components/PhonesPage/PhonePage";
+import BabyProducts from "./components/BabyProducts/BabyProducts";
 
 const App = () => {
   return (
@@ -93,6 +94,15 @@ const App = () => {
             <Route
               path="/signin"
               element={<SignInPage />}
+              {...(exactProp as RouteProps)}
+            />
+            <Route
+              path="/babyproducts"
+              element={
+                <NavBarWrapper>
+                  <BabyProducts />
+                </NavBarWrapper>
+              }
               {...(exactProp as RouteProps)}
             />
           </Routes>
