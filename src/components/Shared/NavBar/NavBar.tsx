@@ -207,7 +207,9 @@ const NavBar = () => {
             <li className="border-r-2 pr-2">
               <NavLink to="/phonehacks">Hacks</NavLink>
             </li>
-            <li className="border-r-2 pr-2">Babies</li>
+            <li className="border-r-2 pr-2">
+              <NavLink to="/babyproducts">Babies</NavLink>
+            </li>
             <li>
               <NavLink to="/exclusiveitems">Exclusive</NavLink>
             </li>
@@ -370,7 +372,11 @@ const NavBar = () => {
               Phone Hacks
             </NavLink>
           </li>
-          <li>Baby Products</li>
+          <li>
+            <NavLink to="/babyproducts" onClick={() => setOpen(false)}>
+              Baby Products
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/exclusiveitems" onClick={() => setOpen(false)}>
               Exclusive Items
