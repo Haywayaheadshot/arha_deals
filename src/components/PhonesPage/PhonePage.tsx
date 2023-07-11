@@ -183,11 +183,7 @@ const PhonePage = () => {
                       >
                         Remove from Cart
                       </button>
-                      <button
-                        className="btn bg-secondary"
-                        onClick={() => handleAddToCart(phone, quantity)}
-                        disabled
-                      >
+                      <button className="btn bg-secondary" disabled>
                         Add to Cart
                       </button>
                     </>
