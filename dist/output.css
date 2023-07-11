@@ -3766,16 +3766,8 @@ html {
   top: 2.75rem;
 }
 
-.left-9 {
-  left: 2.25rem;
-}
-
 .z-40 {
   z-index: 40;
-}
-
-.-z-40 {
-  z-index: -40;
 }
 
 .my-10 {
@@ -3883,10 +3875,6 @@ html {
   width: 13rem;
 }
 
-.w-7 {
-  width: 1.75rem;
-}
-
 .w-\[100vw\] {
   width: 100vw;
 }
@@ -3905,11 +3893,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .min-w-\[30vw\] {
@@ -4052,10 +4035,6 @@ html {
 
 .self-end {
   align-self: flex-end;
-}
-
-.self-center {
-  align-self: center;
 }
 
 .overflow-x-auto {
@@ -4258,11 +4237,6 @@ html {
   padding-right: 1.75rem;
 }
 
-.px-\[10vw\] {
-  padding-left: 10vw;
-  padding-right: 10vw;
-}
-
 .px-\[3vw\] {
   padding-left: 3vw;
   padding-right: 3vw;
@@ -4308,6 +4282,11 @@ html {
   padding-bottom: 1.25rem;
 }
 
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -4334,10 +4313,6 @@ html {
 
 .pr-2 {
   padding-right: 0.5rem;
-}
-
-.pr-3 {
-  padding-right: 0.75rem;
 }
 
 .pr-5 {
@@ -4370,10 +4345,6 @@ html {
 
 .text-center {
   text-align: center;
-}
-
-.text-end {
-  text-align: end;
 }
 
 .font-montserrat {
@@ -4482,6 +4453,10 @@ html {
   text-underline-offset: 4px;
 }
 
+.underline-offset-8 {
+  text-underline-offset: 8px;
+}
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -4529,13 +4504,6 @@ html {
     right: 50%;
     left: 50%;
     --tw-translate-x: -50%;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  }
-
-  .toast:where(.desktop\:toast-top) {
-    top: 0px;
-    bottom: auto;
-    --tw-translate-y: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 }
@@ -4716,10 +4684,6 @@ html {
     width: fit-content;
   }
 
-  .desktop\:w-full {
-    width: 100%;
-  }
-
   .desktop\:min-w-\[20vw\] {
     min-width: 20vw;
   }
@@ -4763,11 +4727,6 @@ html {
   .desktop\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-  }
-
-  .desktop\:px-\[10vw\] {
-    padding-left: 10vw;
-    padding-right: 10vw;
   }
 
   .desktop\:px-\[20vw\] {
