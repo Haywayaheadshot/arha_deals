@@ -27,9 +27,9 @@ const ConfirmOrder = () => {
   const cartItemsQuantity: number[] = [];
   let totalCart = 0;
 
-  if (Array.isArray(phonesArr)) {
+  if (Array.isArray(cartArr)) {
     cartArr.forEach((cartItem) => {
-      const foundPhone = phonesArr.find(
+      const foundPhone = phonesArr?.find(
         (phone) => phone.id === cartItem.phone_id
       );
       if (foundPhone) {
@@ -89,11 +89,13 @@ const ConfirmOrder = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems?.map((item: PhonesData, index) => (
+                {cartItems.map((item: PhonesData, index) => (
                   <>
                     <tr>
                       <td className="flex flex-col gap-3 py-5 pr-5">
                         <img
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
                           src={item.images_src[0]}
                           alt="Test Image"
                           className="px-2 w-[30vw]"
