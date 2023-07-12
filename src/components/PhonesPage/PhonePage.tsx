@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPhones } from "../../redux/phones/Phones";
+import getPhones from "../../redux/phones/actions";
 import { RootState } from "../../redux/configureStore";
 import LoadingAnimation from "../Shared/LoadingAnimation";
 import ModalPop from "./ModalPop";
