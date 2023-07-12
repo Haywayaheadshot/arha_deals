@@ -5,6 +5,7 @@ import phoneHacksReducer from "./phoneHacks/PhoneHacks";
 import exclusiveItemsReducer from "./exclusiveItems/ExclusiveItems";
 import phonesReducer from "./phones/Phones";
 import cartReducer from "./cart/Cart";
+import babyProductsReducer from "./babyProducts/BabyProducts";
 
 const logger = createLogger();
 
@@ -15,6 +16,7 @@ const store = configureStore({
     items: exclusiveItemsReducer,
     phones: phonesReducer,
     cart: cartReducer,
+    babyProducts: babyProductsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
