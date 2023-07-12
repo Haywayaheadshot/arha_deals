@@ -1,25 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { PhonesData } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
 import Phones from "./types";
+import getPhones from "./actions";
 
 const initialState: Phones = {
   data: [],
   success: false,
   loading: true,
 };
-
-const getPhonesApi = "http://127.0.0.1:5000/api/phones";
-
-// action creators for display phones
-export const getPhones = createAsyncThunk(
-  "src/redux/phones/getPhones",
-  async () => {
-    const response = await axios.get<PhonesData[]>(getPhonesApi);
-    const phones = response.data;
-    return phones;
-  }
-);
 
 const phonesSlice = createSlice({
   name: "phones",
