@@ -179,7 +179,7 @@ const ConfirmOrder = () => {
               </ul>
             </section>
           </section>
-          <aside className="hidden desktop:flex gap-3 text-primary flex-col bg-box w-[25vw] px-3 py-5 sticky top-10 my-10">
+          <aside className="hidden desktop:flex gap-3 text-secondary flex-col bg-gray-100 w-[25vw] px-3 py-5 sticky top-10 my-10">
             <span className="text-4xl pb-2 border-b-2 border-b-primary">
               Summary
             </span>
@@ -204,10 +204,10 @@ const ConfirmOrder = () => {
               <span> Order Total</span>
               <span> GHs{totalCart - totalCart * 0.05 + 200}</span>
             </div>
-            <button className="bg-yellow-300 py-3 rounded-md">
+            <button className="bg-yellow-300 text-primary py-3 rounded-md">
               Pay With Card
             </button>
-            <button className="bg-yellow-300 py-3 rounded-md">
+            <button className="bg-yellow-300 text-primary py-3 rounded-md">
               Pay With Mobile Money
             </button>
           </aside>

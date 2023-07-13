@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { fetchCart } from "../../../redux/cart/actions";
-import { getPhones } from "../../../redux/phones/Phones";
+import getPhones from "../../../redux/phones/actions";
 import { PhonesData } from "../../../redux/phones/types";
 import { removeFromCart } from "../../../redux/cart/actions";
 
