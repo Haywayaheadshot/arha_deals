@@ -7,6 +7,8 @@ export interface BabyProductsData {
   specs: [];
   condition: string;
   video_src: string;
+  features: [];
+  productHightlights: [];
 }
 
 export default interface BabyProducts {
