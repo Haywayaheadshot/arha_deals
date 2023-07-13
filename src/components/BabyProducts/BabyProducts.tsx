@@ -51,7 +51,9 @@ const BabyProducts = () => {
             </figure>
             <div className="card-body bg-yellow-300 text-primary">
               <h2 className="card-title underline-offset-4 underline pb-3">
-                {product.name}
+                {product.name.length > 24
+                  ? `${product.name.slice(0, 22)}...`
+                  : product.name}
               </h2>
               <span>Condition: {product.condition}</span>
               <section className="flex flex-row justify-between items-center">
