@@ -155,18 +155,25 @@ const PhonePage = () => {
                       key={index}
                     />
                   ))}
-                  <iframe
-                    title="Device video brief"
-                    src={phone.video_src}
-                    frameBorder="0"
-                    allowFullScreen
-                    className="carousel-item tablet:pb-5"
-                    width="inherit"
-                  ></iframe>
+                  {phone.video_src && (
+                    <iframe
+                      title="Device video brief"
+                      src={phone.video_src}
+                      frameBorder="0"
+                      allowFullScreen
+                      className="carousel-item tablet:pb-5"
+                      width="inherit"
+                    ></iframe>
+                  )}
                 </section>
               </figure>
               <div className="card-body bg-yellow-300 text-primary">
-                <h2 className="card-title">{phone.name}</h2>
+                <h2
+                  className="card-title underline-offset-4 underline pb-3"
+                  onClick={() => openModal(phone)}
+                >
+                  {phone.name}
+                </h2>
                 <span>{phone.specs.capacity}</span>
                 <section className="flex flex-row justify-between items-center">
                   <span>Stock: {phone.stock} pieces</span>
