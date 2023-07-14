@@ -1,18 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import getBabyProducts from "../../redux/babyProducts/actions";
+import { BabyProductsData } from "../../redux/babyProducts/types";
 import { RootState } from "../../redux/configureStore";
+import ModalPop from "./ModalPop";
 
 const BabyProducts = () => {
   const babyProduct = useSelector((state: RootState) => state.babyProducts);
   const babyProductArr = babyProduct.data;
   const dispatch = useDispatch();
+  const [selectedProduct, setSelectedProduct] =
+    useState<BabyProductsData | null>(null);
 
   useEffect(() => {
     dispatch(getBabyProducts() as any);
   }, [dispatch]);
 
+  const openModal = (product: BabyProductsData) => {
+    setSelectedProduct(product);
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+  };
   return (
     <div className="p-5 tablet:px-12">
       <section className="pt-10">
@@ -22,7 +33,7 @@ const BabyProducts = () => {
         </p>
       </section>
       <section className="carousel carousel-vertical gap-8 items-center tablet:flex-row tablet:py-10 tablet:px-5">
-        {babyProductArr.map((product) => (
+        {babyProductArr.map((product: BabyProductsData) => (
           <div
             key={product.id}
             className="shadow-lg border-tertiary border-2 rounded-lg max-w-tab-image tablet:max-w-rouselMin hover:shadow-indigo-500/50 hover:scale-105 tablet:ease-in cursor-pointer tablet:duration-300"
@@ -58,7 +69,9 @@ const BabyProducts = () => {
               <span>Condition: {product.condition}</span>
               <section className="flex flex-row justify-between items-center">
                 <span>Stock: {product.stock} piece(s)</span>
-                <button className="btn">Specs</button>
+                <button className="btn" onClick={() => openModal(product)}>
+                  Specs
+                </button>
               </section>
               <div className="card-actions justify-end">
                 {/* Show this if item is already in cart */}
@@ -89,6 +102,12 @@ const BabyProducts = () => {
           </div>
         ))}
       </section>
+      {/* Display selected baby product in modal */}
+      {selectedProduct && (
+        <div className="modal modal-open" id="my-modal-2">
+          <ModalPop selectedProduct={selectedProduct} closeModal={closeModal} />
+        </div>
+      )}
     </div>
   );
 };
