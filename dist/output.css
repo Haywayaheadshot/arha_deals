@@ -3835,6 +3835,10 @@ html {
   margin-top: 1rem;
 }
 
+.mt-\[-10vh\] {
+  margin-top: -10vh;
+}
+
 .inline {
   display: inline;
 }
@@ -3931,10 +3935,6 @@ html {
   max-width: 20vw;
 }
 
-.max-w-\[50vw\] {
-  max-width: 50vw;
-}
-
 .max-w-home-image {
   max-width: 90vw;
 }
@@ -3945,10 +3945,6 @@ html {
 
 .max-w-tab-image {
   max-width: 85vw;
-}
-
-.max-w-mid {
-  max-width: 50vw;
 }
 
 .table-auto {
@@ -4354,6 +4350,10 @@ html {
   padding-bottom: 0.75rem;
 }
 
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -4400,10 +4400,6 @@ html {
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .text-left {
