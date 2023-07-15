@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 const ConfirmOrder = () => {
   const cart = useSelector((state: RootState) => state.cart);
   const phone = useSelector((state: RootState) => state.phones);
+  const babyProduct = useSelector((state: RootState) => state.babyProducts);
   const cookie = new Cookies();
   const userVerified = cookie.get("token");
   const dispatch = useDispatch();
@@ -22,20 +23,38 @@ const ConfirmOrder = () => {
 
   const cartArr = cart?.data;
   const phonesArr = phone?.data;
+  const babyProductArr = babyProduct?.data || [];
 
   const cartItems: any[] = [];
   const cartItemsQuantity: number[] = [];
   let totalCart = 0;
 
-  if (Array.isArray(cartArr)) {
+  if (Array.isArray(phonesArr) || Array.isArray(babyProductArr)) {
     cartArr.forEach((cartItem) => {
-      const foundPhone = phonesArr?.find(
-        (phone) => phone.id === cartItem.phone_id
-      );
-      if (foundPhone) {
-        cartItems.push(foundPhone);
-        cartItemsQuantity.push(cartItem.quantity);
-        totalCart += foundPhone.amount * cartItem.quantity;
+      if (cartItem.phone_id) {
+        const foundPhone = phonesArr.find(
+          (phone) => phone.id === cartItem.phone_id
+        );
+        if (foundPhone) {
+          cartItems.push(foundPhone);
+          if (cartItem.phone_quantity) {
+            cartItemsQuantity.push(cartItem.phone_quantity);
+            totalCart += foundPhone.amount * cartItem.phone_quantity;
+          }
+        }
+      }
+      if (cartItem.baby_product_id) {
+        const foundBabyProduct = babyProductArr.find(
+          (product) => product.id === cartItem.baby_product_id
+        );
+        if (foundBabyProduct) {
+          cartItems.push(foundBabyProduct);
+          if (cartItem.baby_products_quantity) {
+            cartItemsQuantity.push(cartItem.baby_products_quantity);
+            totalCart +=
+              foundBabyProduct.amount * cartItem.baby_products_quantity;
+          }
+        }
       }
     });
   }
@@ -57,6 +76,21 @@ const ConfirmOrder = () => {
         setMessage({ ...message, error: "" });
       }, 3000);
     }
+  };
+
+  // Check if item.specs for cartItems is a 2d array
+  const is2DArray = (array: any) => {
+    if (!Array.isArray(array)) {
+      return false;
+    }
+
+    for (let i = 0; i < array.length; i++) {
+      if (!Array.isArray(array[i])) {
+        return false;
+      }
+    }
+
+    return true;
   };
 
   return (
@@ -104,9 +138,41 @@ const ConfirmOrder = () => {
                       </td>
                       <td>
                         <ul>
-                          <li>{item.specs.capacity}</li>
-                          <li>{item.specs.body.color}</li>
-                          <li className="py-4">{item.specs.body.status}</li>
+                          <li>{item.specs.capacity && item.specs.capacity}</li>
+                          <li>{item.specs.body && item.specs.body.color}</li>
+                          <li className="py-4">
+                            {item.specs.body && item.specs.body.status}
+                          </li>
+                          <li>
+                            {is2DArray(item.specs) && (
+                              <table className="table-fixed">
+                                <thead>
+                                  <tr>
+                                    <th></th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                {Object.entries(item.specs).map(
+                                  ([key, value]) => (
+                                    <tbody key={key}>
+                                      {Array.isArray(value) ? (
+                                        <tr className="border-2">
+                                          <td></td>
+                                          <td>
+                                            {value.map((item, index) => (
+                                              <li key={index}>
+                                                <span>{item}</span>
+                                              </li>
+                                            ))}
+                                          </td>
+                                        </tr>
+                                      ) : null}
+                                    </tbody>
+                                  )
+                                )}
+                              </table>
+                            )}
+                          </li>
                         </ul>
                       </td>
                       <td className="px-2">
