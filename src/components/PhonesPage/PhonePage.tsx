@@ -6,7 +6,11 @@ import LoadingAnimation from "../Shared/LoadingAnimation";
 import ModalPop from "./ModalPop";
 import { PhonesData } from "../../redux/phones/types";
 import { CartData } from "../../redux/cart/types";
-import { fetchCart, addToCart, removeFromCart } from "../../redux/cart/actions";
+import {
+  fetchCart,
+  addToCart,
+  removePhoneFromCart,
+} from "../../redux/cart/actions";
 import Cookie from "universal-cookie";
 
 const PhonePage = () => {
@@ -47,7 +51,14 @@ const PhonePage = () => {
           setMessage({ ...message, error: "" });
         }, 3000);
       } else {
-        dispatch(addToCart({ phoneId: phone.id, quantity }) as any);
+        dispatch(
+          addToCart({
+            phoneId: phone.id,
+            phoneQuantity: quantity,
+            babyProductId: null,
+            babyProductQuantity: null,
+          }) as any
+        );
         setMessage({ ...message, success: "Phone added to cart" });
         setTimeout(() => {
           setMessage({ ...message, success: "" });
@@ -75,7 +86,7 @@ const PhonePage = () => {
   // Remove phone from cart
   const removeFromCartHandler = (phone: PhonesData) => {
     if (userVerified) {
-      (dispatch as any)(removeFromCart(phone.id));
+      (dispatch as any)(removePhoneFromCart(phone.id));
       setMessage({ ...message, success: "Phone removed from cart" });
       setTimeout(() => {
         setMessage({ ...message, success: "" });
