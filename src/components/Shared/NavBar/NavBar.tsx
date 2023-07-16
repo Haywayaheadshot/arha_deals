@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { fetchCart } from "../../../redux/cart/actions";
 import getPhones from "../../../redux/phones/actions";
 import { PhonesData } from "../../../redux/phones/types";
-import { removeFromCart } from "../../../redux/cart/actions";
+import { removePhoneFromCart } from "../../../redux/cart/actions";
 import getBabyProducts from "../../../redux/babyProducts/actions";
 import { BabyProductsData } from "../../../redux/babyProducts/types";
 
@@ -137,22 +137,8 @@ const NavBar = () => {
     }
   };
 
-  const removeFromCartHandler = (phone: PhonesData) => {
-    if (userVerified) {
-      (dispatch as any)(removeFromCart(phone.id));
-      setMessage({ ...message, success: "Phone removed from cart" });
-      setTimeout(() => {
-        setMessage({ ...message, success: "" });
-      }, 3000);
-    } else {
-      setMessage({
-        ...message,
-        error: "You have to log in to perfrom this action!",
-      });
-      setTimeout(() => {
-        setMessage({ ...message, error: "" });
-      }, 3000);
-    }
+  const removeFromCartHandler = (item: PhonesData | BabyProductsData) => {
+    console.log(item);
   };
 
   // Set setOpen to false when user clicks outside the NavBar
@@ -282,7 +268,10 @@ const NavBar = () => {
                           {cartArrLength} Item(s)
                         </span>
                         {filteredCartItem.map(
-                          (item: PhonesData, index: number) => (
+                          (
+                            item: PhonesData | BabyProductsData,
+                            index: number
+                          ) => (
                             <div
                               key={item.id}
                               className="flex flex-row border-2 justify-between items-center p-2 rounded-md"
