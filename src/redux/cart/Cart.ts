@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCart, addToCart, removeFromCart } from "./actions";
+import {
+  fetchCart,
+  addToCart,
+  removePhoneFromCart,
+  removeBabyProductFromCart,
+} from "./actions";
 import { CartData } from "./types";
 import { Draft } from "immer";
 
@@ -46,7 +51,7 @@ const cartSlice = createSlice({
       state.success = false;
       state.loading = true;
     });
-    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+    builder.addCase(removePhoneFromCart.fulfilled, (state, action) => {
       const itemIdToRemove = action.payload;
       state.data = state.data.filter(
         (item) => item.phone_id !== itemIdToRemove
@@ -54,11 +59,27 @@ const cartSlice = createSlice({
       state.success = true;
       state.loading = false;
     });
-    builder.addCase(removeFromCart.rejected, (state) => {
+    builder.addCase(removePhoneFromCart.rejected, (state) => {
       state.success = false;
       state.loading = false;
     });
-    builder.addCase(removeFromCart.pending, (state) => {
+    builder.addCase(removePhoneFromCart.pending, (state) => {
+      state.success = false;
+      state.loading = true;
+    });
+    builder.addCase(removeBabyProductFromCart.fulfilled, (state, action) => {
+      const itemIdToRemove = action.payload;
+      state.data = state.data.filter(
+        (item) => item.baby_product_id !== itemIdToRemove
+      );
+      state.success = true;
+      state.loading = false;
+    });
+    builder.addCase(removeBabyProductFromCart.rejected, (state) => {
+      state.success = false;
+      state.loading = false;
+    });
+    builder.addCase(removeBabyProductFromCart.pending, (state) => {
       state.success = false;
       state.loading = true;
     });
