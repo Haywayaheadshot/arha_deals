@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/configureStore";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { IconContext } from "react-icons";
-import { removeFromCart } from "../../redux/cart/actions";
+import { removePhoneFromCart } from "../../redux/cart/actions";
 import { PhonesData } from "../../redux/phones/types";
 import Cookies from "universal-cookie";
 import { useDispatch } from "react-redux";
@@ -62,7 +62,7 @@ const ConfirmOrder = () => {
   // Remove phone from cart
   const removeFromCartHandler = (phone: PhonesData) => {
     if (userVerified) {
-      (dispatch as any)(removeFromCart(phone.id));
+      (dispatch as any)(removePhoneFromCart(phone.id));
       setMessage({ ...message, success: "Phone removed from cart" });
       setTimeout(() => {
         setMessage({ ...message, success: "" });
