@@ -3,11 +3,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/configureStore";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { IconContext } from "react-icons";
-import { removePhoneFromCart } from "../../redux/cart/actions";
+import {
+  removeBabyProductFromCart,
+  removePhoneFromCart,
+} from "../../redux/cart/actions";
 import { PhonesData } from "../../redux/phones/types";
 import Cookies from "universal-cookie";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { BabyProductsData } from "../../redux/babyProducts/types";
 
 const ConfirmOrder = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -59,14 +63,22 @@ const ConfirmOrder = () => {
     });
   }
 
-  // Remove phone from cart
-  const removeFromCartHandler = (phone: PhonesData) => {
+  // Check for item category before deleting
+  const removeFromCartHandler = (item: PhonesData | BabyProductsData) => {
     if (userVerified) {
-      (dispatch as any)(removePhoneFromCart(phone.id));
-      setMessage({ ...message, success: "Phone removed from cart" });
-      setTimeout(() => {
-        setMessage({ ...message, success: "" });
-      }, 3000);
+      if (item.category === "babyProduct") {
+        (dispatch as any)(removeBabyProductFromCart(item.id));
+        setMessage({ ...message, success: "Baby Product removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      } else {
+        (dispatch as any)(removePhoneFromCart(item.id));
+        setMessage({ ...message, success: "Phone removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      }
     } else {
       setMessage({
         ...message,
