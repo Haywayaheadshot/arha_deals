@@ -11,7 +11,10 @@ import { useDispatch } from "react-redux";
 import { fetchCart } from "../../../redux/cart/actions";
 import getPhones from "../../../redux/phones/actions";
 import { PhonesData } from "../../../redux/phones/types";
-import { removePhoneFromCart } from "../../../redux/cart/actions";
+import {
+  removePhoneFromCart,
+  removeBabyProductFromCart,
+} from "../../../redux/cart/actions";
 import getBabyProducts from "../../../redux/babyProducts/actions";
 import { BabyProductsData } from "../../../redux/babyProducts/types";
 
@@ -137,8 +140,31 @@ const NavBar = () => {
     }
   };
 
+  // Check for item category before deleting
   const removeFromCartHandler = (item: PhonesData | BabyProductsData) => {
-    console.log(item);
+    if (userVerified) {
+      if (item.category === "babyProduct") {
+        (dispatch as any)(removeBabyProductFromCart(item.id));
+        setMessage({ ...message, success: "Baby Product removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      } else {
+        (dispatch as any)(removePhoneFromCart(item.id));
+        setMessage({ ...message, success: "Phone removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      }
+    } else {
+      setMessage({
+        ...message,
+        error: "You have to log in to perfrom this action!",
+      });
+      setTimeout(() => {
+        setMessage({ ...message, error: "" });
+      }, 3000);
+    }
   };
 
   // Set setOpen to false when user clicks outside the NavBar
