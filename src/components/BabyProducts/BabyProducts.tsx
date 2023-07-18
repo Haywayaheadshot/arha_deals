@@ -88,7 +88,7 @@ const BabyProducts = () => {
   };
 
   // Handle quantity and stock
-  const [babyQuantity, setBabyQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (
     babyProduct: BabyProductsData,
@@ -96,13 +96,13 @@ const BabyProducts = () => {
   ) => {
     const newQuantity = parseInt(event.target.value, 10);
     if (newQuantity < 1) {
-      setBabyQuantity(1);
+      setQuantity(1);
       setMessage({ ...message, error: "Quantity cannot be less than 1" });
       setTimeout(() => {
         setMessage({ ...message, error: "" });
       }, 3000);
     } else if (newQuantity > babyProduct.stock) {
-      setBabyQuantity(babyProduct.stock);
+      setQuantity(babyProduct.stock);
       setMessage({
         ...message,
         error: "Quantity cannot exceed available stock",
@@ -111,7 +111,7 @@ const BabyProducts = () => {
         setMessage({ ...message, error: "" });
       }, 3000);
     } else {
-      setBabyQuantity(newQuantity);
+      setQuantity(newQuantity);
       setMessage({ ...message, error: "" });
     }
   };
@@ -224,14 +224,14 @@ const BabyProducts = () => {
                           type="number"
                           placeholder="1"
                           className="input input-bordered w-20 rounded-md bg-black"
-                          value={babyQuantity}
+                          value={quantity}
                           onChange={(e) => handleQuantityChange(product, e)}
                         />
                       </label>
                     </div>
                     <button
                       className="btn bg-secondary"
-                      onClick={() => handleAddToCart(product, babyQuantity)}
+                      onClick={() => handleAddToCart(product, quantity)}
                     >
                       Add to Cart
                     </button>
