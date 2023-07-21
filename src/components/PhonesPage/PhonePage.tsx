@@ -186,7 +186,7 @@ const PhonePage = () => {
                   {phone.name}
                 </h2>
                 <span>{phone.specs.capacity}</span>
-                <section className="flex flex-row justify-between items-center">
+                <section className="flex flex-row justify-between gap-10 items-center">
                   <span>Stock: {phone.stock} pieces</span>
                   <button className="btn" onClick={() => openModal(phone)}>
                     View More
