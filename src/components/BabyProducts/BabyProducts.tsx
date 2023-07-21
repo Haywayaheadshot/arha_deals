@@ -188,7 +188,7 @@ const BabyProducts = () => {
                   : product.name}
               </h2>
               <span>Condition: {product.condition}</span>
-              <section className="flex flex-row justify-between items-center">
+              <section className="flex flex-row gap-10 justify-between items-center">
                 <span>Stock: {product.stock} piece(s)</span>
                 <button className="btn" onClick={() => openModal(product)}>
                   Specs
