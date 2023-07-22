@@ -26,7 +26,7 @@
 
 # Arha Deals <a name="about-project"></a>
 
-**Arha-Deals** is a front-end e-commerce web application. It allows users browse through a collection of available products and reach the seller on whatsapp with details of the product when the user clicks a "Show Interest" button.
+**Arha-Deals** is a front-end e-commerce web application. It allows users browse through a collection of available products and reach the seller on whatsapp with details of the product when the user clicks a "Contact Seller" button. It is connected to [this](https://github.com/Haywayaheadshot/arha_deals_backend) back-end repo.
 
 ## 🛠 Built With <a name="built-with"></a>
 

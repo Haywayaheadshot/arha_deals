@@ -11,7 +11,12 @@ import { useDispatch } from "react-redux";
 import { fetchCart } from "../../../redux/cart/actions";
 import getPhones from "../../../redux/phones/actions";
 import { PhonesData } from "../../../redux/phones/types";
-import { removeFromCart } from "../../../redux/cart/actions";
+import {
+  removePhoneFromCart,
+  removeBabyProductFromCart,
+} from "../../../redux/cart/actions";
+import getBabyProducts from "../../../redux/babyProducts/actions";
+import { BabyProductsData } from "../../../redux/babyProducts/types";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -26,8 +31,10 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const cart = useSelector((state: RootState) => state.cart);
   const phone = useSelector((state: RootState) => state.phones);
+  const babyProduct = useSelector((state: RootState) => state.babyProducts);
   const cartArr = cart?.data || [];
   const phonesArr = phone?.data || [];
+  const babyProductArr = babyProduct?.data || [];
   const cartArrLength = cartArr.length;
   const userVerified = cookies.get("token");
   const navBarRef = useRef<HTMLDivElement>(null);
@@ -63,21 +70,39 @@ const NavBar = () => {
   useEffect(() => {
     dispatch(getPhones() as any);
     dispatch(fetchCart() as any);
+    dispatch(getBabyProducts() as any);
   }, [dispatch]);
 
   const filteredCartItem: any = [];
   let totalCart = 0;
   const foundPhonesQuantity: number[] = [];
 
-  if (Array.isArray(phonesArr)) {
+  if (Array.isArray(phonesArr) || Array.isArray(babyProductArr)) {
     cartArr.forEach((cartItem) => {
-      const foundPhone = phonesArr.find(
-        (phone) => phone.id === cartItem.phone_id
-      );
-      if (foundPhone) {
-        filteredCartItem.push(foundPhone);
-        foundPhonesQuantity.push(cartItem.quantity);
-        totalCart += foundPhone.amount * cartItem.quantity;
+      if (cartItem.phone_id) {
+        const foundPhone = phonesArr.find(
+          (phone) => phone.id === cartItem.phone_id
+        );
+        if (foundPhone) {
+          filteredCartItem.push(foundPhone);
+          if (cartItem.phone_quantity) {
+            foundPhonesQuantity.push(cartItem.phone_quantity);
+            totalCart += foundPhone.amount * cartItem.phone_quantity;
+          }
+        }
+      }
+      if (cartItem.baby_product_id) {
+        const foundBabyProduct = babyProductArr.find(
+          (product) => product.id === cartItem.baby_product_id
+        );
+        if (foundBabyProduct) {
+          filteredCartItem.push(foundBabyProduct);
+          if (cartItem.baby_products_quantity) {
+            foundPhonesQuantity.push(cartItem.baby_products_quantity);
+            totalCart +=
+              foundBabyProduct.amount * cartItem.baby_products_quantity;
+          }
+        }
       }
     });
   }
@@ -115,13 +140,22 @@ const NavBar = () => {
     }
   };
 
-  const removeFromCartHandler = (phone: PhonesData) => {
+  // Check for item category before deleting
+  const removeFromCartHandler = (item: PhonesData | BabyProductsData) => {
     if (userVerified) {
-      (dispatch as any)(removeFromCart(phone.id));
-      setMessage({ ...message, success: "Phone removed from cart" });
-      setTimeout(() => {
-        setMessage({ ...message, success: "" });
-      }, 3000);
+      if (item.category === "babyProduct") {
+        (dispatch as any)(removeBabyProductFromCart(item.id));
+        setMessage({ ...message, success: "Baby Product removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      } else {
+        (dispatch as any)(removePhoneFromCart(item.id));
+        setMessage({ ...message, success: "Phone removed from cart" });
+        setTimeout(() => {
+          setMessage({ ...message, success: "" });
+        }, 3000);
+      }
     } else {
       setMessage({
         ...message,
@@ -260,7 +294,10 @@ const NavBar = () => {
                           {cartArrLength} Item(s)
                         </span>
                         {filteredCartItem.map(
-                          (item: PhonesData, index: number) => (
+                          (
+                            item: PhonesData | BabyProductsData,
+                            index: number
+                          ) => (
                             <div
                               key={item.id}
                               className="flex flex-row border-2 justify-between items-center p-2 rounded-md"

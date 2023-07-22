@@ -6,6 +6,7 @@ import exclusiveItemsReducer from "./exclusiveItems/ExclusiveItems";
 import phonesReducer from "./phones/Phones";
 import cartReducer from "./cart/Cart";
 import babyProductsReducer from "./babyProducts/BabyProducts";
+import reelsReducer from "./reels/Reels";
 
 const logger = createLogger();
 
@@ -17,6 +18,7 @@ const store = configureStore({
     phones: phonesReducer,
     cart: cartReducer,
     babyProducts: babyProductsReducer,
+    reels: reelsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

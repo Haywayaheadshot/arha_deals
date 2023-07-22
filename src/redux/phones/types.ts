@@ -1,5 +1,5 @@
 export interface PhonesData {
-  id: string | number;
+  id: string | number | null;
   name: string;
   amount: number;
   stock: number;
@@ -16,6 +16,7 @@ export interface PhonesData {
   };
   condition: string;
   video_src: string;
+  category: string;
 }
 
 export default interface Phones {

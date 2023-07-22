@@ -55,6 +55,7 @@ export default {
         "tab-image": "85vw",
         "home-image-low": "40vw",
         last: "20vw",
+        mid: "50vw",
       },
       minHeight: {
         s: "20vh",
