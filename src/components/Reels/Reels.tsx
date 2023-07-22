@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/configureStore";
+import { fetchReels } from "../../redux/reels/Reels";
 
 const Reels = () => {
+  const reel = useSelector((state: RootState) => state.reels);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchReels() as any);
+  }, [dispatch]);
+  debugger;
+  console.log(reel);
+
   return (
     <div className="py-10">
       <section className="pt-5">
