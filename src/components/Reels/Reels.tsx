@@ -11,7 +11,6 @@ const Reels = () => {
   useEffect(() => {
     dispatch(fetchReels() as any);
   }, [dispatch]);
-  debugger;
   console.log(reel);
 
   return (

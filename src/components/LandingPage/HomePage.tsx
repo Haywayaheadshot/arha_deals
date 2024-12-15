@@ -74,25 +74,27 @@ const HomePage = () => {
           </p>
         </NavLink>
       </section>
-      <section className="py-10 mb-6 flex flex-col justify-center items-center">
-        <div className="desktop:flex desktop:flex-row desktop:justify-center gap-3">
-          <img
-            src={droid}
-            alt="A Droid Robot"
-            className="max-w-home-image tablet:min-w-tab-image desktop:min-w-[20vw] desktop:max-h-l"
-          />
-          <img
-            src={droid}
-            alt="A Droid Robot"
-            className="hidden desktop:block desktop:min-w-[20vw] desktop:max-h-l"
-          />
-        </div>
-        <p className="text-center py-4">
-          <span className="border-b-2 border-b-tertiary tablet:text-2xl desktop:text-xl">
-            Check out baby products from Turkey.
-          </span>
-        </p>
-      </section>
+      <NavLink to="/babyproducts">
+        <section className="py-10 mb-6 flex flex-col justify-center items-center">
+          <div className="desktop:flex desktop:flex-row desktop:justify-center gap-3">
+            <img
+              src={droid}
+              alt="A Droid Robot"
+              className="max-w-home-image tablet:min-w-tab-image desktop:min-w-[20vw] desktop:max-h-l"
+            />
+            <img
+              src={droid}
+              alt="A Droid Robot"
+              className="hidden desktop:block desktop:min-w-[20vw] desktop:max-h-l"
+            />
+          </div>
+          <p className="text-center py-4">
+            <span className="border-b-2 border-b-tertiary tablet:text-2xl desktop:text-xl">
+              Check out baby products from Turkey.
+            </span>
+          </p>
+        </section>
+      </NavLink>
       <section className="py-10 bg-box mb-10 tablet:px-5">
         <NavLink to="/exclusiveItems">
           <h2 className="text-center text-2xl text-primary tablet:text-5xl desktop:text-4xl">

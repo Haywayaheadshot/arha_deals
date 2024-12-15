@@ -8,6 +8,7 @@
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
   - [🚀 Live Demo ](#-live-demo-)
+  - [🚀 Video ](#-video-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -50,6 +51,10 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo](https://arha-deals.netlify.app/)
+
+## 🚀 Video <a name="live-Video"></a>
+
+- [Video](https://youtu.be/xvise4cYo0c)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
