@@ -288,7 +288,7 @@ const SignUpPage = () => {
             ref={dateOfBirth}
             type="date"
             id="dob"
-            data-testId="date-of-birth"
+            data-testid="date-of-birth"
             className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md"
             value={userInputs.dateOfBirth}
             onChange={(e) => {
@@ -307,7 +307,7 @@ const SignUpPage = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              data-testId="password"
+              data-testid="password"
               className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md bg-primary"
               value={userInputs.password}
               onChange={handlePasswordChange}
@@ -335,7 +335,7 @@ const SignUpPage = () => {
           <input
             type={showPassword ? "text" : "password"}
             id="confirm-password"
-            data-testId="confirm-password"
+            data-testid="confirm-password"
             className="w-full border-2 border-tertiary pl-2 py-1 text-sm rounded-md bg-primary"
             value={userInputs.confirmPassword}
             onChange={handleConfirmPasswordChange}
